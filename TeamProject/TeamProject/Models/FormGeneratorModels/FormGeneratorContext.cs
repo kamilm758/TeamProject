@@ -30,5 +30,6 @@ namespace FormGenerator.Models
         public DbSet<Field> Field { get; set; }
         public DbSet<Forms> Froms { get; set; }
         public DbSet<FormField> FormField { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
