@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FormGenerator.Models;
+using TeamProject.Models.Modele_pomocnicze;
+using System.Diagnostics;
 
 namespace FormGenerator.Controllers
 {
@@ -142,6 +144,29 @@ namespace FormGenerator.Controllers
             _context.Field.Remove(@field);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+        
+        public ActionResult NewFields(int? id)
+        {
+            NewFieldList fieldList = new NewFieldList() { FormId = Convert.ToInt32(id) };
+            fieldList.fields.Add(new Field());
+            return View(fieldList);
+        }
+        [HttpPost]
+        public ActionResult NewFields(NewFieldList fieldList, int? id)
+        {
+            //zwracana jest lista nowych pól w postaci pomocniczego modelu NewFieldList
+            //potrzebna walidacja
+            //nie działa redirecttoaction do metody formularz w formscontroller??
+            //potrzeba zapisać te pytania do bazy i do formularza
+            int id1 = Convert.ToInt32(id);
+            
+            if(id!=null)
+            {
+                return NotFound();
+            }
+           
+            return View();
         }
 
         private bool FieldExists(int id)
