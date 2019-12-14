@@ -1,0 +1,102 @@
+﻿@model TeamProject.Models.Modele_pomocnicze.NewFieldList
+
+@{
+    ViewData["Title"] = "NewFields";
+}
+
+<h1>NewFields</h1>
+
+<h4>NewFieldList</h4>
+<hr />
+<button class="btn btn-primary repeater-add-btn" id="addnew">
+    Add
+</button>
+<form asp-action="NewFields" class="form-group">
+    <div id="repeater">
+        <div class="repeater-heading">
+        </div>
+        <div class="" data-group="test">
+            <div class="col-md-4 maindiv" id="maindiv">
+                <div class="items">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="fields[0].Name" class="control-label"></label>
+                        <input asp-for="fields[0].Name" class="form-control" />
+                        <span asp-validation-for="fields[0].Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fields[0].Type" class="control-label"></label>
+                        <select asp-for="fields[0].Type">
+                            <option value="">Wybierz opcję</option>
+                            <option value="text">Pole tekstowe</option>
+                            <option value="checkbox">Checkbox</option>
+                        </select>
+                        <span asp-validation-for="fields[0].Type" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <button id="remove-btn" class="btn btn-danger" onclick="$(this).parents('.items').remove()">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" asp-route-id="@Model.FormId"/>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script type="text/javascript">
+
+    var i = 1;
+    var maindiv = $(".maindiv");
+    var addButton = $("#addnew");
+    /* handle click and add items */ 
+    addButton.on("click", function () {
+        var val = "";
+        var div1 = $("<div class=form-group/ >");
+        var label1 = $("<label />").attr("asp-for", "fields[" + i + "].Name").attr("class", "control-label");
+        var input1 = $("<input />").attr("asp-for", "fields[" + i + "].Name").attr("class", "form-control");
+        var span1 = $("<span />").attr("asp-validation-for", "fields[" + i + "].Name").attr("class", "text-danger");
+        input1.val(val);
+        div1.append(label1);
+        div1.append(input1);
+        div1.append(span1);
+
+        var div2 = $("<div class=form-group/ >");
+        var label2 = $("<label />").attr("asp-for", "fields[" + i + "].Type").attr("class", "control-label");
+        var select = $("<select />").attr("asp-for", "fields[" + i + "].Type");
+        select.append('<option value="">Wybierz opcję</option>');
+        select.append('<option value="text">Pole tekstowe</option>');
+        select.append('<option value="checkbox">Checkbox</option>');
+        var span2 = $("<span />").attr("asp-validation-for", "fields[" + i + "].Type").attr("class", "text-danger");
+        div2.append(label2);
+        div2.append(select);
+        div2.append(span2);
+
+        var div3 = $("<div />");        
+        var button1 = $("<button />").attr("id", "remove-btn").attr("class", "btn").attr("class", "btn-danger").attr("onclick", "$(this).parents('.items').remove()").attr("name", "remove");
+        button1.html('Remove');
+        div3.append(button1);
+
+        var divitems = $("<div />").attr("class", "items");
+
+        divitems.append(div1);
+        divitems.append(div2);
+        divitems.append(div3);
+        maindiv.append(divitems);
+        i++;
+    });
+
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

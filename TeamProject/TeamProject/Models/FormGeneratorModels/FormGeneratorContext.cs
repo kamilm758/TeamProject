@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TeamProject.Models;
+using TeamProject.Models.Modele_pomocnicze;
 namespace FormGenerator.Models
 {
     public class FormGeneratorContext : DbContext
@@ -20,7 +22,7 @@ namespace FormGenerator.Models
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                optionsBuilder.UseNpgsql("Host=projekt1920.cakejnzadj5u.us-east-1.rds.amazonaws.com;Database=postgres;Username=postgres;Password=projekt.pb19_20");
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,5 +32,6 @@ namespace FormGenerator.Models
         public DbSet<Field> Field { get; set; }
         public DbSet<Forms> Froms { get; set; }
         public DbSet<FormField> FormField { get; set; }
+        
     }
 }

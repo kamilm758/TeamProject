@@ -7,36 +7,105 @@
 <h1>Details</h1>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-10">
         <form asp-action="Formularz">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @for (var i = 0; i < Model.Count; i++)
-            {
-                <input asp-for="@Model[i].Field.Id" hidden />
-                <input asp-for="@Model[i].Field.Name" hidden />
-                <input asp-for="@Model[i].Field.Type" hidden />
-                if (Model[i].Field.Type == "text")
+            <table class="table table-striped">
+                
+                @for (var i = 0; i < Model.Count; i++)
                 {
-                    <div class="form-group">
-                        <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
-                        <input class="form-control" type="@Model[i].Field.Type" asp-for="@Model[i].TextValue" />
-                        <span asp-validation-for="@Model[i].Field.Type" class="text-danger"></span>
-                    </div>
+                <tr>
+                    <input asp-for="@Model[i].Field.Id" hidden />
+                    <input asp-for="@Model[i].Field.Name" hidden />
+                    <input asp-for="@Model[i].Field.Type" hidden />
+                    @if (Model[i].Field.Type == "text")
+                    {
+                        <td>
+                            <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
+                        </td>
+                        <td>
+                            <input class="form-control" type="@Model[i].Field.Type" asp-for="@Model[i].TextValue" />
+                        </td>
+                        <td>
+                            <span asp-validation-for="@Model[i].Field.Type" class="text-danger"></span>
+                        </td>
 
-                }
-                else if (Model[i].Field.Type == "checkbox")
-                {
-                    <div class="form-group">
-                        <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
-                        <input class="form-control" type="@Model[i].Field.Type" asp-for="@Model[i].BoolValue" />
-                        <span asp-validation-for="@Model[i].Field.Name" class="text-danger"></span>
-                    </div>
 
+
+                    }
+                    else if (Model[i].Field.Type == "checkbox")
+                    {
+
+
+                        <td>
+                            <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
+                        </td>
+                        <td>
+                            <input class="form-control" type="@Model[i].Field.Type" asp-for="@Model[i].BoolValue" />
+                        </td>
+                        <td>
+                            <span asp-validation-for="@Model[i].Field.Name" class="text-danger"></span>
+                        </td>
+
+
+
+                    }
+                </tr>
                 }
-            }
-            <div class="form-group">
-            </div>
-            <input type="submit" value="Wyślij formularz" class="btn btn-primary" />
-        </form>
+                </table>
+                <div class="form-group">
+                </div>
+                <input type="submit" value="Wyślij formularz" class="btn btn-primary" />
+</form>
+        <a class="btn btn-info" asp-action="NewFields" asp-controller="Fields" asp-route-id="@ViewBag.formid">Dodaj nowe pola</a>
     </div>
 </div>
+<script type="text/javascript">
+    
+  var input_button = $(".addinput");
+  var checkbox_button = $(".addcheckbox");
+  var i=@ViewBag.modelcount;
+  var questions = $(".questions");
+    
+  $(".addinput").click(function(e){
+    var td = $("<td class=line /> ");
+    var name = $("<input />").attr("type","text").attr("id","fields["+i+"].Name").attr("class","name")
+      var text = $("<input />").attr("type", "text").attr("id", "fields[" + i + "].Answer").attr("class", "answer")
+      var span = $("<span />").attr("asp-validation-for",)
+    td.append(name);
+    td.append(text);
+    var buttonrm = $($("<input />").attr("type", "button").attr("value", "remove").attr("class","remove_field"))
+    var buttonadd = $($("<input />").attr("type", "button").attr("value", "save").attr("class","save_field"))
+    e.preventDefault();
+    div.append(buttonrm);
+    div.append(buttonadd);
+    $(".questions").append(div);
+    i++;
+  });
+
+  $(".addcheckbox").click(function(e){
+    e.preventDefault();
+    var checkbox = $("<input />").attr("type","text").attr("id","fields["+i+"]")
+    $(".questions").append('<div><input type="text" class="name"><input type="checkbox" name="checkbox"+i+"/><a href="#" class="remove_field">Remove</a><a href="#" class="save_field">Save</a></div>')
+    i++;
+  });
+
+
+  $(questions).on("click",".remove_field", function(e){ //user click on remove text
+		e.preventDefault(); $(this).parent('div').remove(); i--;
+	});
+
+
+$(questions).on("click",".save_field", function(e){ //user click on remove text
+		e.preventDefault() ;
+  
+  if(!($(this).children().first().val()===""))
+    {      
+      console.log("test");
+    $(".name").first().replaceWith("<label id=fields["+i+"].Name class=name>"+$(".name").val()+"</label>");
+    $(this).remove();
+    i--;
+    }
+	});
+
+</script>
