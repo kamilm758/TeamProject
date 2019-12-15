@@ -10,15 +10,15 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace TeamProject.Migrations
 {
     [DbContext(typeof(FormGeneratorContext))]
-    [Migration("20191215123330_Initial")]
-    partial class Initial
+    [Migration("20191215214658_NewMigration15.12")]
+    partial class NewMigration1512
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("FormGenerator.Models.Category", b =>
@@ -49,6 +49,20 @@ namespace TeamProject.Migrations
                     b.ToTable("Field");
                 });
 
+            modelBuilder.Entity("FormGenerator.Models.FieldAnswer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("IdAnswer");
+
+                    b.Property<int>("IdField");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FieldAnswer");
+                });
+
             modelBuilder.Entity("FormGenerator.Models.FormField", b =>
                 {
                     b.Property<int>("Id")
@@ -74,7 +88,37 @@ namespace TeamProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Froms");
+                    b.ToTable("Forms");
+                });
+
+            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.Answers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Answer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Answers");
+                });
+
+            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.UserAnswers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Answer");
+
+                    b.Property<int>("IdField");
+
+                    b.Property<int>("IdForm");
+
+                    b.Property<int>("IdUser");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserAnswers");
                 });
 #pragma warning restore 612, 618
         }

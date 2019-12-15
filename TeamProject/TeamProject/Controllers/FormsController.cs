@@ -22,7 +22,7 @@ namespace FormGenerator.Controllers
         //wyświetlenie listy formularzy
         public async Task<IActionResult> ListaFormularzy()
         {
-            return View(await _context.Froms.ToListAsync());
+            return View(await _context.Forms.ToListAsync());
         }
 
         // GET: Forms/Details/5
@@ -180,7 +180,7 @@ namespace FormGenerator.Controllers
                 return NotFound();
             }
 
-            var forms = await _context.Froms
+            var forms = await _context.Forms
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (forms == null)
             {
@@ -195,15 +195,15 @@ namespace FormGenerator.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var forms = await _context.Froms.FindAsync(id);
-            _context.Froms.Remove(forms);
+            var forms = await _context.Forms.FindAsync(id);
+            _context.Forms.Remove(forms);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(ListaFormularzy));
         }
 
         private bool FormsExists(int id)
         {
-            return _context.Froms.Any(e => e.Id == id);
+            return _context.Forms.Any(e => e.Id == id);
         }
 
         public async Task<IActionResult> Index()
@@ -221,12 +221,12 @@ namespace FormGenerator.Controllers
             //}
 
 
-            return View(await _context.Froms.ToListAsync()) ;
+            return View(await _context.Forms.ToListAsync()) ;
         }
         public JsonResult GetForms(string order)
         {
             int id = Convert.ToInt32(order);
-            var result = _context.Froms.Where(m => m.id_Category == id).ToList();
+            var result = _context.Forms.Where(m => m.id_Category == id).ToList();
             return Json(result);
         }
     }

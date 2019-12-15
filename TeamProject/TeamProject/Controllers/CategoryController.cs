@@ -32,7 +32,8 @@ namespace TeamProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
+                category.Id = 0;
+                _context.Categories.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(ListaKategorii));
             }
