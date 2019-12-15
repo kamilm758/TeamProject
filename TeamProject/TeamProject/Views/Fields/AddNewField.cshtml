@@ -1,40 +1,68 @@
-﻿@model FormGenerator.Models.Field
-
+﻿@model TeamProject.Models.Modele_pomocnicze.NewFieldList
 @{
     ViewData["Title"] = "AddNewField";
 }
 
-<h1>AddNewField</h1>
+<h5>Przypisz pole do formularza</h5>
 
-<h4>Field</h4>
-<hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="AddNewField" asp-route-form="@ViewBag.formid">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Type" class="control-label"></label>
-                    <select asp-for="Type">
-                        <option value="">Wybierz opcję</option>
-                        <option value="text">Pole tekstowe</option>
-                        <option value="checkbox">Checkbox</option>
-                    </select>
-                    <span asp-validation-for="Type" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
-    </div>
-    <div>
-        <a asp-action="Formularz" asp-controller="Forms" asp-route-id="@ViewBag.formid">Powrót do formularza</a>
-    </div>
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<form asp-action="AddNewField">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Typ</th>
+                <th scope="col">Operacja</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.fields.Count != 0)
+            {
+                for (var i = 0; i < Model.fields.Count; i++)
+                {
+                    <tr>
+                        <th scope="row">@i</th>
+                        <td>@Model.fields[i].Name</td>
+                        <td>@Model.fields[i].Type</td>
+                        <td><a asp-route-fieldId="@Model.fields[i].Id" class="btn btn-danger">Usuń</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    
+    @if (Model.fields.Count != 0)
+    {
+        for (var i = 0; i < Model.fields.Count; i++)
+        {
+        <input asp-for="@Model.fields[i].Id" hidden />
+        <input asp-for="@Model.fields[i].Name" hidden />
+        <input asp-for="@Model.fields[i].Type" hidden />
+        }
     }
+    <input asp-for="@Model.FormId" hidden />
+
+
+
+    <br />
+    <label asp-for="@Model.currentName">Nazwa pola</label>
+    <input asp-for="@Model.currentName" class="form-control" style="width:300px;" />
+    <br />
+    <label asp-for="@Model.currentType"></label>
+    <select asp-for="@Model.currentType" class="form-control" style="width:300px;">
+        <option value="">Wybierz opcję</option>
+        <option value="text">Pole tekstowe</option>
+        <option value="checkbox">Checkbox</option>
+    </select>
+    <br />
+    <input type="submit" asp-action="AddToList" class="btn btn-success" value="Dodaj pole" />
+    <br />
+    <input type="submit" class="btn btn-primary" value="Zapisz zmiany" />
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

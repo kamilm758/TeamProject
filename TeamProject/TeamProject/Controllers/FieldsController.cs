@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FormGenerator.Models;
 using TeamProject.Models.Modele_pomocnicze;
 using System.Diagnostics;
-
+using TeamProject.ExtensionMethods;
 
 namespace FormGenerator.Controllers
 {
@@ -74,31 +74,44 @@ namespace FormGenerator.Controllers
         public IActionResult AddNewField(int? id)
         {
             ViewBag.formid = Convert.ToInt32(id);
-
-            return View();
+            NewFieldList newFieldList = new NewFieldList();
+            var idFieldsInForm = _context.FormField.Where(ff => ff.IdForm == id)
+                .Select(ff => ff.IdField).ToList();
+            newFieldList.fields = _context.Field.Where(f => idFieldsInForm.Contains(f.Id)).ToList();
+            newFieldList.FormId =Convert.ToInt32(id);
+            return View(newFieldList);
         }
         [HttpPost]
+        public IActionResult AddToList(NewFieldList newFieldList)
+        {
+            if (newFieldList.currentName == "")
+                return View("AddNewField", newFieldList);
+            var field = new Field
+            {
+                Name = newFieldList.currentName,
+                Type = newFieldList.currentType
+            };
+            newFieldList.fields.Add(field);
+            TempData.Put<NewFieldList>("newFieldListModel", newFieldList);
+            return RedirectToAction("ListWithFields");
+        }
+        [HttpGet]
+        public IActionResult ListWithFields()
+        {
+            var newFieldList = TempData.Get<NewFieldList>("newFieldListModel");
+            return View("AddNewField", newFieldList);
+        }
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddNewField([Bind("Id,Name,Type")] Field @field,int? id)
+        public async Task<IActionResult> AddNewField(NewFieldList newFieldList)
         {
             if (ModelState.IsValid)
             {
-                field.Id = 0;
-                _context.Add(@field);
-                await _context.SaveChangesAsync();
-
-                int newid = field.Id;
-                FormField formField = new FormField
-                {
-                    IdField = newid,
-                    IdForm = Convert.ToInt32(id)
-                };
-
-                _context.FormField.Add(formField);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("AddNewField", new { id=id});
+               
+                
             }
-            return View(@field);
+            return View(newFieldList);
         }
         // GET: Fields/Edit/5
         public async Task<IActionResult> Edit(int? id)

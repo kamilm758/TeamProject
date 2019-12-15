@@ -12,5 +12,7 @@ namespace TeamProject.Models.Modele_pomocnicze
         [Key]
         public int FormId { get; set; }
         public IList<Field> fields { get; set; } = new List<Field>();
+        public string currentName { get; set; }
+        public string currentType { get; set; }
     }
 }
