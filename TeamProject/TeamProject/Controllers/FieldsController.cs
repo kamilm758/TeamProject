@@ -9,15 +9,18 @@ using FormGenerator.Models;
 using TeamProject.Models.Modele_pomocnicze;
 using System.Diagnostics;
 
+
 namespace FormGenerator.Controllers
 {
     public class FieldsController : Controller
     {
         private readonly FormGeneratorContext _context;
+        
 
         public FieldsController(FormGeneratorContext context)
         {
             _context = context;
+            
         }
 
         // GET: Fields
@@ -45,9 +48,8 @@ namespace FormGenerator.Controllers
         }
 
         // GET: Fields/Create
-        public IActionResult Create(int id)
-        {
-            ViewBag.IdForm = id;
+        public IActionResult Create()
+        {            
             return View();
         }
 
@@ -56,20 +58,47 @@ namespace FormGenerator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Type")] Field @field,int id)
+        public async Task<IActionResult> Create([Bind("Id,Name,Type")] Field @field)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(@field);
                 await _context.SaveChangesAsync();
-                ViewBag.IdForm = id;
-                return RedirectToAction("Create",id);
+                return RedirectToAction(nameof(Index));
             }
             return View(@field);
         }
-        public IActionResult CreateField(int id)
+        //przeładowane metody w celu dodaniapytania od razu do formularza
+        
+       
+        public IActionResult AddNewField(int? id)
         {
-            return RedirectToAction("Create", id);
+            ViewBag.formid = Convert.ToInt32(id);
+
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddNewField([Bind("Id,Name,Type")] Field @field,int? id)
+        {
+            if (ModelState.IsValid)
+            {
+                field.Id = 0;
+                _context.Add(@field);
+                await _context.SaveChangesAsync();
+
+                int newid = field.Id;
+                FormField formField = new FormField
+                {
+                    IdField = newid,
+                    IdForm = Convert.ToInt32(id)
+                };
+
+                _context.FormField.Add(formField);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("AddNewField", new { id=id});
+            }
+            return View(@field);
         }
         // GET: Fields/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -150,30 +179,7 @@ namespace FormGenerator.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        /*
-        public ActionResult NewFields(int? id)
-        {
-            NewFieldList fieldList = new NewFieldList() { FormId = Convert.ToInt32(id) };
-            fieldList.fields.Add(new Field());
-            return View(fieldList);
-        }
-        [HttpPost]
-        public ActionResult NewFields(NewFieldList fieldList, int? id)
-        {
-            //zwracana jest lista nowych pól w postaci pomocniczego modelu NewFieldList
-            //potrzebna walidacja
-            //nie działa redirecttoaction do metody formularz w formscontroller??
-            //potrzeba zapisać te pytania do bazy i do formularza
-            int id1 = Convert.ToInt32(id);
-            
-            if(id!=null)
-            {
-                return NotFound();
-            }
-           
-            return View();
-        }*/
-
+      
         private bool FieldExists(int id)
         {
             return _context.Field.Any(e => e.Id == id);

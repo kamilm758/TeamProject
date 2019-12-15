@@ -157,7 +157,8 @@ namespace FormGenerator.Controllers
                         };
                             _context.Update(formField);
                             await _context.SaveChangesAsync();
-                        }// jeśli chcemy usunąć pole które już było przypisane
+                        }
+                        // jeśli chcemy usunąć pole które już było przypisane
                         else if(key.ContainsField==false && FormField.Contains(key.IdField))
                         {
                         var IdDoUsuniecia = _context.FormField.Where(ff => ff.IdField == key.IdField && ff.IdForm == formContainsField.IdForm).Select(ff => ff.Id).ToList();

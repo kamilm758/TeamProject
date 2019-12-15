@@ -73,7 +73,6 @@ C:\Users\User\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\net
 C:\Users\User\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.csproj.CopyComplete
 C:\Users\User\Documents\GitHub\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.Configuration.dll
 C:\Users\User\Documents\GitHub\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\pl\Microsoft.VisualStudio.Configuration.resources.dll
-C:\Users\User\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\NewFields.cshtml.g.cs
 C:\Users\user\Downloads\TeamProject-Adamv1\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\appsettings.Development.json
 C:\Users\user\Downloads\TeamProject-Adamv1\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\appsettings.json
 C:\Users\user\Downloads\TeamProject-Adamv1\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
@@ -164,3 +163,6 @@ C:\Users\user\Desktop\Projekt X\TeamProject\TeamProject\TeamProject\obj\Debug\ne
 C:\Users\user\Desktop\Projekt X\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.pdb
 C:\Users\user\Desktop\Projekt X\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\Delete.cshtml.g.cs
 C:\Users\user\Desktop\Projekt X\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\Edit.cshtml.g.cs
+C:\Users\User\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\Delete.cshtml.g.cs
+C:\Users\User\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\Edit.cshtml.g.cs
+C:\Users\User\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\AddNewField.cshtml.g.cs
