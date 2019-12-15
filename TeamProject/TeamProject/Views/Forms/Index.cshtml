@@ -1,0 +1,243 @@
+﻿@*@model IEnumerable<formsModel>
+    @{
+        ViewData["Title"] = "Index";
+    }
+    @foreach (var item in Model)
+    {
+        <ol>
+            <li>
+                @Html.DisplayFor(modelItem => item.form.Name)
+                <ul>
+                    @foreach(var it in item.Dzieci) {
+                    <li>
+                        @Html.DisplayFor(modelItem => it.Name)
+                    </li>
+                    }
+                </ul>
+            </li>
+        </ol>
+
+
+    }
+
+    <h1>Index</h1>*@
+
+@model IEnumerable<FormGenerator.Models.Forms>
+@{
+    ViewData["Title"] = "Index";
+}
+@*@foreach (var item in Model)
+    {
+        if (item.Parent == null)
+        {
+            @Html.DisplayFor(modelItem => item.Name)
+            @foreach (var item1 in Model)
+            {
+
+                if (item1.Parent == item.Id)
+                {
+                    <li>
+                        @Html.DisplayFor(modelItem => item1.Name)
+                    </li>
+                }
+            }
+            <br />
+        }
+    }*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="~/js/Scrip.js" asp-append-version="true"></script>
+
+<div id="Drzewo"></div>
+
+
+<div id="wynik"></div>
+
+
+
+
+
+@*<ul>
+    <li>
+        Królestwa Północy
+        <ul>
+            <li>Królestwa Północy</li>
+            <li>Scoia'tael</li>
+            <li>Cesarstwo Nilfgaardu</li>
+            <li>
+                Skellige
+                <ul>
+                    <li>Królestwa Północy</li>
+                    <li>Scoia'tael</li>
+                    <li>Cesarstwo Nilfgaardu</li>
+                    <li>
+                        Skellige
+                        <ul>
+                            <li>Królestwa Północy</li>
+                            <li>Scoia'tael</li>
+                            <li>Cesarstwo Nilfgaardu</li>
+                            <li>
+                                Skellige
+                                <ul>
+                                    <li>Królestwa Północy</li>
+                                    <li>Scoia'tael</li>
+                                    <li>Cesarstwo Nilfgaardu</li>
+                                    <li>
+                                        Skellige
+                                        <ul>
+                                            <li>Królestwa Północy</li>
+                                            <li>Scoia'tael</li>
+                                            <li>Cesarstwo Nilfgaardu</li>
+                                            <li>Skellige</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+
+    <li>Scoia'tael</li>
+    <li>Cesarstwo Nilfgaardu</li>
+    <li>Skellige</li>
+</ul>*@
+
+
+
+@*<script>
+       var List=[];
+
+    $(document).ready(function () {
+
+        $.ajax({
+            url: '/Forms/GetList',
+            type: 'Post',
+            dataType: 'json',
+            data: { order: 'Call' },
+            success: function (data) {
+                List = data;
+                console.log("ellllll")
+                console.log(data);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+
+        });
+
+
+    });
+
+    function ello() {
+        let parent = document.getElementById("Drzewo");
+        for (let i = 0; i < List.length; i++) {
+            console.log("tu jestem");
+            if (List[i].parent == null)
+            {
+                let textName = document.createTextNode(List[i].name);
+                let tdName = document.createElement("div");
+                tdName.setAttribute("class", 'wyswietl');
+               tdName.setAttribute("id", "rodzic"+List[i].id);
+                tdName.appendChild(textName);
+                parent.appendChild(tdName);
+            }
+        }
+    }
+
+
+
+
+    $(document).on('click','.wyswietl', function(){
+       //
+
+        //Stuff
+
+
+        //Your function
+
+        // function body
+
+        //alert(event.isDefaultPrevented()); // false
+       // event.preventDefault();
+
+       // alert(event.isDefaultPrevented());
+        console.log(event);
+        let kurwa = 0;
+        let ListaDzieci = [];
+        element = 1;
+        var request = $.ajax({
+            url: '/Forms/GetDzieci',
+            type: 'Get',
+            dataType: 'json',
+            data: { order: element },
+            success: function (data) {
+                request.abort();
+                // ListaDzieci = data;
+                if (kurwa === 0)
+
+                    wyswietlDate(data, element);
+
+                kurwa = 1;
+
+
+
+                //break;
+
+
+            },
+            error: function (data) {
+                console.log(data);
+
+            }
+
+        });
+        //  console.log(ListaDzieci.length);
+        $(".wyswietl").off();
+    });
+    //function wyswietlDzieciDzieci(element) {
+    //    let kurwa = 0;
+    //    // let ListaDzieci = [];
+
+    //    var request= $.ajax({
+    //        url: '/Forms/GetDzieci',
+    //        type: 'Get',
+    //        dataType: 'json',
+    //        data: { order: element },
+    //        success: function (data) {
+    //            request.abort();
+    //            if(kurwa===0)
+    //                wyswietlDate(data, element);
+    //            kurwa = 1;
+
+
+    //        },
+    //        error: function (data) {
+    //            //   console.log(data);
+
+    //        }
+
+    //    });
+    //}
+    function wyswietlDate(data,element) {
+        let parent2 = document.getElementById("rodzic" + element);
+        console.log("witam"+element)
+        if (data.length > 0) {
+
+            for (let i = 0; i < data.length; i++) {
+
+                let textName = document.createTextNode(data[i].name);
+                let tdName = document.createElement("div");
+                tdName.setAttribute("class", "wyswietl");
+                tdName.setAttribute("id", "rodzic" + data[i].id );
+                tdName.appendChild(textName);
+                parent2.appendChild(tdName);
+
+            }
+        }
+    }
+
+
+    </script>*@

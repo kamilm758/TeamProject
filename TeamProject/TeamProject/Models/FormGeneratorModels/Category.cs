@@ -6,21 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace FormGenerator.Models
-{
-    public class Forms
+{ 
+    public class Category
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public int id_Category { get; set; }
-       
+        public int? Parent { get; set; }
         public string Name { get; set; }
-        
-    }
-
-    public class formsModel
-    {
-       public  Forms form;
-        public IEnumerable<Forms> Dzieci;
     }
 }
