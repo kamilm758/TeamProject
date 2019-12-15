@@ -36,6 +36,7 @@ namespace FormGenerator.Controllers
             //bierzemy pod uwagę tylko id pól należących do formularza
             var fieldsInForm = _context.FormField.Where(ff=>ff.IdForm==id).Select(ff=>ff.IdField).ToList();
             //pobieramy dane pól których id pobrano powyżej
+
             var field = _context.Field.Where(f => fieldsInForm.Contains(f.Id)).ToList();
             //przekształcenie do modelu pozwalającego przenoszenie wartości
             //czyli dodanie miejsca na wartość "Value" której nie potrzebójemy w bazie danyc
@@ -52,11 +53,12 @@ namespace FormGenerator.Controllers
                 pom.Field.Type = key.Type;
                 fieldWithValues.Add(pom);
             }
+            ViewBag.modelcount = fieldWithValues.Count;
             if (field == null)
             {
                 return NotFound();
             }
-
+            ViewBag.formid = Convert.ToInt32(id);
             return View(fieldWithValues);
         }
         // w tej metodzie w przyszłości nastąpi wysłanie wpisanych formularzy do bazy danych
@@ -155,7 +157,8 @@ namespace FormGenerator.Controllers
                         };
                             _context.Update(formField);
                             await _context.SaveChangesAsync();
-                        }// jeśli chcemy usunąć pole które już było przypisane
+                        }
+                        // jeśli chcemy usunąć pole które już było przypisane
                         else if(key.ContainsField==false && FormField.Contains(key.IdField))
                         {
                         var IdDoUsuniecia = _context.FormField.Where(ff => ff.IdField == key.IdField && ff.IdForm == formContainsField.IdForm).Select(ff => ff.Id).ToList();
