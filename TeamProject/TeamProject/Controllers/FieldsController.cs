@@ -45,8 +45,9 @@ namespace FormGenerator.Controllers
         }
 
         // GET: Fields/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
+            ViewBag.IdForm = id;
             return View();
         }
 
@@ -55,17 +56,21 @@ namespace FormGenerator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Type")] Field @field)
+        public async Task<IActionResult> Create([Bind("Id,Name,Type")] Field @field,int id)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(@field);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.IdForm = id;
+                return RedirectToAction("Create",id);
             }
             return View(@field);
         }
-
+        public IActionResult CreateField(int id)
+        {
+            return RedirectToAction("Create", id);
+        }
         // GET: Fields/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -145,7 +150,7 @@ namespace FormGenerator.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        
+        /*
         public ActionResult NewFields(int? id)
         {
             NewFieldList fieldList = new NewFieldList() { FormId = Convert.ToInt32(id) };
@@ -167,7 +172,7 @@ namespace FormGenerator.Controllers
             }
            
             return View();
-        }
+        }*/
 
         private bool FieldExists(int id)
         {
