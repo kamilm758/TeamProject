@@ -65,7 +65,6 @@ namespace FormGenerator.Controllers
         [HttpPost]
         public IActionResult Formularz(List<FieldWithValue> fields, int formId)
         {
-            var select = _context.UserAnswers.ToList();
             foreach (var field in fields)
             {
                 UserAnswers answer = new UserAnswers
