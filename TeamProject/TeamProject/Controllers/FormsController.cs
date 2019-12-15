@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FormGenerator.Models;
 using FormGenerator.Models.Modele_pomocnicze;
+using TeamProject.Models.FormGeneratorModels;
 
 namespace FormGenerator.Controllers
 {
@@ -36,7 +37,6 @@ namespace FormGenerator.Controllers
             //bierzemy pod uwagę tylko id pól należących do formularza
             var fieldsInForm = _context.FormField.Where(ff=>ff.IdForm==id).Select(ff=>ff.IdField).ToList();
             //pobieramy dane pól których id pobrano powyżej
-
             var field = _context.Field.Where(f => fieldsInForm.Contains(f.Id)).ToList();
             //przekształcenie do modelu pozwalającego przenoszenie wartości
             //czyli dodanie miejsca na wartość "Value" której nie potrzebójemy w bazie danyc
@@ -63,9 +63,32 @@ namespace FormGenerator.Controllers
         }
         // w tej metodzie w przyszłości nastąpi wysłanie wpisanych formularzy do bazy danych
         [HttpPost]
-        public IActionResult Formularz(List<FieldWithValue> field)
+        public IActionResult Formularz(List<FieldWithValue> fields, int formId)
         {
-            return View("WyslanoFormularz", field);
+            var select = _context.UserAnswers.ToList();
+            foreach (var field in fields)
+            {
+                UserAnswers answer = new UserAnswers
+                {
+                    IdForm = formId,
+                    IdField = field.Field.Id,
+                    //prowizorycznie
+                    IdUser = 1
+                };
+
+                switch (field.Field.Type)
+                {
+                    case "checkbox":
+                        answer.Answer = field.BoolValue.ToString();
+                        break;
+                    case "text":
+                        answer.Answer = field.TextValue;
+                        break;
+                }
+                _context.Add(answer);
+            }
+            _context.SaveChanges();
+            return View("WyslanoFormularz", fields);
         }
 
         // stworzenie formularza
