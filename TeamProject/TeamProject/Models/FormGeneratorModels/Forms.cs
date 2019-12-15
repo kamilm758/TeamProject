@@ -12,9 +12,8 @@ namespace FormGenerator.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        
-        public int ?Parent { get; set; }
         public int id_Category { get; set; }
+       
         public string Name { get; set; }
         
     }

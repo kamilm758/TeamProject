@@ -21,9 +21,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.id_Category)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Parent)
-            </th>
+           
             <th></th>
         </tr>
     </thead>
@@ -39,9 +37,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.id_Category)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Parent)
-            </td>
+          
             <td>
                 <a asp-action="EdycjaFormularza" asp-route-id="@item.Id">Dodaj/Usuń pole</a> |
                 <a asp-action="Formularz" asp-route-id="@item.Id">Wyświetl formularz</a> |

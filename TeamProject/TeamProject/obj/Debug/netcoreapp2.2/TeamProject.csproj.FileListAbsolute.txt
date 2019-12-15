@@ -210,3 +210,6 @@ C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj
 C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.dll
 C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.pdb
 C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.csproj.CopyComplete
+C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Category\Create.cshtml.g.cs
+C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Category\ListaKategorii.cshtml.g.cs
+C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Forms\Index.cshtml.g.cs
