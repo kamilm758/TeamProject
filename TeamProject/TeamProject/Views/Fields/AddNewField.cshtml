@@ -81,14 +81,14 @@ input[type=submit] {
         </tbody>
     </table>
 
-    
+
     @if (Model.fields.Count != 0)
     {
         for (var i = 0; i < Model.fields.Count; i++)
         {
-        <input asp-for="@Model.fields[i].Id" hidden />
-        <input asp-for="@Model.fields[i].Name" hidden />
-        <input asp-for="@Model.fields[i].Type" hidden />
+            <input asp-for="@Model.fields[i].Id" hidden />
+            <input asp-for="@Model.fields[i].Name" hidden />
+            <input asp-for="@Model.fields[i].Type" hidden />
         }
     }
     <input asp-for="@Model.FormId" hidden />
@@ -98,8 +98,8 @@ input[type=submit] {
     <br />
     <label asp-for="@Model.currentName">Nazwa pola:</label>
     <div class="autocomplete">
-    <input asp-for="@Model.currentName" class="form-control" id="autoFill"/>
-        </div>
+        <input asp-for="@Model.currentName" class="form-control" id="autoFill" />
+    </div>
     <br />
     <label asp-for="@Model.currentType">Wybierz typ:</label>
     <select asp-for="@Model.currentType" class="form-control" style="width:300px">
@@ -108,8 +108,31 @@ input[type=submit] {
         <option value="checkbox">Checkbox</option>
     </select>
     <br />
-    <input type="submit" asp-action="AddToList" class="btn btn-success" value="Dodaj pole" style="padding:5px" />
-    <input type="submit" class="btn btn-primary" value="Zapisz zmiany" style="padding:5px"/>
+    <input type="submit" asp-action="AddToList" class="btn btn-success" value="Przypisz istniejące pole" style="padding:5px" />
+    <input type="submit" class="btn btn-primary" value="Zapisz zmiany" style="padding:5px" />
+
+    <!-- Large modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Stwórz nowe pole i przypisz do formularza</button>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:30px">
+                <label asp-for="@Model.currentName">Nazwa pola:</label>
+                <div class="autocomplete">
+                    <input asp-for="@Model.currentName" class="form-control" id="autoFill" />
+                </div>
+                <label asp-for="@Model.currentType">Wybierz typ:</label>
+                <select asp-for="@Model.currentType" class="form-control" style="width:300px">
+                    <option value="">Wybierz opcję</option>
+                    <option value="text">Pole tekstowe</option>
+                    <option value="checkbox">Checkbox</option>
+                </select>
+                <input type="submit" asp-action="AddToList" class="btn btn-success" value="Stwórz" style="padding:5px" />
+            </div>
+        </div>
+    </div>
+
+
 </form>
 
 
