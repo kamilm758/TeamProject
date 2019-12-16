@@ -338,3 +338,19 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+TeamProject/.vs/TeamProject/DesignTimeBuild/.dtbcache
+*.json
+*.dll
+*.pdb
+TeamProject/.vs/TeamProject/DesignTimeBuild/.dtbcache
+TeamProject/.vs/TeamProject/DesignTimeBuild/.dtbcache
+*.dll
+*.pdb
+*.dll
+*.cache
+*.cache
+TeamProject/.vs/TeamProject/DesignTimeBuild/.dtbcache
+*.dll
+*.pdb
+*.cache
+*.user

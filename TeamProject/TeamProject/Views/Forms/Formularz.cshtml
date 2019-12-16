@@ -55,7 +55,7 @@
                 </table>
                 <div class="form-group">
                 </div>
-                <input type="submit" value="Wyślij formularz" class="btn btn-primary" />
+                <input type="submit" asp-route-formId="@ViewBag.formid" value="Wyślij formularz" class="btn btn-primary" />
 </form>
         <a class="btn btn-info" asp-action="AddNewField" asp-controller="Fields" asp-route-id="@ViewBag.formid" >Dodaj nowe pola</a>
     </div>
