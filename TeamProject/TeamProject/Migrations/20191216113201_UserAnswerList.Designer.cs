@@ -3,15 +3,17 @@ using System;
 using FormGenerator.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace TeamProject.Migrations
 {
     [DbContext(typeof(FormGeneratorContext))]
-    partial class FormGeneratorContextModelSnapshot : ModelSnapshot
+    [Migration("20191216113201_UserAnswerList")]
+    partial class UserAnswerList
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,6 +98,8 @@ namespace TeamProject.Migrations
 
                     b.Property<int>("Id_User");
 
+                    b.Property<string>("Name");
+
                     b.HasKey("Id");
 
                     b.ToTable("UserAnswerList");
@@ -126,20 +130,9 @@ namespace TeamProject.Migrations
 
                     b.Property<int>("IdUser");
 
-                    b.Property<int?>("UserAnswerListId");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserAnswerListId");
-
                     b.ToTable("UserAnswers");
-                });
-
-            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.UserAnswers", b =>
-                {
-                    b.HasOne("FormGenerator.Models.Modele_pomocnicze.UserAnswerList")
-                        .WithMany("user_answer_list")
-                        .HasForeignKey("UserAnswerListId");
                 });
 #pragma warning restore 612, 618
         }
