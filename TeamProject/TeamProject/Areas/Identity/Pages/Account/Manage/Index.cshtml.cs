@@ -120,6 +120,7 @@ namespace TeamProject.Areas.Identity.Pages.Account.Manage
             }
             if (Input.FirstName != user.FirstName) user.FirstName = Input.FirstName;
             if (Input.LastName != user.LastName) user.LastName = Input.LastName;
+            if (Input.UserID != user.CustomID) user.CustomID = Input.UserID;
             await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
