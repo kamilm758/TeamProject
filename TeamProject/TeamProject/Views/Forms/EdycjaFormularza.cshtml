@@ -12,7 +12,7 @@
 <body>
     <form asp-action="EdycjaFormularza" method="post">
         <p>
-            <a asp-area="" asp-controller="Fields" asp-action="CreateField" asp-route-id="@Model.IdForm">Dodaj nowe pola</a>
+            <a asp-area="" asp-controller="Fields" asp-action="AddNewField" asp-route-id="@Model.IdForm">Dodaj nowe pola</a>
         </p>
         <p>
             <input asp-for="IdForm" style="visibility:hidden" />
@@ -37,8 +37,9 @@
                     </select>
                 </td>
                 <td>
-                    <a asp-controller="Fields" asp-action="Edit" asp-route-id="@Model.fields[i].IdField" asp-route-form="@Model.IdForm">Edit</a> |
-                    <a asp-controller="Fields" asp-action="Delete" asp-route-id="@Model.fields[i].IdField">Delete</a>
+                    <a asp-controller="Fields" asp-action="EditNewField" asp-route-id="@Model.fields[i].IdField" asp-route-form="@Model.IdForm">Edit</a> |
+                    <a asp-controller="Fields" asp-action="DeleteNewField" asp-route-id="@Model.fields[i].IdField" asp-route-form="@Model.IdForm">Delete</a> |
+                    <a asp-controller="Fields" asp-action="DetailsNewField" asp-route-id="@Model.fields[i].IdField" asp-route-form="@Model.IdForm">Details</a>
                 </td>
             </tr>
             }

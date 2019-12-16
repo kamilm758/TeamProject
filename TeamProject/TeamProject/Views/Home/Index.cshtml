@@ -1,11 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <a asp-controller="Fields" asp-action="Create" class="btn btn-primary">Dodaj nowe pole</a>
-    <br /><br />
-    <a asp-controller="Forms" asp-action="Create" class="btn btn-primary">Stwórz formularz</a>
-    <br /><br />
-    <a asp-controller="Forms" asp-action="ListaFormularzy" class="btn btn-primary">Wyświetl stworzone formularze</a>
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <a asp-controller="Fields" asp-action="Create" class="btn btn-primary">Dodaj nowe pole</a>
+        <br /><br />
+        <a asp-controller="Forms" asp-action="Create" class="btn btn-primary">Stwórz formularz</a>
+        <br /><br />
+        <a asp-controller="Forms" asp-action="ListaFormularzy" class="btn btn-primary">Wyświetl stworzone formularze</a>
+        <br /><br />
+        <a asp-controller="Forms" asp-action="Index" class="btn btn-primary">Index</a>
+        <br /><br />
+        <a asp-controller="Category" asp-action="Create" class="btn btn-primary">Stwórz Kategorie</a>
+        <br /><br />
+        <a asp-controller="Category" asp-action="ListaKategorii" class="btn btn-primary">Wyświetl liste kategorii</a>
+
+    </div>

@@ -22,7 +22,7 @@ namespace FormGenerator.Controllers
         //wyświetlenie listy formularzy
         public async Task<IActionResult> ListaFormularzy()
         {
-            return View(await _context.Froms.ToListAsync());
+            return View(await _context.Forms.ToListAsync());
         }
 
         // GET: Forms/Details/5
@@ -79,7 +79,7 @@ namespace FormGenerator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Category")] Forms forms)
+        public async Task<IActionResult> Create([Bind("Id,Name,id_Category,Parent")] Forms forms)
         {
             if (ModelState.IsValid)
             {
@@ -157,7 +157,8 @@ namespace FormGenerator.Controllers
                         };
                             _context.Update(formField);
                             await _context.SaveChangesAsync();
-                        }// jeśli chcemy usunąć pole które już było przypisane
+                        }
+                        // jeśli chcemy usunąć pole które już było przypisane
                         else if(key.ContainsField==false && FormField.Contains(key.IdField))
                         {
                         var IdDoUsuniecia = _context.FormField.Where(ff => ff.IdField == key.IdField && ff.IdForm == formContainsField.IdForm).Select(ff => ff.Id).ToList();
@@ -179,7 +180,7 @@ namespace FormGenerator.Controllers
                 return NotFound();
             }
 
-            var forms = await _context.Froms
+            var forms = await _context.Forms
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (forms == null)
             {
@@ -194,15 +195,39 @@ namespace FormGenerator.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var forms = await _context.Froms.FindAsync(id);
-            _context.Froms.Remove(forms);
+            var forms = await _context.Forms.FindAsync(id);
+            _context.Forms.Remove(forms);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(ListaFormularzy));
         }
 
         private bool FormsExists(int id)
         {
-            return _context.Froms.Any(e => e.Id == id);
+            return _context.Forms.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            //List<formsModel> list = new List<formsModel>();
+            //var parents =  _context.Froms.Where(m => m.Parent == null);
+
+            //foreach(Forms x in parents)
+            //{
+            //    var childern = _context.Froms.Where(m => m.Parent == x.Id);
+            //    formsModel pom = new formsModel();
+            //    pom.form = x;
+            //    pom.Dzieci = childern;
+            //    list.Add(pom);
+            //}
+
+
+            return View(await _context.Forms.ToListAsync()) ;
+        }
+        public JsonResult GetForms(string order)
+        {
+            int id = Convert.ToInt32(order);
+            var result = _context.Forms.Where(m => m.id_Category == id).ToList();
+            return Json(result);
         }
     }
 }

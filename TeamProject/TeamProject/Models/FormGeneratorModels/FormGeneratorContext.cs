@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TeamProject.Models;
+using TeamProject.Models.FormGeneratorModels;
 using TeamProject.Models.Modele_pomocnicze;
 namespace FormGenerator.Models
 {
@@ -27,11 +28,16 @@ namespace FormGenerator.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
         }
 
         public DbSet<Field> Field { get; set; }
-        public DbSet<Forms> Froms { get; set; }
+        public DbSet<Forms> Forms { get; set; }
         public DbSet<FormField> FormField { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Answers> Answers { get; set; }
+        public DbSet<FieldAnswer> FieldAnswer { get; set; }
+        public DbSet<UserAnswers> UserAnswers { get; set; }
         
     }
 }
