@@ -349,3 +349,8 @@ TeamProject/.vs/TeamProject/DesignTimeBuild/.dtbcache
 *.dll
 *.cache
 *.cache
+TeamProject/.vs/TeamProject/DesignTimeBuild/.dtbcache
+*.dll
+*.pdb
+*.cache
+*.user

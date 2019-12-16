@@ -229,20 +229,7 @@ namespace FormGenerator.Controllers
         }
 
         public async Task<IActionResult> Index()
-        {
-            //List<formsModel> list = new List<formsModel>();
-            //var parents =  _context.Froms.Where(m => m.Parent == null);
-
-            //foreach(Forms x in parents)
-            //{
-            //    var childern = _context.Froms.Where(m => m.Parent == x.Id);
-            //    formsModel pom = new formsModel();
-            //    pom.form = x;
-            //    pom.Dzieci = childern;
-            //    list.Add(pom);
-            //}
-
-
+        {  
             return View(await _context.Forms.ToListAsync()) ;
         }
         public JsonResult GetForms(string order)
