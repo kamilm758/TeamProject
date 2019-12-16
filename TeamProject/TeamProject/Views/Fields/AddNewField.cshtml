@@ -81,25 +81,26 @@ input[type=submit] {
         </tbody>
     </table>
 
-    
+
     @if (Model.fields.Count != 0)
     {
         for (var i = 0; i < Model.fields.Count; i++)
         {
-        <input asp-for="@Model.fields[i].Id" hidden />
-        <input asp-for="@Model.fields[i].Name" hidden />
-        <input asp-for="@Model.fields[i].Type" hidden />
+            <input asp-for="@Model.fields[i].Id" hidden />
+            <input asp-for="@Model.fields[i].Name" hidden />
+            <input asp-for="@Model.fields[i].Type" hidden />
         }
     }
     <input asp-for="@Model.FormId" hidden />
+    <input asp-for="@Model.currentId" id="idToExistField" hidden />
 
 
 
     <br />
     <label asp-for="@Model.currentName">Nazwa pola:</label>
     <div class="autocomplete">
-    <input asp-for="@Model.currentName" class="form-control" id="autoFill"/>
-        </div>
+        <input asp-for="@Model.currentName" class="form-control" id="autoFill" />
+    </div>
     <br />
     <label asp-for="@Model.currentType">Wybierz typ:</label>
     <select asp-for="@Model.currentType" class="form-control" style="width:300px">
@@ -108,8 +109,33 @@ input[type=submit] {
         <option value="checkbox">Checkbox</option>
     </select>
     <br />
-    <input type="submit" asp-action="AddToList" class="btn btn-success" value="Dodaj pole" style="padding:5px" />
-    <input type="submit" class="btn btn-primary" value="Zapisz zmiany" style="padding:5px"/>
+    <input type="submit" asp-action="AddToList" class="btn btn-success" value="Przypisz istniejące pole" style="padding:5px" />
+
+    <!-- Large modal -->
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Stwórz nowe pole i przypisz do formularza</button>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:30px">
+                <h3>Dodaj to tego formularza nowe pole</h3>
+                <label asp-for="@Model.currentNameToCreate">Nazwa pola:</label>
+                <div class="autocomplete">
+                    <input asp-for="@Model.currentNameToCreate" class="form-control" id="autoFill" />
+                </div>
+                <label asp-for="@Model.currentTypeToCreate">Wybierz typ:</label>
+                <select asp-for="@Model.currentTypeToCreate" class="form-control" style="width:300px">
+                    <option value="">Wybierz opcję</option>
+                    <option value="text">Pole tekstowe</option>
+                    <option value="checkbox">Checkbox</option>
+                </select>
+                <input type="submit" asp-action="AddToList" class="btn btn-success" value="Stwórz" style="padding:5px" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <input type="submit" class="btn btn-primary" value="Zapisz zmiany" style="padding:5px; width:510px" />
+
+
 </form>
 
 
@@ -137,7 +163,7 @@ input[type=submit] {
             if (AllFields[i].name != null)
                 AllFieldsName.push(AllFields[i].name);
         }
-        autocomplete(document.getElementById("autoFill"), AllFieldsName);
+        autocomplete(document.getElementById("autoFill"), AllFields);
     })
     
     function autocomplete(inp, arr) {
@@ -159,19 +185,22 @@ input[type=submit] {
       this.parentNode.appendChild(a);
       /*for each item in the array...*/
       for (i = 0; i < arr.length; i++) {
-        /*check if the item starts with the same letters as the text field value:*/
-        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*check if the item starts with the same letters as the text field value:*/
+          if (arr[i].name.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
           /*create a DIV element for each matching element:*/
           b = document.createElement("DIV");
-          /*make the matching letters bold:*/
-          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-          b.innerHTML += arr[i].substr(val.length);
-          /*insert a input field that will hold the current array item's value:*/
-          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+              /*make the matching letters bold:*/
+              b.innerHTML = "<strong>" + arr[i].name.substr(0, val.length) + "</strong>";
+              b.innerHTML += arr[i].name.substr(val.length);
+              /*insert a input field that will hold the current array item's value:*/
+              b.innerHTML += "<input type='hidden' value='" + arr[i].name + "' id='" + arr[i].id+"'>";
+              console.log(arr[i].id);
+              document.getElementById("idToExistField").value = parseInt(arr[i].id);
           /*execute a function when someone clicks on the item value (DIV element):*/
               b.addEventListener("click", function(e) {
               /*insert the value for the autocomplete text field:*/
-              inp.value = this.getElementsByTagName("input")[0].value;
+                  inp.value = this.getElementsByTagName("input")[0].value;
+                  document.getElementById("idToExistField").value = parseInt(this.getElementsByTagName("input")[0].id);
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();

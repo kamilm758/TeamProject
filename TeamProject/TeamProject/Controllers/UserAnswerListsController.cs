@@ -27,12 +27,24 @@ namespace TeamProject.Controllers
                 .ToList();
             List<UserAnswerList> answersList = new List<UserAnswerList>();
             bool exist = false;
+            bool doubled = false;
             int idx = -1;
             UserAnswerList newUAL;
             foreach (var elem in usersAnswers)
             {
+                exist = false;
+                doubled = false;
                 for(int i = 0; i<answersList.Count; i++)
                 {
+                    for(int j = 0; j <answersList[i].user_answer_list.Count; j++)
+                    {
+                        if(answersList[i].user_answer_list[j].IdForm == elem.IdForm &&
+                            answersList[i].user_answer_list[j].IdField == elem.IdField &&
+                            answersList[i].user_answer_list[j].IdUser == elem.IdUser)
+                        {
+                            doubled = true;
+                        }
+                    }
                     if (answersList[i].Id_User.Equals(elem.IdUser))
                     {
                         idx = i;
@@ -48,45 +60,11 @@ namespace TeamProject.Controllers
                 }
                 else
                 {
-                    answersList[idx].user_answer_list.Add(elem);
+                    if(!doubled) answersList[idx].user_answer_list.Add(elem);
+
                 }
             }
-            /*UserAnswerList usersAnswersList;
-            foreach (var elem in usersAnswers)
-            {
-                if (!elem.IdForm.Equals(id)) continue;
-                usersAnswersList = _context.UserAnswerList
-                    .Where(m => m.Id_User.Equals(elem.IdUser))
-                    .FirstOrDefault();
-
-                if (usersAnswersList == null)
-                {
-                    usersAnswersList = new UserAnswerList();
-                    usersAnswersList.Id_User = elem.IdUser;
-                    Models.FormGeneratorModels.UserAnswers tmp = new Models.FormGeneratorModels.UserAnswers();
-                    tmp = elem;
-                    usersAnswersList.user_answer_list.Add(tmp);
-                    _context.Add(usersAnswersList);
-                    await _context.SaveChangesAsync();
-                }
-                else
-                {
-                    var flag = false;
-                    Models.FormGeneratorModels.UserAnswers tmp = new Models.FormGeneratorModels.UserAnswers();
-                    tmp = elem;
-                    foreach (var i in usersAnswersList.user_answer_list)
-                    {
-                        if (i.Id.Equals(tmp.Id)) flag = true;
-                    }
-                    if (!flag)
-                    {
-                        usersAnswersList.user_answer_list.Add(tmp);
-                        _context.Update(usersAnswersList);
-                        await _context.SaveChangesAsync();
-                    }
-                }
-                
-            }*/
+            
             var _form = _context.FormField
                     .Where(m => m.IdForm.Equals(id))
                     .Select(m => m.IdField)

@@ -61,6 +61,7 @@ namespace FormGenerator.Controllers
             ViewBag.formid = Convert.ToInt32(id);
             return View(fieldWithValues);
         }
+
         // w tej metodzie w przyszłości nastąpi wysłanie wpisanych formularzy do bazy danych
         [HttpPost]
         public IActionResult Formularz(List<FieldWithValue> fields, int formId)
@@ -72,7 +73,7 @@ namespace FormGenerator.Controllers
                     IdForm = formId,
                     IdField = field.Field.Id,
                     //prowizorycznie
-                    IdUser = 1
+                    IdUser = 12
                 };
 
                 switch (field.Field.Type)
