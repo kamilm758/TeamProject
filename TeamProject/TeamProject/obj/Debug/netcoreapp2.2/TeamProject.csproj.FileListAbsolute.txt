@@ -265,10 +265,5 @@ C:\Users\user\Desktop\Projekt X\nowy\TeamProject\TeamProject\TeamProject\obj\Deb
 C:\Users\user\Desktop\Projekt X\nowy\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.pdb
 C:\Users\user\Desktop\Projekt X\nowy\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.csproj.CopyComplete
 C:\Users\user\Desktop\Projekt X\nowy\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\EditNewField.cshtml.g.cs
-C:\Users\user\Desktop\Projekt X\nowy\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields1\Create.cshtml.g.cs
-C:\Users\user\Desktop\Projekt X\nowy\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields1\Delete.cshtml.g.cs
-C:\Users\user\Desktop\Projekt X\nowy\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields1\Details.cshtml.g.cs
-C:\Users\user\Desktop\Projekt X\nowy\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields1\Edit.cshtml.g.cs
-C:\Users\user\Desktop\Projekt X\nowy\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields1\Index.cshtml.g.cs
 C:\Users\user\Desktop\Projekt X\nowy\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\DeleteNewField.cshtml.g.cs
 C:\Users\user\Desktop\Projekt X\nowy\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\DetailsNewField.cshtml.g.cs

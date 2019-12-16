@@ -8,43 +8,94 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Dodaj/usuń pole</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #A5D6A7
+        }
+
+        th {
+            background-color: #81C784;
+            color: white;
+        }
+
+        a {
+            color: #424242;
+            font-weight: 500;
+        }
+        button{
+            background-color:#A5D6A7;
+            color:white;
+            font-size:20px;
+            padding: 15px 35px;
+            border-radius: 8px;
+            position:center;
+        }
+    </style>
 </head>
 <body>
     <form asp-action="EdycjaFormularza" method="post">
-        <p>
-            <a asp-area="" asp-controller="Fields" asp-action="AddNewField" asp-route-id="@Model.IdForm">Dodaj nowe pola</a>
+        <p >
+            <a style="color:#81C784;  font-weight:700" asp-area="" asp-controller="Fields" asp-action="AddNewField" asp-route-id="@Model.IdForm">Dodaj nowe pola</a>
         </p>
         <p>
             <input asp-for="IdForm" style="visibility:hidden" />
         </p>
         <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Nazwa
+                    </th>
+                    <th>
+                        
+                    </th>
+                    <th>
+                        
+                    </th>
 
-            @for (int i = 0; i < Model.fields.Count(); i++)
-            {
-            <tr>
-                <td>
-                    <label asp-for="fields[i].NameField" style="font-weight:bold; font-size:large">@Model.fields[i].NameField</label>
-                    <input asp-for="fields[i].NameField" hidden />
-                    <input asp-for="fields[i].IdField" hidden />
-                </td>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.fields.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            <label asp-for="fields[i].NameField" style=" font-size:large">@Model.fields[i].NameField</label>
+                            <input asp-for="fields[i].NameField" hidden />
+                            <input asp-for="fields[i].IdField" hidden />
+                        </td>
 
-                <td>
-                    <label>Czy formularz ma zawierać pole?</label>
-                    <select asp-for="fields[i].ContainsField">
-                        <option value="">Wybierz opcję</option>
-                        <option value="true">Tak</option>
-                        <option value="false">Nie</option>
-                    </select>
-                </td>
-                <td>
-                    <a asp-controller="Fields" asp-action="EditNewField" asp-route-id="@Model.fields[i].IdField" asp-route-form="@Model.IdForm">Edit</a> |
-                    <a asp-controller="Fields" asp-action="DeleteNewField" asp-route-id="@Model.fields[i].IdField" asp-route-form="@Model.IdForm">Delete</a> |
-                    <a asp-controller="Fields" asp-action="DetailsNewField" asp-route-id="@Model.fields[i].IdField" asp-route-form="@Model.IdForm">Details</a>
-                </td>
-            </tr>
-            }
+                        <td>
+                            <label>Czy formularz ma zawierać pole?</label>
+                            <select asp-for="fields[i].ContainsField">
+                                <option value="">Wybierz opcję</option>
+                                <option value="true">Tak</option>
+                                <option value="false">Nie</option>
+                            </select>
+                        </td>
+                        <td>
+                            <a asp-controller="Fields" asp-action="EditNewField" asp-route-id="@Model.fields[i].IdField" asp-route-form="@Model.IdForm">Edycja pola</a> |
+                            <a asp-controller="Fields" asp-action="DeleteNewField" asp-route-id="@Model.fields[i].IdField" asp-route-form="@Model.IdForm">Usuwanie pola</a> |
+                            <a asp-controller="Fields" asp-action="DetailsNewField" asp-route-id="@Model.fields[i].IdField" asp-route-form="@Model.IdForm">Szczegóły pola</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+         
         </table>
-        <button type="submit">Zapisz</button>
+        <br />
+        <button type="submit" >Zapisz</button>
     </form>
 </body>
 </html>
