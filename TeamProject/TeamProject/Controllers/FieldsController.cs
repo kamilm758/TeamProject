@@ -84,13 +84,26 @@ namespace FormGenerator.Controllers
         [HttpPost]
         public IActionResult AddToList(NewFieldList newFieldList)
         {
+            Field field;
             if (newFieldList.currentName == "")
                 return View("AddNewField", newFieldList);
-            var field = new Field
+            if (newFieldList.currentId != 0)
             {
-                Name = newFieldList.currentName,
-                Type = newFieldList.currentType
-            };
+                field = new Field
+                {
+                    Id=newFieldList.currentId,
+                    Name = newFieldList.currentName,
+                    Type = newFieldList.currentType
+                };
+            }
+            else
+            {
+                field = new Field
+                {
+                    Name = newFieldList.currentNameToCreate,
+                    Type = newFieldList.currentTypeToCreate
+                };
+            }
             newFieldList.fields.Add(field);
             TempData.Put<NewFieldList>("newFieldListModel", newFieldList);
             return RedirectToAction("ListWithFields");
@@ -106,12 +119,45 @@ namespace FormGenerator.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddNewField(NewFieldList newFieldList)
         {
-            if (ModelState.IsValid)
+            var toRemove = _context.FormField.Where(ff => ff.IdForm == newFieldList.FormId).ToList();
+            foreach (var toremove in toRemove)
+                _context.FormField.Remove(toremove);
+            await _context.SaveChangesAsync();
+
+            foreach(var item in newFieldList.fields)
             {
-               
-                
+                if (item.Id != 0)
+                {
+                    FormField ff = new FormField
+                    {
+                        IdField = item.Id,
+                        IdForm = newFieldList.FormId
+                    };
+
+                    _context.FormField.Add(ff);
+                }
+                //nie istnieje pole
+                else
+                {
+                    Field newField = new Field
+                    {
+                        Name = item.Name,
+                        Type = item.Type
+                    };
+                    _context.Field.Add(newField);
+                    _context.SaveChanges();
+                    var thisField = _context.Field.Where(f => f == newField).ToList()[0];
+                    FormField ff = new FormField
+                    {
+                        IdField = thisField.Id,
+                        IdForm = newFieldList.FormId
+                    };
+                    _context.FormField.Add(ff);
+                }
             }
-            return View(newFieldList);
+            _context.SaveChanges();
+            return RedirectToAction("Formularz", "Forms", new { id = newFieldList.FormId });
+
         }
         // GET: Fields/Edit/5
         public async Task<IActionResult> Edit(int? id)
