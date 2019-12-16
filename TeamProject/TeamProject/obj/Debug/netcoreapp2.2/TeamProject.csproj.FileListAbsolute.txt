@@ -368,3 +368,9 @@ E:\Adas\STUDIA\SEMESTR5\Projekt\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\
 E:\Adas\STUDIA\SEMESTR5\Projekt\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.dll
 E:\Adas\STUDIA\SEMESTR5\Projekt\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.pdb
 E:\Adas\STUDIA\SEMESTR5\Projekt\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.csproj.CopyComplete
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\UserAnswerLists\AnswerList.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\UserAnswerLists\Create.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\UserAnswerLists\Delete.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\UserAnswerLists\Details.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\UserAnswerLists\Edit.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\UserAnswerLists\Index.cshtml.g.cs
