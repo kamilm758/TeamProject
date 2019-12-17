@@ -10,6 +10,7 @@ using TeamProject.Models.Modele_pomocnicze;
 using System.Diagnostics;
 using TeamProject.ExtensionMethods;
 
+
 namespace FormGenerator.Controllers
 {
     public class FieldsController : Controller
@@ -171,7 +172,6 @@ namespace FormGenerator.Controllers
             }
             _context.SaveChanges();
             return RedirectToAction("Formularz", "Forms", new { id = newFieldList.FormId });
-
         }
         // GET: Fields/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -241,6 +241,116 @@ namespace FormGenerator.Controllers
 
             return View(@field);
         }
+
+        
+
+        // GET: Fields1/Edit/5
+        public async Task<IActionResult> EditNewField(int? id,int form)
+        {
+            ViewBag.IDFORM = form;
+            
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var @field = await _context.Field.FindAsync(id);
+            if (@field == null)
+            {
+                return NotFound();
+            }
+            return View(@field);
+        }
+
+        // POST: Fields1/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditNewField(int id, [Bind("Id,Name,Type")] Field @field,int form)
+        {
+            ViewBag.IDFORM = form;
+            if (id != @field.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(@field);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!FieldExists(@field.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                ViewBag.message = true;
+                return View();
+            }
+            return View(@field);
+        }
+
+
+        // GET: Fields1/Delete/5
+        public async Task<IActionResult> DeleteNewField(int? id,int form)
+        {
+            ViewBag.IDFORM = form;
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var @field = await _context.Field
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (@field == null)
+            {
+                return NotFound();
+            }
+
+            return View(@field);
+        }
+
+        // POST: Fields1/Delete/5
+        [HttpPost, ActionName("DeleteNewField")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteNewFieldConfirmed(int id,int form)
+        {
+            ViewBag.IDFORM = form;
+            var @field = await _context.Field.FindAsync(id);
+            _context.Field.Remove(@field);
+            await _context.SaveChangesAsync();
+            ViewBag.message = true;
+            return View();
+        }
+
+        public async Task<IActionResult> DetailsNewField(int? id, int form)
+        {
+            ViewBag.IDFORM = form;
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var @field = await _context.Field
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (@field == null)
+            {
+                return NotFound();
+            }
+
+            return View(@field);
+        }
+
 
         // POST: Fields/Delete/5
         [HttpPost, ActionName("Delete")]
