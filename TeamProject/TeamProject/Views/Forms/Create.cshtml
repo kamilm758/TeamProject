@@ -17,32 +17,37 @@
  
 <h4>Nowy formularz</h4>
 <hr />
-<div class="cities">
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label class="control-label">Nazwa</label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Kategoria</label>
-                    <input asp-for="id_Category" class="form-control" />
-                    <span asp-validation-for="id_Category" class="text-danger"></span>
-                </div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label hidden asp-for="Id" class="control-label"></label>
+                <input hidden asp-for="Id" class="form-control" value=0 />
+                <span hidden asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="id_Category" class="control-label"></label>
+                <input hidden asp-for="id_Category" class="form-control" value="@ViewBag.bag" />
+                <span hidden asp-validation-for="id_Category" class="text-danger"></span>
+            </div>
 
-                <div class="form-group">
-                    <input style=" background-color:white;
+            <div class="form-group">
+                <input style=" background-color:white;
             color:#66BB6A;
             font-size:20px;
             padding: 15px 35px;
             border-radius: 8px;
-            position:center;" type="submit" value="Create" class="btn btn-primary" />
+            position:center;" type="submit" value="Stwórz" class="btn btn-primary" />
                 </div>
             </form>
         </div>
+
     </div>
 </div>
 

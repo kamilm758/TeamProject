@@ -9,10 +9,11 @@ using FormGenerator.Models;
 using TeamProject.Models.Modele_pomocnicze;
 using System.Diagnostics;
 using TeamProject.ExtensionMethods;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace FormGenerator.Controllers
 {
+    [Authorize()]
     public class FieldsController : Controller
     {
         private readonly FormGeneratorContext _context;
@@ -129,7 +130,6 @@ namespace FormGenerator.Controllers
             newFieldList.currentType = null;
             return View("AddNewField", newFieldList);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddNewField(NewFieldList newFieldList)

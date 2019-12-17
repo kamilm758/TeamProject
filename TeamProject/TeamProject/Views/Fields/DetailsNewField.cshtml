@@ -4,10 +4,18 @@
     ViewData["Title"] = "DetailsNewField";
 }
 
-<h1>DetailsNewField</h1>
+    <style>
 
-<div>
-    <h4>Field</h4>
+        .cities {
+            background-color: #66BB6A;
+            color: white;
+            margin: 20px;
+            padding: 20px;
+        }
+    </style>
+
+<div class="cities">
+    <h1 style="color:#66BB6A;  font-weight:700">Szczegóły pola</h1>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -25,5 +33,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="EdycjaFormularza" asp-controller="Forms" asp-route-id="@ViewBag.IDFORM">Powrót do formualarza</a>
+    <a style="color:#66BB6A;  font-weight:700" asp-action="EdycjaFormularza" asp-controller="Forms" asp-route-id="@ViewBag.IDFORM">Powrót do formualarza</a>
 </div>

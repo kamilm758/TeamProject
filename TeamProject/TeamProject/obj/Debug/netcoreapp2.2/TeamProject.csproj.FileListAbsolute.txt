@@ -380,3 +380,6 @@ C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor
 C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\DeleteNewField.cshtml.g.cs
 C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\DetailsNewField.cshtml.g.cs
 C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\EditNewField.cshtml.g.cs
+C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
+C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Category\CreateParentCategory.cshtml.g.cs
+C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Fields\NewFields.cshtml.g.cs
