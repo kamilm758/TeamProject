@@ -172,17 +172,23 @@ namespace TeamProject.Controllers
                     .Select(m => m.IdField)
                     .ToList();
 
+            
+
+            List<int> tmp_list = new List<int>();
+
+            foreach(var elem in usersAnswers)
+            {
+                tmp_list.Add(elem.IdField);
+            }
+
             var _fields = _context.Field
-                 .Where(m => _form.Contains(m.Id))
+                 .Where(m => tmp_list.Contains(m.Id))
                  .ToList();
 
-            
             ViewBag.Fields = _fields;
             ViewBag.FormId = id;
 
-            var xD = await _context.UserAnswerList
-                .Where(m => m.user_answer_list.Count > 0)
-                .ToListAsync();
+            
 
             return View(answersList);
         }
