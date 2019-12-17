@@ -3,47 +3,72 @@
 @{
     ViewData["Title"] = "Index";
 }
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-<h1>Index</h1>
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #A5D6A7
+        }
+
+        th {
+            background-color: #81C784;
+            color: white;
+        }
+
+        a{
+            color: #424242;
+            font-weight: 500;
+        }
+    </style>
+
 
 <p>
-    <a asp-action="Create">Stwórz nowy pusty formularz</a>
+    <a style="color:#81C784;  font-weight:700" asp-action="Create">Stwórz nowy pusty formularz</a>
 </p>
 <table class="table">
     <thead>
-        <tr>
+        <tr >
             <th>
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+               Nazwa
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.id_Category)
+                Kategoria
             </th>
-           
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_Category)
-            </td>
-          
-            <td>
-                <a asp-action="EdycjaFormularza" asp-route-id="@item.Id">Dodaj/Usuń pole</a> |
-                <a asp-action="Formularz" asp-route-id="@item.Id">Wyświetl formularz</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr >
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_Category)
+                </td>
+
+                <td>
+                    <a asp-action="EdycjaFormularza" asp-route-id="@item.Id">Dodaj/Usuń pole</a> |
+                    <a asp-action="Formularz" asp-route-id="@item.Id">Wyświetl formularz</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Usuń formularz</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

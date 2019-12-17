@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
     <Compile Remove="Migrations\20191215211153_NullFix.cs" />
     <Compile Remove="Migrations\20191215211153_NullFix.Designer.cs" />
+    <Compile Remove="Migrations\ApplicationDb\20191216161429_Migracja.cs" />
+    <Compile Remove="Migrations\ApplicationDb\20191216161429_Migracja.Designer.cs" />
   </ItemGroup>
 
 
@@ -30,7 +34,16 @@
 
 
   <ItemGroup>
+    <Folder Include="Data\Migrations\" />
     <Folder Include="Helpers\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
