@@ -369,3 +369,4 @@ E:\Adas\STUDIA\SEMESTR5\Projekt\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\
 E:\Adas\STUDIA\SEMESTR5\Projekt\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.pdb
 E:\Adas\STUDIA\SEMESTR5\Projekt\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.csproj.CopyComplete
 E:\Adas\STUDIA\SEMESTR5\Projekt\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\UserAnswerLists\AnswerListPost.cshtml.g.cs
+C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\UserAnswerLists\AnswerListPost.cshtml.g.cs
