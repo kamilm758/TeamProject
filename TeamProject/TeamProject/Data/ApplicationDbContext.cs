@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TeamProject.Models;
 
+
 namespace TeamProject.Data
 {
     public class ApplicationDbContext : IdentityDbContext<MyUser>
@@ -21,5 +22,7 @@ namespace TeamProject.Data
                 optionsBuilder.UseNpgsql("Host=projekt1920.cakejnzadj5u.us-east-1.rds.amazonaws.com;Database=postgres;Username=postgres;Password=projekt.pb19_20");
             }
         }
+
+        public DbSet<FormGenerator.Models.Field> Field { get; set; }
     }
 }
