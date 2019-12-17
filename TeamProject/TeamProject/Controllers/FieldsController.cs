@@ -108,6 +108,15 @@ namespace FormGenerator.Controllers
             TempData.Put<NewFieldList>("newFieldListModel", newFieldList);
             return RedirectToAction("ListWithFields");
         }
+
+        public IActionResult DeleteFromList(int fieldId, NewFieldList newFieldList)
+        {
+
+            newFieldList.fields = newFieldList.fields.Where(f => f.Id != fieldId).ToList();
+            TempData.Put<NewFieldList>("newFieldListModel", newFieldList);
+            return RedirectToAction("ListWithFields");
+        }
+
         [HttpGet]
         public IActionResult ListWithFields()
         {

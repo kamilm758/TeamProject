@@ -56,6 +56,7 @@ input[type=submit] {
 <h5>Przypisz pole do formularza</h5>
 
 <form asp-action="AddNewField" autocomplete="off" id="myForm">
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Stwórz nowe pole i przypisz do formularza</button>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -74,7 +75,7 @@ input[type=submit] {
                         <th scope="row">@i</th>
                         <td>@Model.fields[i].Name</td>
                         <td>@Model.fields[i].Type</td>
-                        <td><a asp-route-fieldId="@Model.fields[i].Id" class="btn btn-danger">Usuń</a></td>
+                        <td><button type="submit" asp-route-fieldId="@Model.fields[i].Id" asp-action="DeleteFromList" class="btn btn-danger" to-delete="true" >Usuń</button></td>
                     </tr>
                 }
             }
@@ -102,17 +103,13 @@ input[type=submit] {
         <input asp-for="@Model.currentName" class="form-control" id="autoFill" />
     </div>
     <br />
-    <label asp-for="@Model.currentType">Wybierz typ:</label>
-    <select asp-for="@Model.currentType" class="form-control" style="width:300px">
-        <option value="">Wybierz opcję</option>
-        <option value="text">Pole tekstowe</option>
-        <option value="checkbox">Checkbox</option>
-    </select>
+    <label asp-for="@Model.currentType">Typ pola:</label>
+    <input asp-for="@Model.currentType" id="currentType" hidden class="form-control" style="width:300px">
+    <input type="text" id="disabledCurrentType" disabled  class="form-control" style="width:200px;"/>
     <br />
     <input type="submit" asp-action="AddToList" class="btn btn-success" id="istniejacePola" value="Przypisz istniejące pole" style="padding:5px" />
 
     <!-- Large modal -->
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Stwórz nowe pole i przypisz do formularza</button>
 
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -132,8 +129,8 @@ input[type=submit] {
             </div>
         </div>
     </div>
-    <br />
-    <input type="button" id="zapiszZmiany" class="btn btn-primary" value="Zapisz zmiany" style="padding:5px; width:510px" />
+    <br /><br />
+    <input type="button" id="zapiszZmiany" class="btn btn-primary" value="Zapisz zmiany" style="padding:5px; width:inherit" />
 
 
 </form>
@@ -143,6 +140,7 @@ input[type=submit] {
 <script>
     document.getElementById("nameToCreate").value = null;
     var saveFlag = false;
+    var deleteFlag = false;
     var AllFields = [];
     var test = ["jeden", "dwa"];
     var AllFieldsJson;
@@ -155,7 +153,6 @@ input[type=submit] {
     
     //po tym jak pobierzemy z API
     $(document).ajaxComplete(function () {
-
     for (let i = 0; i < AllFieldsJson.length; i++) {
         AllFields.push(AllFieldsJson[i]);
     }
@@ -169,7 +166,7 @@ input[type=submit] {
         $('#myForm').submit(function() {
 
             console.log(document.getElementById("nameToCreate").value)
-            if (saveFlag == true) {
+            if (saveFlag == true || deleteFlag == true) {
                 return true;
             }
             saveFlag = false;
@@ -198,6 +195,11 @@ input[type=submit] {
 
     document.getElementById("zapiszZmiany").addEventListener("click", function () {
         saveFlag = true;
+        document.getElementById("myForm").submit();
+    })
+
+    $("[to-delete=true]").click(function () {
+        deleteFlag = true;
         document.getElementById("myForm").submit();
     })
 
@@ -239,6 +241,15 @@ input[type=submit] {
                   inp.value = this.getElementsByTagName("input")[0].value;
                   document.getElementById("idToExistField").value = parseInt(this.getElementsByTagName("input")[0].id);
                   document.getElementById("nameToCreate").value = null;
+
+                  for (let i = 0; i < AllFields.length; i++) {
+                      if (AllFields[i].id == parseInt(this.getElementsByTagName("input")[0].id)) {
+                          document.getElementById("currentType").value = AllFields[i].type;
+                          document.getElementById("disabledCurrentType").value = AllFields[i].type;
+                          continue;
+                      }
+                  }
+
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();
