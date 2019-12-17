@@ -4,15 +4,19 @@
     ViewData["Title"] = "NewFields";
 }
 
-<h1>NewFields</h1>
+    <style>
 
-<h4>NewFieldList</h4>
+        .cities {
+            background-color: #66BB6A;
+            color: white;
+            margin: 20px;
+            padding: 20px;
+        }
+    </style>
 <hr />
-<button class="btn btn-primary repeater-add-btn" id="addnew">
-    Add
-</button>
+<button class="btn btn-primary repeater-add-btn" id="addnew" >Dodaj </button>
 <form asp-action="NewFields" class="form-group">
-    <div id="repeater">
+    <div class="cities" id="repeater">
         <div class="repeater-heading">
         </div>
         <div class="" data-group="test">
@@ -34,8 +38,13 @@
                         <span asp-validation-for="fields[0].Type" class="text-danger"></span>
                     </div>
                     <div>
-                        <button id="remove-btn" class="btn btn-danger" onclick="$(this).parents('.items').remove()">
-                            Remove
+                        <button  style=" background-color:white;
+            color:#66BB6A;
+            font-size:20px;
+            padding: 15px 35px;
+            border-radius: 8px;
+            position:center;" id="remove-btn" class="btn btn-danger" onclick="$(this).parents('.items').remove()">
+                            Usuń
                         </button>
                     </div>
                 </div>
@@ -45,12 +54,17 @@
         </div>
     </div>
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" asp-route-id="@Model.FormId"/>
+        <input  style=" background-color:white;
+            color:#66BB6A;
+            font-size:20px;
+            padding: 15px 35px;
+            border-radius: 8px;
+            position:center;" type="submit" value="Create" class="btn btn-primary" asp-route-id="@Model.FormId"/>
     </div>
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a  style="color:#66BB6A;  font-weight:700" asp-action="Index">Powrót</a>
 </div>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
