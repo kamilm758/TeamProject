@@ -3,20 +3,32 @@
     ViewData["Title"] = "WyslanoFormularz";
 }
 
-<h1>WyslanoFormularz</h1>
+<h1>Wyslano Formularz</h1>
 <h3>Gratulacje, dane z formularza zostały zapisane w bazie danych</h3>
-@foreach (var key in Model)
-{
+<style>
+
+    .cities {
+        background-color: #66BB6A;
+        color: white;
+        margin: 20px;
+        padding: 20px;
+    }
+</style>
+<div class="cities">
+    @foreach (var key in Model)
+    {
         <label asp-for="@key.Field.Name" style="font-weight:bold; font-size:large">@key.Field.Name</label>
         @if (key.Field.Type == "checkbox")
         {
-        <p>@key.BoolValue.ToString()</p>
+            <p>@key.BoolValue.ToString()</p>
         }
         else
         {
             <p>@key.TextValue</p>
         }
-    <br />
-  }
+        <br />
+    }
+</div>
+
 
 

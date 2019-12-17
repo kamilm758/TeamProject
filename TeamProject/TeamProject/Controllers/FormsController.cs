@@ -70,6 +70,7 @@ namespace FormGenerator.Controllers
 
         // w tej metodzie w przyszłości nastąpi wysłanie wpisanych formularzy do bazy danych
         [HttpPost]
+
         public async Task<IActionResult> Formularz(List<FieldWithValue> fields, int formId)
         {
             var user = await GetUser();

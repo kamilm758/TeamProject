@@ -130,7 +130,6 @@ namespace FormGenerator.Controllers
             newFieldList.currentType = null;
             return View("AddNewField", newFieldList);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddNewField(NewFieldList newFieldList)
