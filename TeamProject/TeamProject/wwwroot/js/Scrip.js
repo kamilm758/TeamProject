@@ -206,10 +206,17 @@ function wyswietlFormularze(id) {
                     var buttonEdit = $("<button>").attr("class", "btn").text("edytuj").css("margin-bottom", "10px").css("backgroundColor", "grey").click(function () {
                         let listContents = $("#Drzewo").html();
                         sessionStorage.setItem('todoList', JSON.stringify(listContents));
-                        window.location.href = '/Forms/EdycjaFormularza/' + data[i].id;
+                        window.location.href = '/Fields/AddNewField/' + data[i].id;
                         return false;
                     });
                     button.appendTo(parent);
+                    var buttonShow = $("<button>").attr("class", "btn").text("wyświetl wyniki formularza").css("margin-bottom", "10px").css("backgroundColor", "#d2d2d2").click(function () {
+                        let listContents = $("#Drzewo").html();
+                        sessionStorage.setItem('todoList', JSON.stringify(listContents));
+                        window.location.href = '/User/UserAnswerLists/AnswerListPost/' + data[i].id;
+                        return false;
+                    });
+                    buttonShow.appendTo(parent);
                     buttonEdit.appendTo(parent);
 
                     parent.appendChild(element);
@@ -226,112 +233,5 @@ function wyswietlFormularze(id) {
 
 }
 
-//function recoverView(id) {
-//    var ide = id;
-//    let parent;
-//    $.ajax({
-//        url: '/Category/ListOfCategories',
-//        type: 'Post',
-//        dataType: 'json',
-//        data: { order: ide },
-//        success: function (data) {
-//            console.log(data);
-//            if (data.length > 0) {
-//              //  let ul = document.createElement("ul");
-//               // parent = document.getElementById(data[0].id)
-//                for (let i = 0; i < data.length; i++) {
-                    
-//                        let parent = document.getElementById(data[i].id)
-
-//                        console.log(parent)
-//                        showChilds(parent);
-                  
-//                  }
-              
-                    
-//            }
-//        },
-//        error: function (data) {
-//            console.log("bad");
-//        }
-
-//    });
-//}
-
-
-
-// function showChilds(e){
-//    $('.btn1').remove()
-//    let parent = e;
-//    ostatni = parent;
-//    id = e.id;
-//    //chowajFormularze();
-//    //var buttonAdd = $(" <button>").attr("class", "btn1").text("Dodaj formularz").css("margin-bottom", "10px").css("backgroundColor", "#fafae7").click(function () {
-//    //    window.location.href = '/Forms/Create/' + id;
-//    //    return false;
-//    //});
-//    //buttonAdd.appendTo(parent);
-//    //var buttonAddCat = $(" <button>").attr("class", "btn1").text("Dodaj kategorie").css("margin-bottom", "10px").css("backgroundColor", "#f1f1bb").click(function () {
-//    //    window.location.href = '/Category/Create/' + id;
-//    //    return false;
-//    //});
-//    //buttonAddCat.appendTo(parent);
-
-//  //      console.log(e);
-//    let ListaDzieci = [];
-//    $.ajax({
-//        url: '/Category/GetDzieci',
-//        type: 'Post',
-//        dataType: 'json',
-//        data: { order: id },
-//        success: function (data) {
-//          //  console.log(data);
-
-//            if (data.length > 0) {
-
-
-//                parent.setAttribute("class", "rodzicX");
-
-//                let ul = document.createElement("ul");
-//                for (let i = 0; i < data.length; i++) {
-
-//                    let textName = document.createTextNode(data[i].name);
-//                    let tdName = document.createElement("li");
-//                    tdName.setAttribute("class", "rodzic");
-//                    tdName.setAttribute("id", data[i].id);
-
-//                    tdName.appendChild(textName);
-//                    ul.append(tdName);
-
-//                }
-//                parent.appendChild(ul);
-               
-
-//            }
-//           // wyswietlFormularze(id);
-//        },
-//        error: function (data) {
-
-//           // data = null;
-//        }
-
-//    });
-//}
-//$(document).ready(function () {
-
-//    $("#saveAll").click(function (e) {
-//        e.preventDefault();
-       
-         
-//    });
-
-//    $("#clearAll").click(function (e) {
-//        e.preventDefault();
-//        sessionStorage.clear();
-//        location.reload();
-//    });
-
-
-//});
 
 
