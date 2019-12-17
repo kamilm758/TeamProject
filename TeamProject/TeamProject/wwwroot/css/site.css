@@ -59,15 +59,6 @@ body {
     width: 20px;
 }
 
-.dtHorizontalVerticalExampleWrapper {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-#dtHorizontalVerticalExample th, td {
-    white-space: nowrap;
-}
-
 table.dataTable thead .sorting:after,
 table.dataTable thead .sorting:before,
 table.dataTable thead .sorting_asc:after,

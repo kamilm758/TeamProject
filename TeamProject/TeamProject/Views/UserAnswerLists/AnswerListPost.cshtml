@@ -1,5 +1,14 @@
 ﻿<head>
-    <link rel="stylesheet" type="text/css" href="~/css/site.css">
+    <style>
+        .dtHorizontalVerticalExampleWrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #dtHorizontalVerticalExample th, td {
+            white-space: nowrap;
+        }
+    </style>
 </head>
 
 @model IEnumerable<FormGenerator.Models.Modele_pomocnicze.UserAnswerList>
@@ -43,7 +52,7 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td style="column-width:100px">
                         @Html.DisplayFor(modelItem => item.Id_User)
                     </td>
                     @foreach (var elem in item.user_answer_list)
@@ -67,22 +76,23 @@
     <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
 
 
-        <script type="text/javascript">
-            $('#dtHorizontalVerticalExample').DataTable({
-                "scrollX": true,
+    <script type="text/javascript">
+        $('#dtHorizontalVerticalExample').DataTable({
+            "scrollX": true,
             "scrollY": 200,
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         });
         $('.dataTables_length').addClass('bs-select');
-            $(document).ready(function () {
-                $("#Button1").click(function (event) {
+        $(document).ready(function () {
+            $("#Button1").click(function (event) {
 
-                    event.preventDefault();
+                event.preventDefault();
 
-                    var selCat = $("#mylist").val();
-                    window.location.href = '/UserAnswerLists/AnswerListPost/' + selCat;
-                });
+                var selCat = $("#mylist").val();
+                window.location.href = '/UserAnswerLists/AnswerListPost/' + selCat;
+            });
 
-                    
-});
+
+        });
     </script>
 </body>
