@@ -89,6 +89,15 @@ namespace FormGenerator.Controllers
             Field field;
             if (newFieldList.currentName == "")
                 return View("AddNewField", newFieldList);
+
+            var containsCurrentName = newFieldList.fields.Where(f => f.Name == newFieldList.currentName);
+            var condatinsCreateName = newFieldList.fields.Where(f => f.Name == newFieldList.currentNameToCreate);
+            if(condatinsCreateName.Count()!=0 || containsCurrentName.Count() != 0)
+            {
+                ViewBag.Error = "Pole o tej nazwie znajduje się już w formularzu!";
+                return View("AddNewField", newFieldList);
+            }
+
             if (newFieldList.currentId != 0)
             {
                 field = new Field
