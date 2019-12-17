@@ -91,8 +91,14 @@ namespace FormGenerator.Controllers
         }
 
         // stworzenie formularza
-        public IActionResult Create()
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        public IActionResult Create(int id)
         {
+            ViewBag.bag = id;
             return View();
         }
 
@@ -101,13 +107,13 @@ namespace FormGenerator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,id_Category,Parent")] Forms forms)
+        public async Task<IActionResult> Create([Bind("Id,Name,id_Category")] Forms forms)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(forms);
+                _context.Forms.Add(forms);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(ListaFormularzy));
+                return RedirectToAction("Index", new { id = forms.id_Category });
             }
             return View(forms);
         }
@@ -228,8 +234,9 @@ namespace FormGenerator.Controllers
             return _context.Forms.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> Index()
-        {  
+        public async Task<IActionResult> Index(int ?id)
+        {
+            ViewBag.bag = id;
             return View(await _context.Forms.ToListAsync()) ;
         }
         public JsonResult GetForms(string order)
