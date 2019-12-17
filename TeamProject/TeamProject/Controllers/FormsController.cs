@@ -8,16 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using FormGenerator.Models;
 using FormGenerator.Models.Modele_pomocnicze;
 using TeamProject.Models.FormGeneratorModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using TeamProject.Models;
 
 namespace FormGenerator.Controllers
 {
+    [Authorize()]
     public class FormsController : Controller
     {
         private readonly FormGeneratorContext _context;
+        private readonly UserManager<MyUser> _userManager;
 
-        public FormsController(FormGeneratorContext context)
+        public FormsController(FormGeneratorContext context, UserManager<MyUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         //wyświetlenie listy formularzy
@@ -64,8 +70,9 @@ namespace FormGenerator.Controllers
 
         // w tej metodzie w przyszłości nastąpi wysłanie wpisanych formularzy do bazy danych
         [HttpPost]
-        public IActionResult Formularz(List<FieldWithValue> fields, int formId)
+        public async Task<IActionResult> Formularz(List<FieldWithValue> fields, int formId)
         {
+            var user = await GetUser();
             foreach (var field in fields)
             {
                 UserAnswers answer = new UserAnswers
@@ -73,7 +80,7 @@ namespace FormGenerator.Controllers
                     IdForm = formId,
                     IdField = field.Field.Id,
                     //prowizorycznie
-                    IdUser = 12
+                    IdUser = user.CustomID
                 };
 
                 switch (field.Field.Type)
@@ -239,6 +246,11 @@ namespace FormGenerator.Controllers
             int id = Convert.ToInt32(order);
             var result = _context.Forms.Where(m => m.id_Category == id).ToList();
             return Json(result);
+        }
+
+        public async Task<MyUser> GetUser()
+        {
+            return await _userManager.GetUserAsync(HttpContext.User);
         }
     }
 }
