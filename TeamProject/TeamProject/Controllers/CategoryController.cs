@@ -35,7 +35,7 @@ namespace TeamProject.Controllers
             {
                 _context.Categories.Add(category);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Forms", new { id =category.Parent});
+                return RedirectToAction("Index", "Forms");
             }
             return View();
         }
@@ -79,6 +79,24 @@ namespace TeamProject.Controllers
             }
 
             return Json(categories);
+        }
+        public IActionResult CreateParentCategory()
+        {
+           
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateParentCategory([Bind("Id,Name,Parent")] Category category)
+        {
+
+            if (ModelState.IsValid)
+            {
+                category.Parent = null;
+                _context.Categories.Add(category);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Forms", new { id = 1 });
+            }
+            return View();
         }
     }
 }
