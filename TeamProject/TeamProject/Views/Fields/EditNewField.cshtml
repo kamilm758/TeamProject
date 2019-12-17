@@ -1,0 +1,47 @@
+﻿@model FormGenerator.Models.Field
+
+@{
+    ViewData["Title"] = "EditNewField";
+}
+
+<h1>EditNewField</h1>
+
+<h4>Field</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditNewField">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <select asp-for="Type">
+                    <option value="">Wybierz opcję</option>
+                    <option value="text">Pole tekstowe</option>
+                    <option value="checkbox">Checkbox</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            @if (@ViewBag.message == true)
+            {
+        <div>
+            <p>Edytowanie zostało pomyślnie zapisane</p>
+        </div>
+             
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="EdycjaFormularza" asp-controller="Forms" asp-route-id="@ViewBag.IDFORM">Powrót do formualarza</a>
+</div>
+

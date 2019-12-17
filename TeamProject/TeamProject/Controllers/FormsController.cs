@@ -8,16 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using FormGenerator.Models;
 using FormGenerator.Models.Modele_pomocnicze;
 using TeamProject.Models.FormGeneratorModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using TeamProject.Models;
 
 namespace FormGenerator.Controllers
 {
+    [Authorize()]
     public class FormsController : Controller
     {
         private readonly FormGeneratorContext _context;
+        private readonly UserManager<MyUser> _userManager;
 
-        public FormsController(FormGeneratorContext context)
+        public FormsController(FormGeneratorContext context, UserManager<MyUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         //wyświetlenie listy formularzy
@@ -61,10 +67,12 @@ namespace FormGenerator.Controllers
             ViewBag.formid = Convert.ToInt32(id);
             return View(fieldWithValues);
         }
+
         // w tej metodzie w przyszłości nastąpi wysłanie wpisanych formularzy do bazy danych
         [HttpPost]
-        public IActionResult Formularz(List<FieldWithValue> fields, int formId)
+        public async Task<IActionResult> Formularz(List<FieldWithValue> fields, int formId)
         {
+            var user = await GetUser();
             foreach (var field in fields)
             {
                 UserAnswers answer = new UserAnswers
@@ -72,7 +80,7 @@ namespace FormGenerator.Controllers
                     IdForm = formId,
                     IdField = field.Field.Id,
                     //prowizorycznie
-                    IdUser = 1
+                    IdUser = user.CustomID
                 };
 
                 switch (field.Field.Type)
@@ -91,14 +99,8 @@ namespace FormGenerator.Controllers
         }
 
         // stworzenie formularza
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        public IActionResult Create(int id)
+        public IActionResult Create()
         {
-            ViewBag.bag = id;
             return View();
         }
 
@@ -107,13 +109,13 @@ namespace FormGenerator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,id_Category")] Forms forms)
+        public async Task<IActionResult> Create([Bind("Id,Name,id_Category,Parent")] Forms forms)
         {
             if (ModelState.IsValid)
             {
-                _context.Forms.Add(forms);
+                _context.Add(forms);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", new { id = forms.id_Category });
+                return RedirectToAction(nameof(ListaFormularzy));
             }
             return View(forms);
         }
@@ -234,9 +236,9 @@ namespace FormGenerator.Controllers
             return _context.Forms.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> Index(int ?id)
+        public async Task<IActionResult> Index()
         {
-            ViewBag.bag = id;
+            
             return View(await _context.Forms.ToListAsync()) ;
         }
         public JsonResult GetForms(string order)
@@ -244,6 +246,11 @@ namespace FormGenerator.Controllers
             int id = Convert.ToInt32(order);
             var result = _context.Forms.Where(m => m.id_Category == id).ToList();
             return Json(result);
+        }
+
+        public async Task<MyUser> GetUser()
+        {
+            return await _userManager.GetUserAsync(HttpContext.User);
         }
     }
 }

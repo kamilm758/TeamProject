@@ -1,0 +1,39 @@
+﻿@model IEnumerable<FormGenerator.Models.Modele_pomocnicze.UserAnswerList>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_User)
+            </th>
+            @foreach (var item in Model)
+            {
+                @foreach (var elem in item.user_answer_list)
+                {
+                <th>
+                    @elem.IdForm
+                </th>
+                 }
+             }
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_User)
+            </td>
+            @foreach (var elem in item.user_answer_list)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => elem.Answer)
+                </td>
+            }
+        </tr>
+}
+    </tbody>
+</table>
