@@ -2,8 +2,17 @@
 var ostatni;
 
 $(document).ready(function () {
+
+    let parentButton = document.getElementById("buton");
+    var addCategory = $(" <button>").attr("class", "btn").text("dodaj nową kategorię główną").css("margin-bottom", "10px").css("backgroundColor", "#fafae7").click(function () {
+       
+        window.location.href = '/Category/CreateParentCategory';
+        return false;
+    });
+    addCategory.appendTo(parentButton);
+
     let parent = document.getElementById("Drzewo");
-    if (sessionStorage.getItem('todoList')) {
+    if (sessionStorage.getItem('todoList') && IDcat != 1 ) {
         if (sessionStorage.getItem('todoList')) {
             var listContents = JSON.parse(sessionStorage.getItem('todoList'));
           
@@ -41,7 +50,7 @@ $(document).ready(function () {
 
                 if (List[i].parent == null) {
                     
-                    var li = $(" <li>").attr("id", List[i].id).attr("class", "rodzic").text(List[i].name).css("margin-bottom", "10px").css("backgroundColor", "#fcfcf2");
+                    var li = $(" <li>").attr("id", List[i].id).attr("class", "rodzic").text(List[i].name).css("margin-bottom", "10px");//.css("backgroundColor", "#fcfcf2");
                     
                 
                     li.appendTo(parent);
@@ -112,6 +121,8 @@ $(document).on('click', '.rodzic', function (e) {
                
             }
             wyswietlFormularze(id);
+            let listContents = $("#Drzewo").html();
+            sessionStorage.setItem('todoList', JSON.stringify(listContents));
         },
         error: function (data) {
     
@@ -152,6 +163,8 @@ $(document).on('click', '.rodzicX', function (e) {
         return false;
     });
     buttonAddCat.appendTo(parent);
+    let listContents = $("#Drzewo").html();
+    sessionStorage.setItem('todoList', JSON.stringify(listContents));
   
     $(this).off('click');
 
@@ -213,7 +226,7 @@ function wyswietlFormularze(id) {
                     var buttonShow = $("<button>").attr("class", "btn").text("wyświetl wyniki formularza").css("margin-bottom", "10px").css("backgroundColor", "#d2d2d2").click(function () {
                         let listContents = $("#Drzewo").html();
                         sessionStorage.setItem('todoList', JSON.stringify(listContents));
-                        window.location.href = '/User/UserAnswerLists/AnswerListPost/' + data[i].id;
+                        window.location.href = '/UserAnswerLists/AnswerListPost/' + data[i].id;
                         return false;
                     });
                     buttonShow.appendTo(parent);

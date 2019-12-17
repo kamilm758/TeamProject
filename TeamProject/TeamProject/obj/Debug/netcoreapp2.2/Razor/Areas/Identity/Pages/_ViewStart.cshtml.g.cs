@@ -13,17 +13,17 @@ namespace TeamProject.Areas.Identity.Pages
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#line 1 "C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\Areas\Identity\Pages\_ViewImports.cshtml"
+#line 1 "C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\Areas\Identity\Pages\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
-#line 2 "C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\Areas\Identity\Pages\_ViewImports.cshtml"
+#line 2 "C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\Areas\Identity\Pages\_ViewImports.cshtml"
 using TeamProject.Areas.Identity;
 
 #line default
 #line hidden
-#line 3 "C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\Areas\Identity\Pages\_ViewImports.cshtml"
+#line 3 "C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\Areas\Identity\Pages\_ViewImports.cshtml"
 using TeamProject.Models;
 
 #line default

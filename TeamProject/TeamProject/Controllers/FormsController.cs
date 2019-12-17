@@ -99,8 +99,9 @@ namespace FormGenerator.Controllers
         }
 
         // stworzenie formularza
-        public IActionResult Create()
+        public IActionResult Create(int ?id)
         {
+            ViewBag.bag = id;
             return View();
         }
 
@@ -115,7 +116,7 @@ namespace FormGenerator.Controllers
             {
                 _context.Add(forms);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(ListaFormularzy));
+                return RedirectToAction("Index", "Home");
             }
             return View(forms);
         }

@@ -23,9 +23,9 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label  asp-for="Parent" class="control-label"></label>
-                <input asp-for="Parent" class="form-control" value="@ViewBag.bag" />
-                <span asp-validation-for="Parent" class="text-danger"></span>
+                <label hidden asp-for="Parent" class="control-label"></label>
+                <input hidden asp-for="Parent" class="form-control" value="@ViewBag.bag" />
+                <span hidden asp-validation-for="Parent" class="text-danger"></span>
             </div>
 
             <div class="form-group">
