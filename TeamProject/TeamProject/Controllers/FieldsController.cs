@@ -9,10 +9,11 @@ using FormGenerator.Models;
 using TeamProject.Models.Modele_pomocnicze;
 using System.Diagnostics;
 using TeamProject.ExtensionMethods;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace FormGenerator.Controllers
 {
+    [Authorize()]
     public class FieldsController : Controller
     {
         private readonly FormGeneratorContext _context;
@@ -88,6 +89,15 @@ namespace FormGenerator.Controllers
             Field field;
             if (newFieldList.currentName == "")
                 return View("AddNewField", newFieldList);
+
+            var containsCurrentName = newFieldList.fields.Where(f => f.Name == newFieldList.currentName);
+            var condatinsCreateName = newFieldList.fields.Where(f => f.Name == newFieldList.currentNameToCreate);
+            if(condatinsCreateName.Count()!=0 || containsCurrentName.Count() != 0)
+            {
+                ViewBag.Error = "Pole o tej nazwie znajduje się już w formularzu!";
+                return View("AddNewField", newFieldList);
+            }
+
             if (newFieldList.currentId != 0)
             {
                 field = new Field
@@ -129,7 +139,6 @@ namespace FormGenerator.Controllers
             newFieldList.currentType = null;
             return View("AddNewField", newFieldList);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddNewField(NewFieldList newFieldList)

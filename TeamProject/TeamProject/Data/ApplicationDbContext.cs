@@ -23,6 +23,6 @@ namespace TeamProject.Data
             }
         }
 
-        public DbSet<FormGenerator.Models.Field> Field { get; set; }
+       
     }
 }

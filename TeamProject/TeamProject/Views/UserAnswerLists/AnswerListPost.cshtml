@@ -2,6 +2,7 @@
     <style>
         .dtHorizontalVerticalExampleWrapper {
             max-width: 800px;
+            height: 1000px;
             margin: 0 auto;
         }
 
@@ -16,7 +17,11 @@
 @{
     ViewData["Title"] = "Index";
     List<SelectListItem> tmp = ViewBag.List;
+    bool flag = false;
+
+
 }
+
 
 <body>
     <input type="hidden" id="urlGetValueSelected" value="@Url.Action("AnswerListPost", "UserAnswerLists")" />
@@ -29,22 +34,15 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Id_User)
                 </th>
-                @foreach (var item in Model)
-                {
-                    @foreach (var elem in item.user_answer_list)
-                    {
 
-                        @foreach (var i in ViewBag.Fields)
-                        {
-                            @if (i.Id == elem.IdField)
-                            {
-                                <th>
-                                    @i.Name
-                                </th>
-                            }
-                        }
-                    }
-                    break;
+                @foreach (var elem in ViewBag.Fields)
+                {
+
+
+                    <th>
+                        @elem.Name
+                    </th>
+
                 }
             </tr>
         </thead>
@@ -55,23 +53,34 @@
                     <td style="column-width:100px">
                         @Html.DisplayFor(modelItem => item.Id_User)
                     </td>
-                    @foreach (var elem in item.user_answer_list)
+                    @foreach (var el in ViewBag.Fields)
                     {
-                        @if (ViewBag.FormId == elem.IdForm)
+                        flag = false;
+                        @for (int i = 0; i < item.user_answer_list.Count; i++)
                         {
-                            <td>
-                                @Html.DisplayFor(modelItem => elem.Answer)
-                            </td>
+                            if (el.Id == item.user_answer_list[i].IdField)
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.user_answer_list[i].Answer)
+                                </td>
+                                flag = true;
+                                break;
+                            }
+                        }
+                        if(!flag)
+                        {
+                            <td></td>
                         }
                     }
                 </tr>
             }
         </tbody>
     </table>
-
+    <div class="p-5">
+        <a href="#" class="btn btn-danger" id="test" onClick="javascript:fnExcelReport();">Pobierz</a>
+    </div>
 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
     <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
     <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
 
@@ -79,7 +88,7 @@
     <script type="text/javascript">
         $('#dtHorizontalVerticalExample').DataTable({
             "scrollX": true,
-            "scrollY": 200,
+            "scrollY": '90vh',
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         });
         $('.dataTables_length').addClass('bs-select');
@@ -88,11 +97,53 @@
 
                 event.preventDefault();
 
-                var selCat = $("#mylist").val();
+                var selCat = $("#mylist").val();  
+                var FormName = $("#mylist option:selected").text();
+                sessionStorage.setItem('name', FormName);
+                
+                    
+                
                 window.location.href = '/UserAnswerLists/AnswerListPost/' + selCat;
             });
 
 
         });
+
+
+        function fnExcelReport() {
+
+            let name = sessionStorage.getItem('name');
+            let filename = name.toString() + '.xls';
+    var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
+    tab_text = tab_text + '<head><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>';
+
+    tab_text = tab_text + "<x:Name>"+name+"</x:Name>";
+
+    tab_text = tab_text + '<x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions></x:ExcelWorksheet>';
+    tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+
+    tab_text = tab_text + "<table border='0px'>";
+    tab_text = tab_text + $('#dtHorizontalVerticalExample').html();
+    tab_text = tab_text + '</table></body></html>';
+
+    var data_type = 'data:application/vnd.ms-excel';
+    
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+    
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+        if (window.navigator.msSaveBlob) {
+            var blob = new Blob([tab_text], {
+                type: "application/csv;charset=utf-8;"
+            });
+            navigator.msSaveBlob(blob, filename);
+        }
+    } else {
+        $('#test').attr('href', data_type + ', ' + encodeURIComponent(tab_text));
+        $('#test').attr('download', filename);
+    }
+
+}
+
     </script>
 </body>
