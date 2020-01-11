@@ -24,9 +24,11 @@ namespace TeamProject
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -43,13 +45,14 @@ namespace TeamProject
                     "Host=projekt1920.cakejnzadj5u.us-east-1.rds.amazonaws.com;Database=postgres;Username=postgres;Password=projekt.pb19_20"));
             services.AddIdentity<MyUser,IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
             services.AddScoped<FormGeneratorContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider, RoleManager<IdentityRole> roleManager, UserManager<MyUser> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -75,50 +78,11 @@ namespace TeamProject
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            Seed.SeedRoles(roleManager);
+            Seed.SeedUsers(userManager);
 
-            CreateRoles(serviceProvider).Wait();
         }
-        private async Task CreateRoles(IServiceProvider serviceProvider)
-        {
-            //adding custom roles
-            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var UserManager = serviceProvider.GetRequiredService<UserManager<MyUser>>();
-            string[] roleNames = { "Admin", "Manager" };
-            IdentityResult roleResult;
-
-            foreach (var roleName in roleNames)
-            {
-                //creating the roles and seeding them to the database
-                var roleExist = await RoleManager.RoleExistsAsync(roleName);
-                if (!roleExist)
-                {
-                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
-                }
-            }
-
-            //creating a super user who could maintain the web app
-            var poweruser = new MyUser
-            {
-                UserName = "testtest",
-                Email = "testowy@wp.pl",
-                FirstName="daniel",
-                LastName="daniel"
-                
-            };
-
-            string UserPassword = "Testowe%5.";
-            var _user = await UserManager.FindByEmailAsync("testowy@wp.pl");
-
-            if (_user == null)
-            {
-                var createPowerUser = await UserManager.CreateAsync(poweruser, UserPassword);
-                if (createPowerUser.Succeeded)
-                {
-                    //here we tie the new user to the "Admin" role 
-                    await UserManager.AddToRoleAsync(poweruser, "Admin");//​
-                }
-            }
-        }
+       
     }
 
 }
