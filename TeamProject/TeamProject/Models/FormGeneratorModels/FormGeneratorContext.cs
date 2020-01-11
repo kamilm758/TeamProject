@@ -31,6 +31,7 @@ namespace FormGenerator.Models
         {
             
         }
+        public DbSet<Logs> Logs { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<PatientForms> PatientForms { get; set; }
         public DbSet<FieldToForms> FieldToForms { get; set; }
