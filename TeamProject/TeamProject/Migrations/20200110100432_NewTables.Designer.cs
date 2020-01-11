@@ -3,15 +3,17 @@ using System;
 using FormGenerator.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace TeamProject.Migrations
 {
     [DbContext(typeof(FormGeneratorContext))]
-    partial class FormGeneratorContextModelSnapshot : ModelSnapshot
+    [Migration("20200110100432_NewTables")]
+    partial class NewTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,68 +113,6 @@ namespace TeamProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Answers");
-                });
-
-            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.FieldToForms", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("IdField");
-
-                    b.Property<int>("IdForm");
-
-                    b.Property<string>("expectedAnswer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FieldToForms");
-                });
-
-            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.Logs", b =>
-                {
-                    b.Property<int>("LogID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("AnswerID");
-
-                    b.Property<int>("FieldID");
-
-                    b.Property<int>("FormID");
-
-                    b.Property<int>("UserID");
-
-                    b.Property<DateTime>("date");
-
-                    b.HasKey("LogID");
-
-                    b.ToTable("Logs");
-                });
-
-            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.Patient", b =>
-                {
-                    b.Property<int>("IdPatient")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("IdPatient");
-
-                    b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.PatientForms", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("IdForm");
-
-                    b.Property<int>("IdPatient");
-
-                    b.Property<bool?>("agreement");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PatientForms");
                 });
 
             modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.UserAnswers", b =>

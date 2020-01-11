@@ -13,7 +13,7 @@ namespace TeamProject.Models
         public string FirstName { get; set; }
         [PersonalData,Required]
         public string LastName { get; set; }
-       
+        [PersonalData, Required]
         public int CustomID { get; set; }
     }
 }
