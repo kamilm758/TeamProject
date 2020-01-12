@@ -470,3 +470,5 @@ C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\ob
 C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.dll
 C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.pdb
 C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.csproj.CopyComplete
+C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Patient\Create.cshtml.g.cs
+C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Patient\PatientForms.cshtml.g.cs
