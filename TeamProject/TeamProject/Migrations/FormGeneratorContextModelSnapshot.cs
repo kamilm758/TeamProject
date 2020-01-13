@@ -101,6 +101,32 @@ namespace TeamProject.Migrations
                     b.ToTable("UserAnswerList");
                 });
 
+            modelBuilder.Entity("FormGenerator.Models.Patient", b =>
+                {
+                    b.Property<int>("IdPatient")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("IdPatient");
+
+                    b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("FormGenerator.Models.PatientForms", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("IdForm");
+
+                    b.Property<int>("IdPatient");
+
+                    b.Property<bool?>("agreement");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PatientForms");
+                });
+
             modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.Answers", b =>
                 {
                     b.Property<int>("Id")
@@ -149,32 +175,6 @@ namespace TeamProject.Migrations
                     b.ToTable("Logs");
                 });
 
-            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.Patient", b =>
-                {
-                    b.Property<int>("IdPatient")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("IdPatient");
-
-                    b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.PatientForms", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("IdForm");
-
-                    b.Property<int>("IdPatient");
-
-                    b.Property<bool?>("agreement");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PatientForms");
-                });
-
             modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.UserAnswers", b =>
                 {
                     b.Property<int>("Id")
@@ -195,6 +195,36 @@ namespace TeamProject.Migrations
                     b.HasIndex("UserAnswerListId");
 
                     b.ToTable("UserAnswers");
+                });
+
+            modelBuilder.Entity("TeamProject.Models.NewTypeAndValidation.SelectFieldOptions", b =>
+                {
+                    b.Property<int>("idOption")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("idField");
+
+                    b.Property<string>("option");
+
+                    b.HasKey("idOption");
+
+                    b.ToTable("SelectFieldOptions");
+                });
+
+            modelBuilder.Entity("TeamProject.Models.NewTypeAndValidation.Validation", b =>
+                {
+                    b.Property<int>("idValidation")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("idField");
+
+                    b.Property<string>("type");
+
+                    b.Property<decimal?>("value");
+
+                    b.HasKey("idValidation");
+
+                    b.ToTable("Validations");
                 });
 
             modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.UserAnswers", b =>
