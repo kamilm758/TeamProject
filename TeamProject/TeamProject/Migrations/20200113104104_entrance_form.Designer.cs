@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace TeamProject.Migrations
 {
     [DbContext(typeof(FormGeneratorContext))]
-    [Migration("20200113103236_entrance_form")]
+    [Migration("20200113104104_entrance_form")]
     partial class entrance_form
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
