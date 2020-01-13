@@ -53,15 +53,20 @@ namespace TeamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdField")] EntranceFormFields entranceFormFields)
+        public async Task<IActionResult> Create([Bind("Id,Name,Type")] Field @field)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(entranceFormFields);
+                _context.Add(@field);
+                await _context.SaveChangesAsync();
+                Field current = _context.Field.Where(t => t == (@field)).ToList()[0];
+                var entrance_field = new EntranceFormFields();
+                entrance_field.IdField = current.Id;
+                _context.Add(entrance_field);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(entranceFormFields);
+            return View(@field);
         }
 
         // GET: EntranceFormFields/Edit/5
