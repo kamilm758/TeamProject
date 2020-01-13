@@ -10,6 +10,7 @@ using TeamProject.Models.Modele_pomocnicze;
 using System.Diagnostics;
 using TeamProject.ExtensionMethods;
 using Microsoft.AspNetCore.Authorization;
+using TeamProject.Models.NewTypeAndValidation;
 
 namespace FormGenerator.Controllers
 {
@@ -79,14 +80,26 @@ namespace FormGenerator.Controllers
             NewFieldList newFieldList = new NewFieldList();
             var idFieldsInForm = _context.FormField.Where(ff => ff.IdForm == id)
                 .Select(ff => ff.IdField).ToList();
-            newFieldList.fields = _context.Field.Where(f => idFieldsInForm.Contains(f.Id)).ToList();
+            var fieldsInForm = _context.Field.Where(f => idFieldsInForm.Contains(f.Id)).ToList();
+            List<FieldWithValidation> fieldWithValidations = new List<FieldWithValidation>();
+            foreach(var item in fieldsInForm)
+            {
+                FieldWithValidation pom = new FieldWithValidation
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Type = item.Type
+                };
+                fieldWithValidations.Add(pom);
+            }
+            newFieldList.fields = fieldWithValidations;
             newFieldList.FormId =Convert.ToInt32(id);
             return View(newFieldList);
         }
         [HttpPost]
         public IActionResult AddToList(NewFieldList newFieldList)
         {
-            Field field;
+            FieldWithValidation field;
             if (newFieldList.currentName == "")
                 return View("AddNewField", newFieldList);
 
@@ -100,7 +113,7 @@ namespace FormGenerator.Controllers
 
             if (newFieldList.currentId != 0)
             {
-                field = new Field
+                field = new FieldWithValidation
                 {
                     Id=newFieldList.currentId,
                     Name = newFieldList.currentName,
@@ -109,7 +122,7 @@ namespace FormGenerator.Controllers
             }
             else
             {
-                field = new Field
+                field = new FieldWithValidation
                 {
                     Name = newFieldList.currentNameToCreate,
                     Type = newFieldList.currentTypeToCreate

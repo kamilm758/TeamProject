@@ -91,9 +91,10 @@ namespace TeamProject.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-                    ViewData["Message"] = "Użytkownik utworzony Poprawnie";
+                    
                     //await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                    ViewData["Message"] = "Poprawnie utworzono użytkownika";
+                    return Page();
                 }
                 foreach (var error in result.Errors)
                 {

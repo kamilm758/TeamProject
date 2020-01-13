@@ -7,6 +7,8 @@ using TeamProject.Models;
 using TeamProject.Models.FormGeneratorModels;
 using TeamProject.Models.Modele_pomocnicze;
 using FormGenerator.Models.Modele_pomocnicze;
+using TeamProject.Models.NewTypeAndValidation;
+
 namespace FormGenerator.Models
 {
     public class FormGeneratorContext : DbContext
@@ -43,6 +45,8 @@ namespace FormGenerator.Models
         public DbSet<FieldAnswer> FieldAnswer { get; set; }
         public DbSet<UserAnswers> UserAnswers { get; set; }
         public DbSet<FormGenerator.Models.Modele_pomocnicze.UserAnswerList> UserAnswerList { get; set; }
+        public DbSet<SelectFieldOptions> SelectFieldOptions { get; set; }
+        public DbSet<Validation> Validations { get; set; }
         
     }
 }
