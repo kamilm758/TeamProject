@@ -16,8 +16,12 @@
     <Compile Remove="Migrations\20191215211153_NullFix.Designer.cs" />
     <Compile Remove="Migrations\20191217151428_Init.cs" />
     <Compile Remove="Migrations\20191217151428_Init.Designer.cs" />
+    <Compile Remove="Migrations\20200113103236_entrance_form.cs" />
+    <Compile Remove="Migrations\20200113103236_entrance_form.Designer.cs" />
     <Compile Remove="Migrations\ApplicationDb\20191216161429_Migracja.cs" />
     <Compile Remove="Migrations\ApplicationDb\20191216161429_Migracja.Designer.cs" />
+    <Compile Remove="Migrations\ApplicationDb\20200111023431_UpdatedUser.cs" />
+    <Compile Remove="Migrations\ApplicationDb\20200111023431_UpdatedUser.Designer.cs" />
   </ItemGroup>
 
 

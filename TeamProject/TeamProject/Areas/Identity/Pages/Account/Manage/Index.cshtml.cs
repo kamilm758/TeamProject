@@ -46,7 +46,7 @@ namespace TeamProject.Areas.Identity.Pages.Account.Manage
 
             [Required, DataType(DataType.Text), Display(Name = "Nazwisko")]
             public string LastName { get; set; }
-            [Display(Name = "ID Użytkownika")]
+            [Display(Name = "ID Technika")]
             public int UserID { get; set; }
             [Required]
             [EmailAddress]
