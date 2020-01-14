@@ -191,6 +191,8 @@ namespace FormGenerator.Controllers
             newFieldList.currentNameToCreate = null;
             newFieldList.currentTypeToCreate = null;
             newFieldList.currentType = null;
+            newFieldList.minString = null;
+            newFieldList.maxString = null;
             newFieldList.min = new Validation();
             newFieldList.max = new Validation();
             newFieldList.integerVal = new Validation();
@@ -235,6 +237,14 @@ namespace FormGenerator.Controllers
                         IdField = thisField.Id,
                         IdForm = newFieldList.FormId
                     };
+
+                    //dodanie ich walidacji:
+                    foreach(var validationItem in item.validations)
+                    {
+                        validationItem.idField = ff.IdField;
+                        _context.Validations.Add(validationItem);
+                    }
+
                     _context.FormField.Add(ff);
                 }
             }

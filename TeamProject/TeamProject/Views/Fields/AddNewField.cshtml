@@ -80,7 +80,9 @@
             font-size:20px;
             padding: 5px 35px;
             border-radius: 8px;
-            position:center;" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Stwórz nowe pole w formularzu</button>
+            position:center;" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">
+            Stwórz nowe pole w formularzu
+        </button>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -180,12 +182,12 @@
                         <input asp-for="@Model.maxString" class="form-control" id="inputMax" hidden />
                         <br />
                         <input type="checkbox" id="enableValidationInteger" value="liczba całkowita" />
-                        <input asp-for="@Model.integerVal.value" hidden id="inputForInteger"/>
+                        <input asp-for="@Model.integerVal.value" hidden id="inputForInteger" />
                         <label style="color:black">Liczba całkowita</label>
-                       
+
                         <br />
                     </div>
-                 
+
 
                     <input style=" background-color:white;
             color:#66BB6A;
@@ -200,6 +202,23 @@
         <br />
         <hr style="color:white" />
         <br />
+        @if (Model.fields != null)
+        {
+            @for (var i = 0; i < Model.fields.Count; i++)
+            {
+                if (Model.fields[i].validations != null)
+                {
+                    for (var j = 0; j < Model.fields[i].validations.Count; j++)
+                    {
+                        <input asp-for="@Model.fields[i].validations[j].idField" hidden/>
+                        <input asp-for="@Model.fields[i].validations[j].idValidation" hidden/>
+                        <input asp-for="@Model.fields[i].validations[j].type" hidden/>
+                        <input asp-for="@Model.fields[i].validations[j].value" hidden/>
+                    }
+                }
+            }
+        }
+
 
         <input style=" background-color:white;
             color:#66BB6A;
@@ -240,12 +259,13 @@
 
         $('#myForm').submit(function () {
 
-            console.log(document.getElementById("nameToCreate").value)
+            console.log("przed submitem" + saveFlag + " delateFlag" + deleteFlag);
             if (saveFlag == true || deleteFlag == true) {
                 return true;
             }
             saveFlag = false;
             if (document.getElementById("nameToCreate").value != "") {
+                console.log("drugi if");
                 return true;
             }
 
@@ -419,7 +439,7 @@
    $(function(){
        $('#inputMin').keypress(function (e) {
            console.log(e.which)
-    if(e.which == 49 || e.which == 50 ||e.which == 51 ||e.which == 52 ||e.which == 53 ||e.which == 54 ||e.which == 55 ||e.which == 56 ||e.which == 57 ||e.which == 48 ||e.which == 44){
+           if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 52 || e.which == 53 || e.which == 54 || e.which == 55 || e.which == 56 || e.which == 57 || e.which == 48 || e.which == 44 || e.which==45) {
     } else {
       return false;
     }
@@ -429,7 +449,7 @@
     $(function(){
        $('#inputMax').keypress(function (e) {
            console.log(e.which)
-    if(e.which == 49 || e.which == 50 ||e.which == 51 ||e.which == 52 ||e.which == 53 ||e.which == 54 ||e.which == 55 ||e.which == 56 ||e.which == 57 ||e.which == 48 ||e.which == 44){
+           if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 52 || e.which == 53 || e.which == 54 || e.which == 55 || e.which == 56 || e.which == 57 || e.which == 48 || e.which == 44 || e.which==45) {
     } else {
       return false;
     }
