@@ -1,0 +1,43 @@
+﻿@model List<EntranceFormAnswers>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<form asp-action="EntranceForm">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].Answer)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <input hidden asp-for="@Model[i].IdField" />
+                <tr>
+                    <td>
+                        <input asp-for="@Model[i].Name" />
+                    </td>
+                    <td>
+                        <input asp-for="@Model[i].Answer" />
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FormGenerator.Models;
+using FormGenerator.Models.Modele_pomocnicze;
 
 namespace TeamProject.Controllers
 {
@@ -21,7 +22,14 @@ namespace TeamProject.Controllers
         // GET: EntranceFormFields
         public async Task<IActionResult> Index()
         {
-            return View(await _context.EntranceFormFields.ToListAsync());
+            var entrance_form = _context.EntranceFormFields
+                .Select(t => t.IdField)
+                .ToList();
+            var entrance_q = _context.Field
+                .Where(t => entrance_form.Contains(t.Id))
+                .ToList();
+            
+            return View(entrance_q);
         }
 
         // GET: EntranceFormFields/Details/5
@@ -152,6 +160,34 @@ namespace TeamProject.Controllers
         private bool EntranceFormFieldsExists(int id)
         {
             return _context.EntranceFormFields.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> EntranceForm()
+        { 
+            var entrance_form = _context.EntranceFormFields
+                .Select(t => t.IdField)
+                .ToList();
+            var entrance_q = _context.Field
+                .Where(t => entrance_form.Contains(t.Id))
+                .ToList();
+            List<EntranceFormAnswers> list = new List<EntranceFormAnswers>();
+            EntranceFormAnswers ans; new EntranceFormAnswers();
+            foreach(var elem in entrance_q)
+            {
+                ans = new EntranceFormAnswers();
+                ans.IdField = elem.Id;
+                ans.Name = elem.Name;
+                list.Add(ans);
+            }
+
+            return View(list);
+        }
+
+        [HttpPost]
+        public ActionResult EntranceForm(List<EntranceFormAnswers> tuple_list)
+        {
+            List<EntranceFormAnswers> tuple = tuple_list;
+            return RedirectToAction("Index");
         }
     }
 }

@@ -479,3 +479,4 @@ C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor
 C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\Details.cshtml.g.cs
 C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\Edit.cshtml.g.cs
 C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\Index.cshtml.g.cs
+C:\Users\user\Desktop\team\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\EntranceForm.cshtml.g.cs
