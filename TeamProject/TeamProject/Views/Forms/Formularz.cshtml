@@ -24,44 +24,58 @@
 
                     @for (var i = 0; i < Model.Count; i++)
                     {
-                        <tr>
-                            <input asp-for="@Model[i].Field.Id" hidden />
-                            <input asp-for="@Model[i].Field.Name" hidden />
-                            <input asp-for="@Model[i].Field.Type" hidden />
-                            @if (Model[i].Field.Type == "text")
-                            {
-                                <div>
-                                    <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
-                                </div>
-                                
-                                <div>
-                                    <input class="form-control" type="@Model[i].Field.Type" asp-for="@Model[i].TextValue" />
-                                </div>
-                                <div>
-                                    <span asp-validation-for="@Model[i].Field.Type" class="text-danger"></span>
-                                </div>
+                    <tr>
+                        <input asp-for="@Model[i].Field.Id" hidden />
+                        <input asp-for="@Model[i].Field.Name" hidden />
+                        <input asp-for="@Model[i].Field.Type" hidden />
+                        @if (Model[i].Field.Type == "text")
+                        {
+                            <div>
+                                <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
+                            </div>
+
+                            <div>
+                                <input class="form-control" type="@Model[i].Field.Type" asp-for="@Model[i].TextValue" />
+                            </div>
+                            <div>
+                                <span asp-validation-for="@Model[i].Field.Type" class="text-danger"></span>
+                            </div>
 
 
 
-                            }
-                            else if (Model[i].Field.Type == "checkbox")
-                            {
+                        }
+                        else if (Model[i].Field.Type == "checkbox")
+                        {
 
 
-                                <div>
-                                    <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
-                                </div>
-                                <div>
-                                    <input class="form-control checkmark" type="@Model[i].Field.Type" asp-for="@Model[i].BoolValue" />
-                                </div>
-                                <div>
-                                    <span asp-validation-for="@Model[i].Field.Name" class="text-danger"></span>
-                                </div>
+                            <div>
+                                <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
+                            </div>
+                            <div>
+                                <input class="form-control checkmark" type="@Model[i].Field.Type" asp-for="@Model[i].BoolValue" />
+                            </div>
+                            <div>
+                                <span asp-validation-for="@Model[i].Field.Name" class="text-danger"></span>
+                            </div>
+                        }
+
+                        else if (Model[i].Field.Type == "number")
+                        {
 
 
+                            <div>
+                                <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
+                            </div>
+                            <div>
+                                <input class="form-control" numInput="true" type="text" asp-for="@Model[i].TextValue" />
+                            </div>
+                            <div>
+                                <span asp-validation-for="@Model[i].Field.Name" class="text-danger"></span>
+                            </div>
 
-                            }
-                        </tr>
+
+                        }
+                    </tr>
                     }
                 </table>
                 <div class="form-group">
@@ -132,6 +146,17 @@ $(questions).on("click",".save_field", function(e){ //user click on remove text
     $(this).remove();
     i--;
     }
-	});
+});
+
+    $(function(){
+       $("input[numInput='true']").keypress(function (e) {
+           console.log(e.which)
+           if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 52 || e.which == 53 || e.which == 54 || e.which == 55 || e.which == 56 || e.which == 57 || e.which == 48 || e.which == 44 || e.which==45) {
+    } else {
+      return false;
+    }
+  });
+   });
+
 
 </script>
