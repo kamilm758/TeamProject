@@ -127,8 +127,38 @@ namespace FormGenerator.Controllers
                     Name = newFieldList.currentNameToCreate,
                     Type = newFieldList.currentTypeToCreate
                 };
+
+
+
             }
             newFieldList.fields.Add(field);
+
+            //w przypadku gdy pole jest typu number z walidacją, oraz jest nowe(nie ma id)
+            if (newFieldList.currentTypeToCreate=="number" && field.Id==0)
+            {
+                var concreteField = newFieldList.fields
+                        .Where(f => f == field)
+                        .ToList()[0];
+                if (newFieldList.min.value != null)
+                {
+                    newFieldList.min.type = "min";
+                    concreteField.validations.Add(newFieldList.min);
+                }
+                if (newFieldList.max.value!=null)
+                {
+                    newFieldList.max.type = "max";
+                    concreteField.validations.Add(newFieldList.max);
+                }
+                //kod 100 oznacza że pole może mieć tylko wartości całkowite
+                if (newFieldList.integerVal.type == "100")
+                {
+                    newFieldList.integerVal.type = "integerVal";
+                    concreteField.validations.Add(newFieldList.integerVal);
+                }
+
+            }
+
+
             TempData.Put<NewFieldList>("newFieldListModel", newFieldList);
             return RedirectToAction("ListWithFields");
         }
@@ -150,6 +180,11 @@ namespace FormGenerator.Controllers
             newFieldList.currentNameToCreate = null;
             newFieldList.currentTypeToCreate = null;
             newFieldList.currentType = null;
+            newFieldList.min = new Validation();
+            newFieldList.max = new Validation();
+            newFieldList.integerVal = new Validation();
+            newFieldList.optionsToCurrentField = new List<SelectFieldOptions>();
+            newFieldList.currentOption = "";
             return View("AddNewField", newFieldList);
         }
         [HttpPost]
