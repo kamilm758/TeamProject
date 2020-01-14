@@ -19,7 +19,9 @@ namespace TeamProject.Models.Modele_pomocnicze
         public string currentNameToCreate { get; set; }
         public string currentTypeToCreate { get; set; }
         //ograniczenie
+        public string minString { get; set; }
         public Validation min { get; set; } = new Validation();
+        public string maxString { get; set; }
         public Validation max { get; set; } = new Validation();
         public Validation integerVal { get; set; } = new Validation();
         //select

@@ -99,6 +99,8 @@ namespace FormGenerator.Controllers
         [HttpPost]
         public IActionResult AddToList(NewFieldList newFieldList)
         {
+
+
             FieldWithValidation field;
             if (newFieldList.currentName == "")
                 return View("AddNewField", newFieldList);
@@ -132,8 +134,17 @@ namespace FormGenerator.Controllers
 
             }
             newFieldList.fields.Add(field);
-
+            decimal pom;
             //w przypadku gdy pole jest typu number z walidacją, oraz jest nowe(nie ma id)
+            bool parseSuccess = Decimal.TryParse(newFieldList.minString,out pom);
+            if (parseSuccess)
+                newFieldList.min.value = pom;
+            parseSuccess= Decimal.TryParse(newFieldList.maxString, out pom);
+            if (parseSuccess)
+                newFieldList.max.value = pom;
+
+
+
             if (newFieldList.currentTypeToCreate=="number" && field.Id==0)
             {
                 var concreteField = newFieldList.fields
@@ -150,7 +161,7 @@ namespace FormGenerator.Controllers
                     concreteField.validations.Add(newFieldList.max);
                 }
                 //kod 100 oznacza że pole może mieć tylko wartości całkowite
-                if (newFieldList.integerVal.type == "100")
+                if (newFieldList.integerVal.value == 100)
                 {
                     newFieldList.integerVal.type = "integerVal";
                     concreteField.validations.Add(newFieldList.integerVal);

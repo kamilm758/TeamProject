@@ -173,13 +173,14 @@
                     <div id="numberValidation" hidden>
                         <input type="checkbox" id="enableValidationMin" value="min" />
                         <label style="color:black">Minimalna wartość</label>
-                        <input asp-for="@Model.min.value" type="number" class="form-control" id="inputMin" hidden />
+                        <input asp-for="@Model.minString" class="form-control" id="inputMin" hidden />
                         <br />
                         <input type="checkbox" id="enableValidationMax" value="max" />
                         <label style="color:black">Maksymalna wartość</label>
-                        <input asp-for="@Model.max.value" type="number" class="form-control" id="inputMax" hidden />
+                        <input asp-for="@Model.maxString" class="form-control" id="inputMax" hidden />
                         <br />
                         <input type="checkbox" id="enableValidationInteger" value="liczba całkowita" />
+                        <input asp-for="@Model.integerVal.value" hidden id="inputForInteger"/>
                         <label style="color:black">Liczba całkowita</label>
                        
                         <br />
@@ -410,10 +411,30 @@
         else document.getElementById("inputMax").hidden = true;
     });
 
-
-    $("#inputMin").keyup(function () {
-        $("#inputMin").val(this.value, match(/[0-9]*/));
+    document.getElementById("enableValidationInteger").addEventListener("change", function () {
+        if (this.checked == true) document.getElementById("inputForInteger").value = 100;
+        else document.getElementById("inputForInteger").value = 0;
     });
+
+   $(function(){
+       $('#inputMin').keypress(function (e) {
+           console.log(e.which)
+    if(e.which == 49 || e.which == 50 ||e.which == 51 ||e.which == 52 ||e.which == 53 ||e.which == 54 ||e.which == 55 ||e.which == 56 ||e.which == 57 ||e.which == 48 ||e.which == 44){
+    } else {
+      return false;
+    }
+  });
+   });
+
+    $(function(){
+       $('#inputMax').keypress(function (e) {
+           console.log(e.which)
+    if(e.which == 49 || e.which == 50 ||e.which == 51 ||e.which == 52 ||e.which == 53 ||e.which == 54 ||e.which == 55 ||e.which == 56 ||e.which == 57 ||e.which == 48 ||e.which == 44){
+    } else {
+      return false;
+    }
+  });
+});
 
 </script>
 
