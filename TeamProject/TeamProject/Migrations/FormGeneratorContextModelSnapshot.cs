@@ -113,6 +113,68 @@ namespace TeamProject.Migrations
                     b.ToTable("Answers");
                 });
 
+            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.FieldToForms", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("IdField");
+
+                    b.Property<int>("IdForm");
+
+                    b.Property<string>("expectedAnswer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FieldToForms");
+                });
+
+            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.Logs", b =>
+                {
+                    b.Property<int>("LogID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("AnswerID");
+
+                    b.Property<int>("FieldID");
+
+                    b.Property<int>("FormID");
+
+                    b.Property<int>("UserID");
+
+                    b.Property<DateTime>("date");
+
+                    b.HasKey("LogID");
+
+                    b.ToTable("Logs");
+                });
+
+            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.Patient", b =>
+                {
+                    b.Property<int>("IdPatient")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("IdPatient");
+
+                    b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.PatientForms", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("IdForm");
+
+                    b.Property<int>("IdPatient");
+
+                    b.Property<bool?>("agreement");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PatientForms");
+                });
+
             modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.UserAnswers", b =>
                 {
                     b.Property<int>("Id")

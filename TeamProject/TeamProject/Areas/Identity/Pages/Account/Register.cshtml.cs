@@ -11,8 +11,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using TeamProject.Models;
 
+
 namespace TeamProject.Areas.Identity.Pages.Account
-{
+{   
+    //[Authorize(Roles = "Admin")]
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
@@ -45,6 +47,8 @@ namespace TeamProject.Areas.Identity.Pages.Account
 
             [Required, DataType(DataType.Text), Display(Name = "Nazwisko")]
             public string LastName { get; set; }
+            [Required, Display(Name = "Id Technika")]
+            public int CustomID { get; set; }
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -66,18 +70,18 @@ namespace TeamProject.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
         }
-
+        
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl = returnUrl ?? Url.Content("~/Identity/Account/Register");
             if (ModelState.IsValid)
             {
-                var user = new MyUser { UserName = Input.Email, Email = Input.Email , FirstName = Input.FirstName, LastName = Input.LastName };
+                var user = new MyUser { UserName = Input.Email, Email = Input.Email , FirstName = Input.FirstName, LastName = Input.LastName ,CustomID=Input.CustomID};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-
+                    _userManager.AddToRoleAsync(user, "Technik").Wait();
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
@@ -87,9 +91,10 @@ namespace TeamProject.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                    
+                    //await _signInManager.SignInAsync(user, isPersistent: false);
+                    ViewData["Message"] = "Poprawnie utworzono użytkownika";
+                    return Page();
                 }
                 foreach (var error in result.Errors)
                 {

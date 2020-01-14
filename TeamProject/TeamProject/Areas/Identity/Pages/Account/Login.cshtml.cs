@@ -74,6 +74,11 @@ namespace TeamProject.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+
+               //Pole e-mail przy rejestracji to e-mail użytkownika który przy rejestracji jest nastawiany jako UserName
+               //Następnie przy logowaniu użytkownik wpisuje e-mail jako input( bo tak na razie jest nastawione) a następnie 
+               //przeszukiwani są użytkownicy systemowi z użyciem wprowadzonego e-mailu jako UserName'u
+               // w skrócie wpisywany e-mail jest używany jako username
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {

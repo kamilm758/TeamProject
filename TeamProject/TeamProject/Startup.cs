@@ -24,9 +24,11 @@ namespace TeamProject
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -41,15 +43,16 @@ namespace TeamProject
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     "Host=projekt1920.cakejnzadj5u.us-east-1.rds.amazonaws.com;Database=postgres;Username=postgres;Password=projekt.pb19_20"));
-            services.AddDefaultIdentity<MyUser>()
+            services.AddIdentity<MyUser,IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
             services.AddScoped<FormGeneratorContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider, RoleManager<IdentityRole> roleManager, UserManager<MyUser> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -75,6 +78,12 @@ namespace TeamProject
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            Seed.SeedRoles(roleManager);
+            Seed.SeedUsers(userManager);
+
         }
+       
     }
+
 }
+
