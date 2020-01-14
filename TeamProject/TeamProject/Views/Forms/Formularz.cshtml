@@ -67,7 +67,7 @@
                                 <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
                             </div>
                             <div>
-                                <input class="form-control" numInput="true" type="text" asp-for="@Model[i].TextValue" />
+                                <input class="form-control" id="@Model[i].Field.Id" numInput="true" type="text" asp-for="@Model[i].TextValue" />
                             </div>
                             <div>
                                 <span asp-validation-for="@Model[i].Field.Name" class="text-danger"></span>
@@ -77,6 +77,9 @@
                         }
                     </tr>
                     }
+                    <tr id="response">
+                        
+                    </tr>
                 </table>
                 <div class="form-group">
                 </div>
@@ -99,59 +102,17 @@
 
 
 
-
+<script src="~/lib/jquery/dist/jquery.js"></script>
 <script type="text/javascript">
     
-  var input_button = $(".addinput");
-  var checkbox_button = $(".addcheckbox");
-  var i=@ViewBag.modelcount;
-  var questions = $(".questions");
-    
-  $(".addinput").click(function(e){
-    var td = $("<td class=line /> ");
-    var name = $("<input />").attr("type","text").attr("id","fields["+i+"].Name").attr("class","name")
-      var text = $("<input />").attr("type", "text").attr("id", "fields[" + i + "].Answer").attr("class", "answer")
-      var span = $("<span />").attr("asp-validation-for",)
-    td.append(name);
-    td.append(text);
-    var buttonrm = $($("<input />").attr("type", "button").attr("value", "remove").attr("class","remove_field"))
-    var buttonadd = $($("<input />").attr("type", "button").attr("value", "save").attr("class","save_field"))
-    e.preventDefault();
-    div.append(buttonrm);
-    div.append(buttonadd);
-    $(".questions").append(div);
-    i++;
-  });
-
-  $(".addcheckbox").click(function(e){
-    e.preventDefault();
-    var checkbox = $("<input />").attr("type","text").attr("id","fields["+i+"]")
-    $(".questions").append('<div><input type="text" class="name"><input type="checkbox" name="checkbox"+i+"/><a href="#" class="remove_field">Remove</a><a href="#" class="save_field">Save</a></div>')
-    i++;
-  });
-
-
-  $(questions).on("click",".remove_field", function(e){ //user click on remove text
-		e.preventDefault(); $(this).parent('div').remove(); i--;
-	});
-
-
-$(questions).on("click",".save_field", function(e){ //user click on remove text
-		e.preventDefault() ;
-  
-  if(!($(this).children().first().val()===""))
-    {      
-      console.log("test");
-    $(".name").first().replaceWith("<label id=fields["+i+"].Name class=name>"+$(".name").val()+"</label>");
-    $(this).remove();
-    i--;
-    }
-});
 
     $(function(){
-       $("input[numInput='true']").keypress(function (e) {
-           console.log(e.which)
-           if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 52 || e.which == 53 || e.which == 54 || e.which == 55 || e.which == 56 || e.which == 57 || e.which == 48 || e.which == 44 || e.which==45) {
+        $("[numInput='true']").keypress(function (e) {
+            console.log(this.value)
+            if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 52 || e.which == 53 || e.which == 54 || e.which == 55 || e.which == 56 || e.which == 57 || e.which == 48 || e.which == 44 || e.which == 45) {
+                if (this.value.includes(",") && e.which==44) {
+                    return false;
+                }
     } else {
       return false;
     }
@@ -159,4 +120,13 @@ $(questions).on("click",".save_field", function(e){ //user click on remove text
    });
 
 
+    $("[numInput='true']").change(function () {
+
+        $.ajax({
+                    url: "/api/Validations/" + this.id + "/" + this.value,
+                     dataType: "json"
+        })
+            .done(res => console.log(res));
+
+    });
 </script>
