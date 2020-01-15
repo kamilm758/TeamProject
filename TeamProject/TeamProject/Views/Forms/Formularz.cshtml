@@ -68,10 +68,9 @@
                             </div>
                             <div>
                                 <input class="form-control" id="@Model[i].Field.Id" numInput="true" type="text" asp-for="@Model[i].TextValue" />
+                                <p errorParagraf="true" ErrorId="@Model[i].Field.Id" hidden style="color: red"></p>
                             </div>
-                            <div>
-                                <span asp-validation-for="@Model[i].Field.Name" class="text-danger"></span>
-                            </div>
+                            
 
 
                         }
@@ -84,7 +83,7 @@
                 <div class="form-group">
                 </div>
                 <div>
-                    <input style=" background-color:white;
+                    <input id="MainSubmit" style=" background-color:white;
             color:#66BB6A;
             font-size:20px;
             padding: 15px 35px;
@@ -126,7 +125,40 @@
                     url: "/api/Validations/" + this.id + "/" + this.value,
                      dataType: "json"
         })
-            .done(res => console.log(res));
+            .done(res => CheckValidations(res, this));
 
     });
+
+    function CheckValidations(response, input) {
+        let error = $("[ErrorId=" + input.id + "]")[0];
+        console.log(error);
+        console.log(response);
+        if (response.response != "true") {
+            error.innerHTML = response.response;
+            error.hidden = false;
+            SetSubmitButtonStatus();
+        }
+        else if (response.response == "true") {
+            error.hidden = true;
+            SetSubmitButtonStatus();
+        }
+    }
+
+
+    function SetSubmitButtonStatus() {
+        let paragraphs = $("[errorParagraf='true']");
+        let licznik = 0;
+        for (let i = 0; i < paragraphs.length; i++) {
+            if (paragraphs[i].hidden == false) {
+                licznik++;
+            }
+        }
+        console.log(licznik);
+        if (licznik == 0) {
+            document.getElementById("MainSubmit").disabled = false;
+        }
+        if (licznik != 0) {
+            document.getElementById("MainSubmit").disabled = true;
+        }
+    }
 </script>

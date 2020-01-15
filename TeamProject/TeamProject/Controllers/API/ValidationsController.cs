@@ -38,7 +38,7 @@ namespace TeamProject.Controllers.API
             string json;
             bool isNumber = Decimal.TryParse(value, out valueDecimal);
             bool isInteger = Int32.TryParse(value, out valueInteger);
-            if (!isNumber)
+            if (!isNumber || value[0].Equals(',')==true || value.Last<char>().Equals(',')==true)
             {
                 json = JsonConvert.SerializeObject(new {response="Wpisana wartość nie jest liczbą" });
                 return json;

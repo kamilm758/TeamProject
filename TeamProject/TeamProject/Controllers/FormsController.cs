@@ -96,6 +96,9 @@ namespace FormGenerator.Controllers
                     case "text":
                         answer.Answer = field.TextValue;
                         break;
+                    case "number":
+                        answer.Answer = field.TextValue;
+                        break;
                 }
                 _context.Add(answer);
             }
