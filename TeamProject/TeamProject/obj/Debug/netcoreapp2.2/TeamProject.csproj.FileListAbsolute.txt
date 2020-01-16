@@ -478,3 +478,11 @@ C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\ob
 C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Patient\Create.cshtml.g.cs
 C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Patient\PatientForms.cshtml.g.cs
 C:\Users\kacpe\OneDrive\Documents\GitHub\TeamProject1\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\AddConnection.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\AddConnection.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\Create.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\Delete.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\Details.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\Edit.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\Index.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Patient\Create.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Patient\PatientForms.cshtml.g.cs
