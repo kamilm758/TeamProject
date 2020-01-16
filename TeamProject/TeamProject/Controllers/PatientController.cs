@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using FormGenerator.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using TeamProject.Models.FormGeneratorModels;
 
 namespace TeamProject.Controllers
@@ -19,9 +21,27 @@ namespace TeamProject.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> PatientForms()
+        [HttpGet]
+        public  JsonResult PatientForms(int id)
         {
-            return View(await _context.PatientForms.ToListAsync());
+           var patientForms =  _context.PatientForms.Where(m => m.IdPatient == id).ToList();
+
+            List<PatientFormsHelper> list = new List<PatientFormsHelper>();
+
+            foreach (PatientForms x in patientForms)
+            {
+                PatientFormsHelper pom = new PatientFormsHelper
+                {
+                    Id = x.Id,
+                    IdForm = x.IdForm,
+                    IdPatient = x.IdPatient,
+                    nazwa_formularza = _context.Forms.FirstOrDefault(n => n.Id == x.IdForm).Name
+                };
+                list.Add(pom);
+            }
+           
+
+            return Json(list);
         }
 
 
@@ -29,6 +49,7 @@ namespace TeamProject.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            HttpContext.Session.SetString("lista", "ch");
             return View();
         }
 
