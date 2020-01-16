@@ -128,8 +128,7 @@
         $.ajax({
                     url: "/api/Validations/" + this.id + "/" + this.value,
                      dataType: "json"
-        })
-            .done(res => CheckValidations(res, this));
+        }).done(res => CheckValidations(res, this));
 
     });
 
