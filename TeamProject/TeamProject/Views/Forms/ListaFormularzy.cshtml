@@ -1,0 +1,74 @@
+﻿@model IEnumerable<FormGenerator.Models.Forms>
+
+@{
+    ViewData["Title"] = "Index";
+}
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #A5D6A7
+        }
+
+        th {
+            background-color: #81C784;
+            color: white;
+        }
+
+        a{
+            color: #424242;
+            font-weight: 500;
+        }
+    </style>
+
+
+<p>
+    <a style="color:#81C784;  font-weight:700" asp-action="Create">Stwórz nowy pusty formularz</a>
+</p>
+<table class="table">
+    <thead>
+        <tr >
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+               Nazwa
+            </th>
+            <th>
+                Kategoria
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr >
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_Category)
+                </td>
+
+                <td>
+                    <a asp-action="EdycjaFormularza" asp-route-id="@item.Id">Dodaj/Usuń pole</a> |
+                    <a asp-action="Formularz" asp-route-id="@item.Id">Wyświetl formularz</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Usuń formularz</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

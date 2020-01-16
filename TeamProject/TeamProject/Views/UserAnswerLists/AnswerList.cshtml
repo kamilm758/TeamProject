@@ -1,0 +1,27 @@
+﻿@model IEnumerable<FormGenerator.Models.Modele_pomocnicze.UserAnswerList>
+
+@{
+    ViewData["Title"] = "Index";
+    List<SelectListItem> tmp = ViewBag.List;
+}
+
+<input type="hidden" id="urlGetValueSelected" value="@Url.Action("AnswerListPost", "UserAnswerLists")" />
+@Html.DropDownList("mylist", tmp, "--select here--")
+<input id="Button1" type="button" value="button" />
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Button1").click(function (event) {
+
+            event.preventDefault();
+
+            var selCat = $("#mylist").val();
+            window.location.href = '/UserAnswerLists/AnswerListPost/' + selCat;
+        });
+    });
+</script>
