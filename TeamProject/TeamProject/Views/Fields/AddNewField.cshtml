@@ -188,6 +188,14 @@
                         <br />
                     </div>
 
+                    <div id="selectOptions" hidden>
+                        <div id="firstDiv">
+                            <input type="text" />
+                            <input type="button" id="addOptionsBtn" onClick="AddOption()" value="Dodaj opcje" />
+                        </div>
+                        <input type="submit" value="submit" />
+                    </div>
+
 
                     <input style=" background-color:white;
             color:#66BB6A;
@@ -418,6 +426,12 @@
             } else {
                  document.getElementById("numberValidation").hidden = true;
             }
+              if (this.value == "select") {
+                document.getElementById("selectOptions").hidden = false;
+            }
+            else {
+                 document.getElementById("selectOptions").hidden = true;
+            }
 
         });
 
@@ -454,7 +468,20 @@
       return false;
     }
   });
-});
+    });
+
+    function AddOption() {
+        var division = document.createElement('DIV');
+        division.innerHTML = AddTextBox("");
+        document.getElementById("firstDiv").appendChild(division);
+    }
+    function AddTextBox(value) {
+        return '<div><input type="text" name="dyntxt"/><input type="button" onclick="RemoveBtn(this)" value="Usun"/></div>'
+    }
+
+    function RemoveBtn(div) {
+        document.getElementById("firstDiv").removeChild(div.parentNode.parentNode);
+    }
 
 </script>
 
