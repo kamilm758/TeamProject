@@ -9,44 +9,6 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Forms" asp-action="Index">Generator Formularzy</a>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-
-                        <li class="nav-item">
-                            <a class="nev-link" style="color:#66BB6A;" asp-area="" asp-controller="Forms" asp-action="ListaFormularzy">Formularze</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nev-link" style="color:#66BB6A; padding-left:10px;" asp-area="" asp-controller="UserAnswerLists" asp-action="AnswerList">Wizualizator</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - FormGenerator - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-
-
     <style>
         body {
             margin-left: 50px;
@@ -91,39 +53,85 @@
         }
     </style>
 
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Forms" asp-action="Index">Generator Formularzy</a>
 
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
 
+                        <li class="nav-item">
+                            <a class="nev-link" style="color:#66BB6A;" asp-area="" asp-controller="Forms" asp-action="ListaFormularzy">Formularze</a>
+                        </li>
 
-
-    <div class="d-flex" id="wrapper" style="margin-left: 190px">
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Formularze </div>
-            <div class="list-group list-group-flush">
-                <div class="table">
-                    <table class="table">
-                        <thead>
-                            <input  id="searchPatient"/>
-                            <input type="button" id="buttonSearch"/>
-                            
-                        </thead>
-                        <tbody id="container">
-                            @*@foreach (var item in (IEnumerable<PatientFormsHelper>)TempData["lista"])
-                                {
-                                    <tr>
-
-                                        <td class="btn-primary">
-                                            @Html.DisplayFor(modelItem => item.nazwa_formularza)
-                                        </td>
-                                    </tr>
-                                }*@
-                        </tbody>
-
-                    </table>
+                        <li class="nav-item">
+                            <a class="nev-link" style="color:#66BB6A; padding-left:10px;" asp-area="" asp-controller="UserAnswerLists" asp-action="AnswerList">Wizualizator</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+        </nav>
+    </header>
+    <div>
+
+        <div class="d-flex col-4" id="wrapper" style="margin-left: 190px; float:left;width:20%;">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading">Formularze </div>
+                <div class="list-group list-group-flush">
+                    <div class="table">
+                        <table class="table">
+                            <thead>
+                                <input id="searchPatient" />
+                                <input type="button" id="buttonSearch" />
+
+                            </thead>
+                            <tbody id="container">
+                                @*@foreach (var item in (IEnumerable<PatientFormsHelper>)TempData["lista"])
+                                    {
+                                        <tr>
+
+                                            <td class="btn-primary">
+                                                @Html.DisplayFor(modelItem => item.nazwa_formularza)
+                                            </td>
+                                        </tr>
+                                    }*@
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="container col-6">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
 
     </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - FormGenerator - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+
+
+
+
+
+
 
 
 
