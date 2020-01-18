@@ -55,10 +55,11 @@ function createTable(data) {
     for (let i = 0; i < data.length; i++) {
         let tr = document.createElement("tr");
         let td = document.createElement('td');
-        let p = document.createElement('p');
-        let text = document.createTextNode(data[i].nazwa_formularza)
-        p.appendChild(text);
-        td.appendChild(p);
+        var form = $(" <button>").attr("class", "btn-primary").text(data[i].nazwa_formularza).click(function () {
+         window.location.href = '/Forms/Formularz/'+data[i].idForm;
+            return false;
+        });
+        form.appendTo(td);
         tr.appendChild(td);
         container.appendChild(tr);
     }

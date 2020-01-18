@@ -22,7 +22,7 @@ namespace TeamProject.Controllers
         }
 
         [HttpGet]
-        public  JsonResult PatientForms(int id)
+        public async Task<JsonResult> PatientForms(int id)
         {
            var patientForms =  _context.PatientForms.Where(m => m.IdPatient == id).ToList();
 
@@ -41,7 +41,7 @@ namespace TeamProject.Controllers
             }
            
 
-            return Json(list);
+            return  Json(list);
         }
 
 
