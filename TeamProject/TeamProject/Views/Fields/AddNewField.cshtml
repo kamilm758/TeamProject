@@ -192,7 +192,7 @@
                         <div id="firstDiv">
                             <input type="button" id="addOptionsBtn" onClick="AddOption()" value="Dodaj opcje" />
                             <input type="text" id="opt0" />
-                            <input asp-for="@Model.optionsJson" id="optionsJsonID" hidden/>
+                            <input asp-for="@Model.optionsJson" id="optionsJsonID" hidden />
                         </div>
                     </div>
 
@@ -218,10 +218,19 @@
                 {
                     for (var j = 0; j < Model.fields[i].validations.Count; j++)
                     {
-                        <input asp-for="@Model.fields[i].validations[j].idField" hidden/>
-                        <input asp-for="@Model.fields[i].validations[j].idValidation" hidden/>
-                        <input asp-for="@Model.fields[i].validations[j].type" hidden/>
-                        <input asp-for="@Model.fields[i].validations[j].value" hidden/>
+                        <input asp-for="@Model.fields[i].validations[j].idField" hidden />
+                        <input asp-for="@Model.fields[i].validations[j].idValidation" hidden />
+                        <input asp-for="@Model.fields[i].validations[j].type" hidden />
+                        <input asp-for="@Model.fields[i].validations[j].value" hidden />
+                    }
+                }
+                if (Model.fields[i].options != null)
+                {
+                    for (var k = 0; k < Model.fields[i].options.Count; k++)
+                    {
+                        <input asp-for="@Model.fields[i].options[k].idField" hidden />
+                        <input asp-for="@Model.fields[i].options[k].idOption" hidden />
+                        <input asp-for="@Model.fields[i].options[k].option" hidden />
                     }
                 }
             }

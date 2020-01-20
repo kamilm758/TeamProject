@@ -24,7 +24,10 @@ namespace TeamProject.Controllers.API
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Field>>> GetField()
         {
-            return await _context.Field.ToListAsync();
+            var fields = await _context.Field
+                .Where(f => f.Name != null)
+                .ToListAsync();
+            return fields;
         }
     }
 }

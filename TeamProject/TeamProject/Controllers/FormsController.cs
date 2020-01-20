@@ -66,8 +66,9 @@ namespace FormGenerator.Controllers
                 return NotFound();
             }
             ViewBag.formid = Convert.ToInt32(id);
-            List<Validation> validationToFields = _context.Validations
-                .Where(v => fieldsInForm.Contains(v.idField)).ToList();
+            fieldWithValues[0].options = _context.SelectFieldOptions.ToList();
+            //List<Validation> validationToFields = _context.Validations
+            //    .Where(v => fieldsInForm.Contains(v.idField)).ToList();
             return View(fieldWithValues);
         }
 
@@ -106,6 +107,9 @@ namespace FormGenerator.Controllers
                         answer.Answer = field.TextValue;
                         break;
                     case "number":
+                        answer.Answer = field.TextValue;
+                        break;
+                    case "select":
                         answer.Answer = field.TextValue;
                         break;
                 }

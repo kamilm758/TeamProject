@@ -74,7 +74,30 @@
                                 <input class="form-control" id="@Model[i].Field.Id" numInput="true" type="text" asp-for="@Model[i].TextValue" />
                                 <p errorParagraf="true" ErrorId="@Model[i].Field.Id" hidden style="color: red"></p>
                             </div>
-                            
+
+
+
+                        }
+
+                        else if (Model[i].Field.Type == "select")
+                        {
+
+
+                            <div>
+                                <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
+                            </div>
+                            <div>
+                                <select class="form-control" asp-for="@Model[i].TextValue" style="width:100px;">
+                                    @foreach(var option in Model[0].options)
+                                    {
+                                        @if (option.idField == Model[i].Field.Id)
+                                        {
+                                            <option value="@option.option">@option.option</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+
 
 
                         }

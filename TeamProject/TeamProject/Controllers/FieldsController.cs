@@ -11,6 +11,7 @@ using System.Diagnostics;
 using TeamProject.ExtensionMethods;
 using Microsoft.AspNetCore.Authorization;
 using TeamProject.Models.NewTypeAndValidation;
+using Newtonsoft.Json;
 
 namespace FormGenerator.Controllers
 {
@@ -134,22 +135,34 @@ namespace FormGenerator.Controllers
 
             }
             newFieldList.fields.Add(field);
-            decimal pom;
-            //w przypadku gdy pole jest typu number z walidacją, oraz jest nowe(nie ma id)
-            bool parseSuccess = Decimal.TryParse(newFieldList.minString,out pom);
-            if (parseSuccess)
-                newFieldList.min.value = pom;
-            parseSuccess= Decimal.TryParse(newFieldList.maxString, out pom);
-            if (parseSuccess)
-                newFieldList.max.value = pom;
+            var concreteField = newFieldList.fields.Where(f => f == field).ToList()[0];
+            //jeśli polem jest select-> należy dodać do listy "pól do dołączenia(fields)" opcje
+            if (newFieldList.currentTypeToCreate == "select")
+            {
+                List<SelectFieldOptionsJsonData> jsonDatas = JsonConvert.DeserializeObject<List<SelectFieldOptionsJsonData>>(newFieldList.optionsJson);
+                jsonDatas = jsonDatas.Where(w => w.Wartosc != null).ToList();
+                foreach(var option in jsonDatas)
+                {
+                    var selectOption = new SelectFieldOptions();
+                    selectOption.option = option.Wartosc;
+                    concreteField.options.Add(selectOption);
+                }
+            }
 
+            if (newFieldList.currentTypeToCreate == "number")//w przypadku gdy pole jest typu number z walidacją, oraz jest nowe(nie ma id)
+            {
+                decimal pom;
+                bool parseSuccess = Decimal.TryParse(newFieldList.minString, out pom);
+                if (parseSuccess)
+                    newFieldList.min.value = pom;
+                parseSuccess = Decimal.TryParse(newFieldList.maxString, out pom);
+                if (parseSuccess)
+                    newFieldList.max.value = pom;
+            }
 
 
             if (newFieldList.currentTypeToCreate=="number" && field.Id==0)
             {
-                var concreteField = newFieldList.fields
-                        .Where(f => f == field)
-                        .ToList()[0];
                 if (newFieldList.min.value != null)
                 {
                     newFieldList.min.type = "min";
@@ -204,6 +217,7 @@ namespace FormGenerator.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddNewField(NewFieldList newFieldList)
         {
+            //wejście so bazy
             var toRemove = _context.FormField.Where(ff => ff.IdForm == newFieldList.FormId).ToList();
             foreach (var toremove in toRemove)
                 _context.FormField.Remove(toremove);
@@ -237,7 +251,13 @@ namespace FormGenerator.Controllers
                         IdField = thisField.Id,
                         IdForm = newFieldList.FormId
                     };
+                    //dodanie dla selectów ich odpowiedzi
 
+                    foreach(var selectOption in item.options)
+                    {
+                        selectOption.idField = ff.IdField;
+                        _context.SelectFieldOptions.Add(selectOption);
+                    }
                     //dodanie ich walidacji:
                     foreach(var validationItem in item.validations)
                     {
