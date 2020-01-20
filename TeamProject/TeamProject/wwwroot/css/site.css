@@ -6,11 +6,28 @@ a.navbar-brand {
   text-align: center;
   word-break: break-all;
 }
+* {
+    box-sizing: border-box;
+}
+#bar {
+    width: 25%;
+    float: left;
+    padding: 15px;
+    border: 1px solid red;
+}
+
+#site {
+    width: 75%;
+    float: left;
+    padding: 15px;
+    border: 1px solid red;
+}
 
 /* Sticky footer styles
+   
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {

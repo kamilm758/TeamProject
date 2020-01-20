@@ -241,7 +241,7 @@ namespace FormGenerator.Controllers
         public async Task<IActionResult> Index(int ?id)
         {
             ViewBag.bag = id;
-
+            TempData.Keep("lista");
             return View(await _context.Forms.ToListAsync()) ;
         }
         public JsonResult GetForms(string order)
@@ -255,5 +255,7 @@ namespace FormGenerator.Controllers
         {
             return await _userManager.GetUserAsync(HttpContext.User);
         }
+
+        
     }
 }

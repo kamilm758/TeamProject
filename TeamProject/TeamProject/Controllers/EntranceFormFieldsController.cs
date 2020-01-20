@@ -162,6 +162,7 @@ namespace TeamProject.Controllers
             return _context.EntranceFormFields.Any(e => e.Id == id);
         }
 
+
         public async Task<IActionResult> EntranceForm()
         { 
             var entrance_form = _context.EntranceFormFields
@@ -188,6 +189,28 @@ namespace TeamProject.Controllers
         {
             List<EntranceFormAnswers> tuple = tuple_list;
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult AddConnection (int id)
+        {
+            ViewBag.bag = id;
+            return View(_context.EntranceConnections.Where(m => m.IdField == id).ToList());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddConnection([Bind("Id,IdField,IdForm")] EntranceConnections @entranceConnections)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.EntranceConnections.Add(@entranceConnections);
+                await _context.SaveChangesAsync();
+                EntranceConnections current = _context.EntranceConnections.Where(t => t == (@entranceConnections)).ToList()[0];
+              
+                return View(_context.EntranceConnections.Where(m => m.IdField == current.IdField).ToList());
+            }
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }
