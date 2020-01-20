@@ -10,6 +10,7 @@ C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\bin\Debug\ne
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\TeamProject.Views.pdb
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.Configuration.dll
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\pl\Microsoft.VisualStudio.Configuration.resources.dll
+C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.csprojAssemblyReference.cache
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.RazorAssemblyInfo.cache
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.RazorAssemblyInfo.cs
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.AssemblyInfoInputs.cache
@@ -54,6 +55,7 @@ C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\ne
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Patient\Create.cshtml.g.cs
+C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Patient\Index.cshtml.g.cs
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Patient\PatientForms.cshtml.g.cs
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
@@ -75,4 +77,3 @@ C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\ne
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.csproj.CopyComplete
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.dll
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.pdb
-C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.csprojAssemblyReference.cache
