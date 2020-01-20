@@ -75,13 +75,14 @@
 <h5 style="color:#66BB6A;  font-weight:700">Przypisz pole do formularza</h5>
 <div class="cities">
     <form asp-action="AddNewField" autocomplete="off" id="myForm">
-        <button
-                <input style=" background-color:white;
+        <button style=" background-color:white;
             color:#66BB6A;
             font-size:20px;
             padding: 5px 35px;
             border-radius: 8px;
-            position:center;" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Stwórz nowe pole w formularzu</button>
+            position:center;" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">
+            Stwórz nowe pole w formularzu
+        </button>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -162,11 +163,31 @@
                         <input asp-for="@Model.currentNameToCreate" class="form-control" id="nameToCreate" />
                     </div>
                     <label style="color:black" asp-for="@Model.currentTypeToCreate">Wybierz typ:</label>
-                    <select asp-for="@Model.currentTypeToCreate" class="form-control" style="width:300px">
+                    <select id="selectField" asp-for="@Model.currentTypeToCreate" class="form-control" style="width:300px">
                         <option value="">Wybierz opcję</option>
                         <option value="text">Pole tekstowe</option>
                         <option value="checkbox">Checkbox</option>
+                        <option value="select">Lista</option>
+                        <option value="number">Numer</option>
                     </select>
+                    <br />
+
+                    <div id="numberValidation" hidden>
+                        <input type="checkbox" id="enableValidationMin" value="min" />
+                        <label style="color:black">Minimalna wartość</label>
+                        <input asp-for="@Model.minString" class="form-control" id="inputMin" hidden />
+                        <br />
+                        <input type="checkbox" id="enableValidationMax" value="max" />
+                        <label style="color:black">Maksymalna wartość</label>
+                        <input asp-for="@Model.maxString" class="form-control" id="inputMax" hidden />
+                        <br />
+                        <input type="checkbox" id="enableValidationInteger" value="liczba całkowita" />
+                        <input asp-for="@Model.integerVal.value" hidden id="inputForInteger" />
+                        <label style="color:black">Liczba całkowita</label>
+
+                        <br />
+                    </div>
+
 
                     <input style=" background-color:white;
             color:#66BB6A;
@@ -181,6 +202,23 @@
         <br />
         <hr style="color:white" />
         <br />
+        @if (Model.fields != null)
+        {
+            @for (var i = 0; i < Model.fields.Count; i++)
+            {
+                if (Model.fields[i].validations != null)
+                {
+                    for (var j = 0; j < Model.fields[i].validations.Count; j++)
+                    {
+                        <input asp-for="@Model.fields[i].validations[j].idField" hidden/>
+                        <input asp-for="@Model.fields[i].validations[j].idValidation" hidden/>
+                        <input asp-for="@Model.fields[i].validations[j].type" hidden/>
+                        <input asp-for="@Model.fields[i].validations[j].value" hidden/>
+                    }
+                }
+            }
+        }
+
 
         <input style=" background-color:white;
             color:#66BB6A;
@@ -221,12 +259,13 @@
 
         $('#myForm').submit(function () {
 
-            console.log(document.getElementById("nameToCreate").value)
+            console.log("przed submitem" + saveFlag + " delateFlag" + deleteFlag);
             if (saveFlag == true || deleteFlag == true) {
                 return true;
             }
             saveFlag = false;
             if (document.getElementById("nameToCreate").value != "") {
+                console.log("drugi if");
                 return true;
             }
 
@@ -370,6 +409,52 @@
             closeAllLists(e.target);
         });
     }
+
+        document.getElementById("selectField").addEventListener("change", function () {
+
+            if (this.value == "number") {
+                document.getElementById("numberValidation").hidden = false;
+              
+            } else {
+                 document.getElementById("numberValidation").hidden = true;
+            }
+
+        });
+
+    document.getElementById("enableValidationMin").addEventListener("change", function(){
+        if (this.checked == true) document.getElementById("inputMin").hidden = false;
+        else document.getElementById("inputMin").hidden = true;
+    });
+
+    document.getElementById("enableValidationMax").addEventListener("change", function(){
+        if (this.checked == true) document.getElementById("inputMax").hidden = false;
+        else document.getElementById("inputMax").hidden = true;
+    });
+
+    document.getElementById("enableValidationInteger").addEventListener("change", function () {
+        if (this.checked == true) document.getElementById("inputForInteger").value = 100;
+        else document.getElementById("inputForInteger").value = 0;
+    });
+
+   $(function(){
+       $('#inputMin').keypress(function (e) {
+           console.log(e.which)
+           if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 52 || e.which == 53 || e.which == 54 || e.which == 55 || e.which == 56 || e.which == 57 || e.which == 48 || e.which == 44 || e.which==45) {
+    } else {
+      return false;
+    }
+  });
+   });
+
+    $(function(){
+       $('#inputMax').keypress(function (e) {
+           console.log(e.which)
+           if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 52 || e.which == 53 || e.which == 54 || e.which == 55 || e.which == 56 || e.which == 57 || e.which == 48 || e.which == 44 || e.which==45) {
+    } else {
+      return false;
+    }
+  });
+});
 
 </script>
 

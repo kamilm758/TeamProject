@@ -10,7 +10,7 @@ namespace TeamProject.Models.NewTypeAndValidation
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        List<Validation> validations { get; set; } = new List<Validation>();
-        List<SelectFieldOptions> options { get; set; } = new List<SelectFieldOptions>();
+        public List<Validation> validations { get; set; } = new List<Validation>();
+        public List<SelectFieldOptions> options { get; set; } = new List<SelectFieldOptions>();
     }
 }

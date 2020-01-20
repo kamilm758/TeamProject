@@ -11,6 +11,7 @@ using TeamProject.Models.FormGeneratorModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using TeamProject.Models;
+using TeamProject.Models.NewTypeAndValidation;
 
 namespace FormGenerator.Controllers
 {
@@ -65,6 +66,9 @@ namespace FormGenerator.Controllers
                 return NotFound();
             }
             ViewBag.formid = Convert.ToInt32(id);
+            List<Validation> validationToFields = _context.Validations
+                .Where(v => fieldsInForm.Contains(v.idField)).ToList();
+            ViewBag.Validations = validationToFields;
             return View(fieldWithValues);
         }
 
@@ -90,6 +94,9 @@ namespace FormGenerator.Controllers
                         answer.Answer = field.BoolValue.ToString();
                         break;
                     case "text":
+                        answer.Answer = field.TextValue;
+                        break;
+                    case "number":
                         answer.Answer = field.TextValue;
                         break;
                 }
