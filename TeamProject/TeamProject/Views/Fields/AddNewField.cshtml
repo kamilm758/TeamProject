@@ -171,15 +171,15 @@
                         <option value="number">Numer</option>
                     </select>
                     <br />
-
+                    <div></div>
                     <div id="numberValidation" hidden>
-                        <input type="checkbox" id="enableValidationMin" value="min" />
+                        <input type="checkbox" id="enableValidationMin" value="min" style=" background-color:white; color:#66BB6A;" />
                         <label style="color:black">Minimalna wartość</label>
-                        <input asp-for="@Model.minString" class="form-control" id="inputMin" hidden />
+                        <input asp-for="@Model.minString" class="form-control" id="inputMin"  hidden />
                         <br />
                         <input type="checkbox" id="enableValidationMax" value="max" />
                         <label style="color:black">Maksymalna wartość</label>
-                        <input asp-for="@Model.maxString" class="form-control" id="inputMax" hidden />
+                        <input asp-for="@Model.maxString" class="form-control" id="inputMax"  hidden />
                         <br />
                         <input type="checkbox" id="enableValidationInteger" value="liczba całkowita" />
                         <input asp-for="@Model.integerVal.value" hidden id="inputForInteger" />
@@ -189,10 +189,15 @@
                     </div>
 
                     <div id="selectOptions" hidden>
+                        <input type="button" id="addOptionsBtn" onClick="AddOption()" value="Dodaj opcje" style=" background-color:white;
+                                                                                                                    color:#66BB6A;
+                                                                                                                    font-size:20px;
+                                                                                                                    padding: 5px 15px;
+                                                                                                                    border-radius: 8px;
+                                                                                                                    position:center;"/>
                         <div id="firstDiv">
-                            <input type="button" id="addOptionsBtn" onClick="AddOption()" value="Dodaj opcje" />
-                            <input type="text" id="opt0" />
-                            <input asp-for="@Model.optionsJson" id="optionsJsonID" hidden/>
+                            <input style=" border-radius: 5px; width:300px; height:30px; " type="text" id="opt0" />
+                            <input asp-for="@Model.optionsJson" id="optionsJsonID" hidden />
                         </div>
                     </div>
 
@@ -489,7 +494,7 @@
         document.getElementById("opt" + i).addEventListener("change", function () {
 
             console.log(this.value);
-            let index = StringToInt(this.id);
+            let index = StringToInt(this.id,3);
             console.log(index);
             ValuetoSend[index].wartosc = this.value;
             
@@ -500,9 +505,9 @@
 
     }
 
-    function StringToInt(value) {
+    function StringToInt(value,range) {
         var pom="";
-        for (let i = 3; i < value.length; i++) {
+        for (let i = range; i < value.length; i++) {
             pom += value[i];
         }
         // console.log(pom)
@@ -517,13 +522,17 @@
         });
    
     function AddTextBox(value) {
-       
-        return '<div ><input type="text" id="'+value+'"name="dyntxt"/><input type="button" onclick="RemoveBtn(this)" value="Usun"/></div>'
+        let u = "u" + value;
+
+        return '<div ><input type="text" id="' + value + '"name="dyntxt" style=" border-radius: 5px; width:300px; height:30px; "/><input type="button" id="' +u + '"onclick="RemoveBtn(this)" value="Usuń" style=" background-color:white; color:#66BB6A;font-size:20px;padding: 5px 5px;border-radius: 8px;position:center;"/></div>'
     }
 
     
 
     function RemoveBtn(div) {
+        let index = StringToInt(div.id, 4);
+        ValuetoSend.splice(index, 1);
+        console.log(ValuetoSend);
         document.getElementById("selectOptions").removeChild(div.parentNode.parentNode);
     }
 
