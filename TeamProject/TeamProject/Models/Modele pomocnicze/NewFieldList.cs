@@ -26,6 +26,7 @@ namespace TeamProject.Models.Modele_pomocnicze
         public Validation integerVal { get; set; } = new Validation();
         //select
         public List<SelectFieldOptions> optionsToCurrentField { get; set; } = new List<SelectFieldOptions>();
-        public string currentOption { get; set; }
+        public string optionsJson { get; set; }
+
     }
 }

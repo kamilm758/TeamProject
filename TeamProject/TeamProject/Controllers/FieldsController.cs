@@ -197,7 +197,7 @@ namespace FormGenerator.Controllers
             newFieldList.max = new Validation();
             newFieldList.integerVal = new Validation();
             newFieldList.optionsToCurrentField = new List<SelectFieldOptions>();
-            newFieldList.currentOption = "";
+            newFieldList.optionsJson = "";
             return View("AddNewField", newFieldList);
         }
         [HttpPost]

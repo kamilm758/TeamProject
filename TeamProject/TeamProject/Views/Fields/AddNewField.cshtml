@@ -190,10 +190,10 @@
 
                     <div id="selectOptions" hidden>
                         <div id="firstDiv">
-                            <input type="text" />
                             <input type="button" id="addOptionsBtn" onClick="AddOption()" value="Dodaj opcje" />
+                            <input type="text" id="opt0" />
+                            <input asp-for="@Model.optionsJson" id="optionsJsonID" hidden/>
                         </div>
-                        <input type="submit" value="submit" />
                     </div>
 
 
@@ -240,6 +240,13 @@
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script>
+
+    class ValueinJSON{
+        constructor(value) {
+            this.wartosc = value;
+        }
+    }
+
     document.getElementById("nameToCreate").value = null;
     var saveFlag = false;
     var deleteFlag = false;
@@ -266,7 +273,8 @@
         autocomplete(document.getElementById("autoFill"), AllFields);
 
         $('#myForm').submit(function () {
-
+            //serializacja opcji selecta do JSona
+            document.getElementById("optionsJsonID").value = JSON.stringify(ValuetoSend);
             console.log("przed submitem" + saveFlag + " delateFlag" + deleteFlag);
             if (saveFlag == true || deleteFlag == true) {
                 return true;
@@ -469,18 +477,54 @@
     }
   });
     });
-
+    var i = 1;
+    var array = new Array();
+    var ValuetoSend = new Array();
+    ValuetoSend[0]=new ValueinJSON("fcedfce");
     function AddOption() {
         var division = document.createElement('DIV');
-        division.innerHTML = AddTextBox("");
-        document.getElementById("firstDiv").appendChild(division);
-    }
-    function AddTextBox(value) {
-        return '<div><input type="text" name="dyntxt"/><input type="button" onclick="RemoveBtn(this)" value="Usun"/></div>'
+        division.innerHTML = AddTextBox("opt"+i);
+        document.getElementById("selectOptions").appendChild(division);
+        ValuetoSend[i]=new ValueinJSON("fcedfce");
+        document.getElementById("opt" + i).addEventListener("change", function () {
+
+            console.log(this.value);
+            let index = StringToInt(this.id);
+            console.log(index);
+            ValuetoSend[index].wartosc = this.value;
+            
+
+        });
+        array.push(document.getElementById("opt" + i));
+        i++;
+
     }
 
+    function StringToInt(value) {
+        var pom="";
+        for (let i = 3; i < value.length; i++) {
+            pom += value[i];
+        }
+        // console.log(pom)
+        return parseInt(pom);
+    }
+
+     document.getElementById("opt0").addEventListener("change", function () {
+
+         console.log(this.value);
+         ValuetoSend[0].wartosc = this.value;
+
+        });
+   
+    function AddTextBox(value) {
+       
+        return '<div ><input type="text" id="'+value+'"name="dyntxt"/><input type="button" onclick="RemoveBtn(this)" value="Usun"/></div>'
+    }
+
+    
+
     function RemoveBtn(div) {
-        document.getElementById("firstDiv").removeChild(div.parentNode.parentNode);
+        document.getElementById("selectOptions").removeChild(div.parentNode.parentNode);
     }
 
 </script>
