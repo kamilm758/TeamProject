@@ -35,7 +35,8 @@ namespace TeamProject.Controllers
                     Id = x.Id,
                     IdForm = x.IdForm,
                     IdPatient = x.IdPatient,
-                    nazwa_formularza = _context.Forms.FirstOrDefault(n => n.Id == x.IdForm).Name
+                    nazwa_formularza = _context.Forms.FirstOrDefault(n => n.Id == x.IdForm).Name,
+                    agreement = x.agreement
                 };
                 list.Add(pom);
             }

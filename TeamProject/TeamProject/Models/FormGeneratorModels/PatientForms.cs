@@ -21,5 +21,6 @@ namespace FormGenerator.Models
         public int IdPatient;
         public int IdForm;
         public string nazwa_formularza;
+        public Boolean? agreement { get; set; }
     }
 }
