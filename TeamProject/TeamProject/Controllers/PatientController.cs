@@ -25,7 +25,6 @@ namespace TeamProject.Controllers
         }
 
 
-
         [HttpGet]
         public IActionResult Create()
         {
@@ -55,5 +54,57 @@ namespace TeamProject.Controllers
             }
             return View();
         }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var @patient = await _context.Patients
+                .FirstOrDefaultAsync(m => m.IdPatient == id);
+            if (patient == null)
+            {
+                return NotFound();
+            }
+
+            return View(patient);
+        }
+        //[HttpPost]
+        public async Task<ActionResult> Index(string Id)
+        {
+
+           var patient = from m in _context.Patients select m;
+
+            //   if (Id)
+            // {
+            //       patient = patient.Where(s => s.IdPatient.Equals(Id));
+            //}
+
+            var IdPatient = _context.Patients;
+
+            
+                
+                var pom = await IdPatient.FirstOrDefaultAsync(m => m.IdPatient == Convert.ToInt32(Id));
+
+                if(pom != null)
+                {
+                    TempData["Message"] = "znalazlo";
+                    return RedirectToAction("PatientForms");
+                }
+                else
+                {
+                    TempData["Messagenie"]="Id pacjetna nie znajduje się w bazie";
+                }
+
+                
+                
+            
+
+            return View(await _context.Patients.ToListAsync());
+        }
+
+
     }
 }

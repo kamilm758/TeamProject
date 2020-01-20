@@ -19,10 +19,6 @@
     <div class="row">
         <div class="col-md-10">
             <form asp-action="Formularz">
-                @if (ViewBag.statement != null)
-                {
-                    <p style="color: red">@ViewBag.statement</p>
-                }
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <table class="table table-striped">
 
