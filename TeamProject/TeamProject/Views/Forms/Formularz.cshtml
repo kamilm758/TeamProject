@@ -1,0 +1,164 @@
+﻿@model List<FieldWithValue>
+
+@{
+    ViewData["Title"] = "Formularz";
+}
+
+<h3>Wypełnij fromularz</h3>
+
+<style>
+
+    .cities {
+        background-color: #66BB6A;
+        color: white;
+        margin: 20px;
+        padding: 20px;
+    }
+</style>
+<div class="cities">
+    <div class="row">
+        <div class="col-md-10">
+            <form asp-action="Formularz">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <table class="table table-striped">
+
+                    @for (var i = 0; i < Model.Count; i++)
+                    {
+                    <tr>
+                        <input asp-for="@Model[i].Field.Id" hidden />
+                        <input asp-for="@Model[i].Field.Name" hidden />
+                        <input asp-for="@Model[i].Field.Type" hidden />
+                        @if (Model[i].Field.Type == "text")
+                        {
+                            <div>
+                                <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
+                            </div>
+
+                            <div>
+                                <input class="form-control" type="@Model[i].Field.Type" asp-for="@Model[i].TextValue" />
+                            </div>
+                            <div>
+                                <span asp-validation-for="@Model[i].Field.Type" class="text-danger"></span>
+                            </div>
+
+
+
+                        }
+                        else if (Model[i].Field.Type == "checkbox")
+                        {
+
+
+                            <div>
+                                <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
+                            </div>
+                            <div>
+                                <input class="form-control checkmark" type="@Model[i].Field.Type" asp-for="@Model[i].BoolValue" />
+                            </div>
+                            <div>
+                                <span asp-validation-for="@Model[i].Field.Name" class="text-danger"></span>
+                            </div>
+                        }
+
+                        else if (Model[i].Field.Type == "number")
+                        {
+
+
+                            <div>
+                                <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
+                            </div>
+                            <div>
+                                <input class="form-control" id="@Model[i].Field.Id" numInput="true" type="text" asp-for="@Model[i].TextValue" />
+                                <p errorParagraf="true" ErrorId="@Model[i].Field.Id" hidden style="color: red"></p>
+                            </div>
+                            
+
+
+                        }
+                    </tr>
+                    }
+                    <tr id="response">
+                        
+                    </tr>
+                </table>
+                <div class="form-group">
+                </div>
+                <div>
+                    <input id="MainSubmit" style=" background-color:white;
+            color:#66BB6A;
+            font-size:20px;
+            padding: 15px 35px;
+            border-radius: 8px;
+            position:center;" type="submit" asp-route-formId="@ViewBag.formid" value="Wyślij formularz" class="btn btn-primary" />
+                </div>
+               
+            </form>
+          
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    
+
+    $(function(){
+        $("[numInput='true']").keypress(function (e) {
+            console.log(this.value)
+            if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 52 || e.which == 53 || e.which == 54 || e.which == 55 || e.which == 56 || e.which == 57 || e.which == 48 || e.which == 44 || e.which == 45) {
+                if (this.value.includes(",") && e.which==44) {
+                    return false;
+                }
+    } else {
+      return false;
+    }
+  });
+   });
+
+
+    $("[numInput='true']").change(function () {
+
+        $.ajax({
+                    url: "/api/Validations/" + this.id + "/" + this.value,
+                     dataType: "json"
+        })
+            .done(res => CheckValidations(res, this));
+
+    });
+
+    function CheckValidations(response, input) {
+        let error = $("[ErrorId=" + input.id + "]")[0];
+        console.log(error);
+        console.log(response);
+        if (response.response != "true") {
+            error.innerHTML = response.response;
+            error.hidden = false;
+            SetSubmitButtonStatus();
+        }
+        else if (response.response == "true") {
+            error.hidden = true;
+            SetSubmitButtonStatus();
+        }
+    }
+
+
+    function SetSubmitButtonStatus() {
+        let paragraphs = $("[errorParagraf='true']");
+        let licznik = 0;
+        for (let i = 0; i < paragraphs.length; i++) {
+            if (paragraphs[i].hidden == false) {
+                licznik++;
+            }
+        }
+        console.log(licznik);
+        if (licznik == 0) {
+            document.getElementById("MainSubmit").disabled = false;
+        }
+        if (licznik != 0) {
+            document.getElementById("MainSubmit").disabled = true;
+        }
+    }
+</script>

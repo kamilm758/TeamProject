@@ -1,0 +1,463 @@
+@model TeamProject.Models.Modele_pomocnicze.NewFieldList
+@{
+    ViewData["Title"] = "AddNewField";
+}
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font: 16px Arial;
+    }
+
+    .autocomplete {
+        /*the container must be positioned relative:*/
+        position: relative;
+        display: inline-block;
+        color: black;
+    }
+
+    input {
+        color: black;
+    }
+
+        input[type=text] {
+        }
+
+        input[type=submit] {
+        }
+
+    .autocomplete-items {
+        position: absolute;
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        left: 0;
+        right: 0;
+    }
+
+        .autocomplete-items div {
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+            .autocomplete-items div:hover {
+                /*when hovering an item:*/
+                background-color: #e9e9e9;
+            }
+
+    .autocomplete-active {
+        /*when navigating through the items using the arrow keys:*/
+        background-color: DodgerBlue !important;
+        color: #ffffff;
+    }
+
+    .cities {
+        background-color: #66BB6A;
+        color: white;
+        margin: 20px;
+        padding: 20px;
+    }
+</style>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red;">@ViewBag.Error</p>
+}
+
+<h5 style="color:#66BB6A;  font-weight:700">Przypisz pole do formularza</h5>
+<div class="cities">
+    <form asp-action="AddNewField" autocomplete="off" id="myForm">
+        <button style=" background-color:white;
+            color:#66BB6A;
+            font-size:20px;
+            padding: 5px 35px;
+            border-radius: 8px;
+            position:center;" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">
+            Stwórz nowe pole w formularzu
+        </button>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nazwa</th>
+                    <th scope="col">Typ</th>
+                    <th scope="col">Operacja</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.fields.Count != 0)
+                {
+                    for (var i = 0; i < Model.fields.Count; i++)
+                    {
+                        <tr>
+                            <th scope="row">@i</th>
+                            <td>@Model.fields[i].Name</td>
+                            <td>@Model.fields[i].Type</td>
+                            <td>
+                                <button style=" background-color:white;
+            color:#66BB6A;
+            font-size:13px;
+            padding: 5px 5px;
+            border-radius: 8px;
+            position:center;" type="submit" asp-route-fieldId="@Model.fields[i].Id" asp-action="DeleteFromList" class="btn btn-danger" to-delete="true">
+                                    Usuń
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+
+        @if (Model.fields.Count != 0)
+        {
+            for (var i = 0; i < Model.fields.Count; i++)
+            {
+                <input asp-for="@Model.fields[i].Id" hidden />
+                <input asp-for="@Model.fields[i].Name" hidden />
+                <input asp-for="@Model.fields[i].Type" hidden />
+            }
+        }
+        <input asp-for="@Model.FormId" hidden />
+        <input asp-for="@Model.currentId" id="idToExistField" hidden />
+
+
+
+        <br />
+        <label asp-for="@Model.currentName">Nazwa pola:</label>
+        <div class="autocomplete px-3 py-1">
+            <input asp-for="@Model.currentName" class="form-control" id="autoFill" />
+        </div>
+        <br />
+        <div class="row px-3 py-1">
+            <label style="padding:20px" asp-for="@Model.currentType">Typ pola:</label>
+            <input asp-for="@Model.currentType" id="currentType" hidden class="form-control" style="width:300px">
+
+            <input type="text" id="disabledCurrentType" disabled class="form-control" style="width:200px;" />
+        </div>
+
+        <input style=" background-color:white;
+            color:#66BB6A;
+            font-size:20px;
+            padding: 5px 15px;
+            border-radius: 8px;
+            position:center;" type="submit" asp-action="AddToList" class="btn btn-success" id="istniejacePola" value="Przypisz istniejące pole" />
+
+        <!-- Large modal -->
+
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" style="padding:30px">
+                    <h3 style="color:black">Dodaj to tego formularza nowe pole</h3>
+                    <label style="color:black" asp-for="@Model.currentNameToCreate">Nazwa pola:</label>
+                    <div class="autocomplete">
+                        <input asp-for="@Model.currentNameToCreate" class="form-control" id="nameToCreate" />
+                    </div>
+                    <label style="color:black" asp-for="@Model.currentTypeToCreate">Wybierz typ:</label>
+                    <select id="selectField" asp-for="@Model.currentTypeToCreate" class="form-control" style="width:300px">
+                        <option value="">Wybierz opcję</option>
+                        <option value="text">Pole tekstowe</option>
+                        <option value="checkbox">Checkbox</option>
+                        <option value="select">Lista</option>
+                        <option value="number">Numer</option>
+                    </select>
+                    <br />
+
+                    <div id="numberValidation" hidden>
+                        <input type="checkbox" id="enableValidationMin" value="min" />
+                        <label style="color:black">Minimalna wartość</label>
+                        <input asp-for="@Model.minString" class="form-control" id="inputMin" hidden />
+                        <br />
+                        <input type="checkbox" id="enableValidationMax" value="max" />
+                        <label style="color:black">Maksymalna wartość</label>
+                        <input asp-for="@Model.maxString" class="form-control" id="inputMax" hidden />
+                        <br />
+                        <input type="checkbox" id="enableValidationInteger" value="liczba całkowita" />
+                        <input asp-for="@Model.integerVal.value" hidden id="inputForInteger" />
+                        <label style="color:black">Liczba całkowita</label>
+
+                        <br />
+                    </div>
+
+
+                    <input style=" background-color:white;
+            color:#66BB6A;
+            font-size:20px;
+            padding: 15px 35px;
+            border-radius: 8px;
+            position:center;" type="submit" asp-action="AddToList" class="btn btn-success" value="Stwórz" />
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <br />
+        <hr style="color:white" />
+        <br />
+        @if (Model.fields != null)
+        {
+            @for (var i = 0; i < Model.fields.Count; i++)
+            {
+                if (Model.fields[i].validations != null)
+                {
+                    for (var j = 0; j < Model.fields[i].validations.Count; j++)
+                    {
+                        <input asp-for="@Model.fields[i].validations[j].idField" hidden/>
+                        <input asp-for="@Model.fields[i].validations[j].idValidation" hidden/>
+                        <input asp-for="@Model.fields[i].validations[j].type" hidden/>
+                        <input asp-for="@Model.fields[i].validations[j].value" hidden/>
+                    }
+                }
+            }
+        }
+
+
+        <input style=" background-color:white;
+            color:#66BB6A;
+            font-size:20px;
+            padding: 15px 35px;
+            border-radius: 8px;
+            position:center;" type="button" id="zapiszZmiany" class="btn btn-primary" value="Zapisz zmiany" />
+
+    </form>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    document.getElementById("nameToCreate").value = null;
+    var saveFlag = false;
+    var deleteFlag = false;
+    var AllFields = [];
+    var test = ["jeden", "dwa"];
+    var AllFieldsJson;
+    var AllFieldsName = [];
+    $.ajax({
+        url: "/api/FieldAPI",
+        dataType: "json"
+    })
+        .done(res => AllFieldsJson = res);
+
+    //po tym jak pobierzemy z API
+    $(document).ajaxComplete(function () {
+        for (let i = 0; i < AllFieldsJson.length; i++) {
+            AllFields.push(AllFieldsJson[i]);
+        }
+        //skrypt z podpowiadanie
+        for (let i = 0; i < AllFields.length; i++) {
+            if (AllFields[i].name != null)
+                AllFieldsName.push(AllFields[i].name);
+        }
+        autocomplete(document.getElementById("autoFill"), AllFields);
+
+        $('#myForm').submit(function () {
+
+            console.log("przed submitem" + saveFlag + " delateFlag" + deleteFlag);
+            if (saveFlag == true || deleteFlag == true) {
+                return true;
+            }
+            saveFlag = false;
+            if (document.getElementById("nameToCreate").value != "") {
+                console.log("drugi if");
+                return true;
+            }
+
+            if (AllFieldsName.includes(document.getElementById("autoFill").value)) {
+                return true;
+            }
+            else {
+                alert("Nie znaleziono takiego pola. Stwórz je!");
+                document.getElementById("autoFill").value = null;
+                document.getElementById("idToExistField").value = parseInt("0");
+                return false;
+            }
+
+        });
+
+    })
+
+
+    document.getElementById("autoFill").addEventListener("change", function () {
+        document.getElementById("nameToCreate").value = null;
+    })
+
+    document.getElementById("zapiszZmiany").addEventListener("click", function () {
+        saveFlag = true;
+        document.getElementById("myForm").submit();
+    })
+
+    $("[to-delete=true]").click(function () {
+        deleteFlag = true;
+        document.getElementById("myForm").submit();
+    })
+
+
+    function autocomplete(inp, arr) {
+        /*the autocomplete function takes two arguments,
+        the text field element and an array of possible autocompleted values:*/
+        var currentFocus;
+        /*execute a function when someone writes in the text field:*/
+        inp.addEventListener("input", function (e) {
+            var a, b, i, val = this.value;
+            /*close any already open lists of autocompleted values*/
+            closeAllLists();
+            if (!val) { return false; }
+            currentFocus = -1;
+            /*create a DIV element that will contain the items (values):*/
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items");
+            /*append the DIV element as a child of the autocomplete container:*/
+            this.parentNode.appendChild(a);
+            /*for each item in the array...*/
+            for (i = 0; i < arr.length; i++) {
+                /*check if the item starts with the same letters as the text field value:*/
+                if (arr[i].name.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    /*create a DIV element for each matching element:*/
+                    b = document.createElement("DIV");
+                    /*make the matching letters bold:*/
+                    b.innerHTML = "<strong>" + arr[i].name.substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].name.substr(val.length);
+                    /*insert a input field that will hold the current array item's value:*/
+                    b.innerHTML += "<input type='hidden' value='" + arr[i].name + "' id='" + arr[i].id + "'>";
+                    console.log(arr[i].id);
+                    document.getElementById("idToExistField").value = parseInt(arr[i].id);
+                    document.getElementById("nameToCreate").value = null;
+                    /*execute a function when someone clicks on the item value (DIV element):*/
+                    b.addEventListener("click", function (e) {
+                        /*insert the value for the autocomplete text field:*/
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                        document.getElementById("idToExistField").value = parseInt(this.getElementsByTagName("input")[0].id);
+                        document.getElementById("nameToCreate").value = null;
+
+                        for (let i = 0; i < AllFields.length; i++) {
+                            if (AllFields[i].id == parseInt(this.getElementsByTagName("input")[0].id)) {
+                                document.getElementById("currentType").value = AllFields[i].type;
+                                document.getElementById("disabledCurrentType").value = AllFields[i].type;
+                                continue;
+                            }
+                        }
+
+                        /*close the list of autocompleted values,
+                        (or any other open lists of autocompleted values:*/
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                }
+            }
+        });
+        /*execute a function presses a key on the keyboard:*/
+        inp.addEventListener("keydown", function (e) {
+            var x = document.getElementById(this.id + "autocomplete-list");
+            if (x) x = x.getElementsByTagName("div");
+            if (e.keyCode == 40) {
+                /*If the arrow DOWN key is pressed,
+                increase the currentFocus variable:*/
+                currentFocus++;
+                /*and and make the current item more visible:*/
+                addActive(x);
+            } else if (e.keyCode == 38) { //up
+                /*If the arrow UP key is pressed,
+                decrease the currentFocus variable:*/
+                currentFocus--;
+                /*and and make the current item more visible:*/
+                addActive(x);
+            } else if (e.keyCode == 13) {
+                /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                e.preventDefault();
+                if (currentFocus > -1) {
+                    /*and simulate a click on the "active" item:*/
+                    if (x) x[currentFocus].click();
+                }
+            }
+        });
+        function addActive(x) {
+            /*a function to classify an item as "active":*/
+            if (!x) return false;
+            /*start by removing the "active" class on all items:*/
+            removeActive(x);
+            if (currentFocus >= x.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (x.length - 1);
+            /*add class "autocomplete-active":*/
+            x[currentFocus].classList.add("autocomplete-active");
+        }
+        function removeActive(x) {
+            /*a function to remove the "active" class from all autocomplete items:*/
+            for (var i = 0; i < x.length; i++) {
+                x[i].classList.remove("autocomplete-active");
+            }
+        }
+        function closeAllLists(elmnt) {
+            /*close all autocomplete lists in the document,
+            except the one passed as an argument:*/
+            var x = document.getElementsByClassName("autocomplete-items");
+            for (var i = 0; i < x.length; i++) {
+                if (elmnt != x[i] && elmnt != inp) {
+                    x[i].parentNode.removeChild(x[i]);
+                }
+            }
+        }
+        /*execute a function when someone clicks in the document:*/
+        document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+        });
+    }
+
+        document.getElementById("selectField").addEventListener("change", function () {
+
+            if (this.value == "number") {
+                document.getElementById("numberValidation").hidden = false;
+              
+            } else {
+                 document.getElementById("numberValidation").hidden = true;
+            }
+
+        });
+
+    document.getElementById("enableValidationMin").addEventListener("change", function(){
+        if (this.checked == true) document.getElementById("inputMin").hidden = false;
+        else document.getElementById("inputMin").hidden = true;
+    });
+
+    document.getElementById("enableValidationMax").addEventListener("change", function(){
+        if (this.checked == true) document.getElementById("inputMax").hidden = false;
+        else document.getElementById("inputMax").hidden = true;
+    });
+
+    document.getElementById("enableValidationInteger").addEventListener("change", function () {
+        if (this.checked == true) document.getElementById("inputForInteger").value = 100;
+        else document.getElementById("inputForInteger").value = 0;
+    });
+
+   $(function(){
+       $('#inputMin').keypress(function (e) {
+           console.log(e.which)
+           if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 52 || e.which == 53 || e.which == 54 || e.which == 55 || e.which == 56 || e.which == 57 || e.which == 48 || e.which == 44 || e.which==45) {
+    } else {
+      return false;
+    }
+  });
+   });
+
+    $(function(){
+       $('#inputMax').keypress(function (e) {
+           console.log(e.which)
+           if (e.which == 49 || e.which == 50 || e.which == 51 || e.which == 52 || e.which == 53 || e.which == 54 || e.which == 55 || e.which == 56 || e.which == 57 || e.which == 48 || e.which == 44 || e.which==45) {
+    } else {
+      return false;
+    }
+  });
+});
+
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
