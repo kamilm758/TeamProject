@@ -137,7 +137,7 @@ namespace TeamProject.Controllers
             }
 
             var entranceFormFields = await _context.EntranceFormFields
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.IdField == id);
             if (entranceFormFields == null)
             {
                 return NotFound();
@@ -151,7 +151,9 @@ namespace TeamProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var entranceFormFields = await _context.EntranceFormFields.FindAsync(id);
+            var entranceFormFields = await _context.EntranceFormFields
+                .Where(t => t.IdField == id)
+                .FirstOrDefaultAsync();
             _context.EntranceFormFields.Remove(entranceFormFields);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
