@@ -1,14 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-<<<<<<< HEAD
       "C:\\Users\\kacpe\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\kacpe\\.nuget\\packages"
-=======
-      "C:\\Users\\AdriannaJK\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\AdriannaJK\\.nuget\\packages",
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
->>>>>>> origin/ADANAJNOWSZE
     ]
   }
 }
