@@ -66,7 +66,11 @@ namespace FormGenerator.Controllers
                 return NotFound();
             }
             ViewBag.formid = Convert.ToInt32(id);
-            fieldWithValues[0].options = _context.SelectFieldOptions.ToList();
+            try
+            {
+                fieldWithValues[0].options = _context.SelectFieldOptions.ToList();
+            }
+            catch (Exception e) { }
             //List<Validation> validationToFields = _context.Validations
             //    .Where(v => fieldsInForm.Contains(v.idField)).ToList();
             return View(fieldWithValues);

@@ -540,7 +540,7 @@
 
     function RemoveBtn(div) {
         let index = StringToInt(div.id, 4);
-        ValuetoSend.splice(index, 1);
+        ValuetoSend[index].wartosc = null;
         console.log(ValuetoSend);
         document.getElementById("selectOptions").removeChild(div.parentNode.parentNode);
     }

@@ -87,7 +87,7 @@
                                 <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
                             </div>
                             <div>
-                                <select class="form-control" asp-for="@Model[i].TextValue" style="width:100px;">
+                                <select class="form-control" asp-for="@Model[i].TextValue" style="width:250px;">
                                     @foreach(var option in Model[0].options)
                                     {
                                         @if (option.idField == Model[i].Field.Id)
