@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\kacpe\\Documents\\GitHub\\TeamProject\\TeamProject\\TeamProject\\TeamProject.csproj": {}
   },
   "projects": {
@@ -15,6 +16,25 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kacpe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "C:\\Users\\AdriannaJK\\Desktop\\TeamProject-KamilNew\\TeamProject\\TeamProject\\TeamProject.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\AdriannaJK\\Desktop\\TeamProject-KamilNew\\TeamProject\\TeamProject\\TeamProject.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\AdriannaJK\\Desktop\\TeamProject-KamilNew\\TeamProject\\TeamProject\\TeamProject.csproj",
+        "projectName": "TeamProject",
+        "projectPath": "C:\\Users\\AdriannaJK\\Desktop\\TeamProject-KamilNew\\TeamProject\\TeamProject\\TeamProject.csproj",
+        "packagesPath": "C:\\Users\\AdriannaJK\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AdriannaJK\\Desktop\\TeamProject-KamilNew\\TeamProject\\TeamProject\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\AdriannaJK\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/ADANAJNOWSZE
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -86,7 +106,11 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+>>>>>>> origin/ADANAJNOWSZE
         }
       }
     }
