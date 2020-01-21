@@ -25,7 +25,8 @@
                 <input hidden asp-for="@Model[i].IdField" />
                 <tr>
                     <td>
-                        <input asp-for="@Model[i].Name" />
+                        <input hidden asp-for="@Model[i].Name" />
+                        @Html.DisplayFor(model => model[i].Name)
                     </td>
                     <td>
                         <input asp-for="@Model[i].Answer" />
