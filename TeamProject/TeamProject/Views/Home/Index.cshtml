@@ -5,7 +5,9 @@
         <h1 class="display-4">Generator Formularzy</h1>
     </div>
     <div class="">
-
+        <script>
+        sessionStorage.removeItem('key');
+        </script>
         @model IEnumerable<FormGenerator.Models.Forms>
         @{
             ViewData["Title"] = "Index";
@@ -18,7 +20,7 @@
                 padding: 20px;
             }
         </style>
-        
+
         <div class="cities" id="Drzewo"></div>
         <div class="cities" id="wynik"></div>
     </div> 

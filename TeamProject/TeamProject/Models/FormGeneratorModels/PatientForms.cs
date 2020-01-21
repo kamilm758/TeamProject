@@ -14,4 +14,13 @@ namespace FormGenerator.Models
         public int IdForm { get; set; }
         public Boolean? agreement { get; set; }
     }
+
+    public class PatientFormsHelper
+    {
+        public int Id;
+        public int IdPatient;
+        public int IdForm;
+        public string nazwa_formularza;
+        public Boolean? agreement { get; set; }
+    }
 }

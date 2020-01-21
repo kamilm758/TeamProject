@@ -546,6 +546,9 @@
     }
 
 </script>
+<script>
+    sessionStorage.removeItem('key');
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

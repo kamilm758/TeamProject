@@ -1,4 +1,4 @@
-﻿@model List<FieldWithValue>
+﻿---@model List<FieldWithValue>
 
 @{
     ViewData["Title"] = "Formularz";
@@ -19,10 +19,6 @@
     <div class="row">
         <div class="col-md-10">
             <form asp-action="Formularz">
-                @if (ViewBag.statement != null)
-                {
-                    <p style="color: red">@ViewBag.statement</p>
-                }
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <table class="table table-striped">
 
@@ -104,11 +100,11 @@
                     </tr>
                     }
                     <tr id="response">
-                        
                     </tr>
                 </table>
                 <div class="form-group">
                 </div>
+                <input hidden id="patient"  type="number" name="patientId"   />
                 <div>
                     <input id="MainSubmit" style=" background-color:white;
             color:#66BB6A;
@@ -117,7 +113,7 @@
             border-radius: 8px;
             position:center;" type="submit" asp-route-formId="@ViewBag.formid" value="Wyślij formularz" class="btn btn-primary" />
                 </div>
-               
+
             </form>
           
         </div>
@@ -129,6 +125,10 @@
 
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+     let area = document.getElementById("patient");
+                area.value = sessionStorage.getItem("key")
+</script>
 <script type="text/javascript">
     
 

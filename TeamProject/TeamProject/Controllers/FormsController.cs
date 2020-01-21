@@ -79,18 +79,8 @@ namespace FormGenerator.Controllers
         // w tej metodzie w przyszłości nastąpi wysłanie wpisanych formularzy do bazy danych
         [HttpPost]
 
-        public async Task<IActionResult> Formularz(List<FieldWithValue> fields, int formId)
+        public async Task<IActionResult> Formularz(List<FieldWithValue> fields, int formId, int patientId)
         {
-            //sprawdzenie walidacji po stronie serwera
-
-            bool checkValidation = CheckFieldValidation(fields);
-            if (!checkValidation)
-            {
-                ViewBag.statement = "Walidacja formularza jest błędna. Sprawdź jeszcze raz wszystkie wartości.";
-                ViewBag.formid = Convert.ToInt32(formId);
-                return View(fields);
-            }
-
             var user = await GetUser();
             foreach (var field in fields)
             {
@@ -98,7 +88,7 @@ namespace FormGenerator.Controllers
                 {
                     IdForm = formId,
                     IdField = field.Field.Id,
-
+                    IdPatient = patientId,
                     IdUser = user.CustomID
                 };
 
@@ -265,7 +255,7 @@ namespace FormGenerator.Controllers
         public async Task<IActionResult> Index(int ?id)
         {
             ViewBag.bag = id;
-
+            TempData.Keep("lista");
             return View(await _context.Forms.ToListAsync()) ;
         }
         public JsonResult GetForms(string order)
@@ -279,55 +269,7 @@ namespace FormGenerator.Controllers
         {
             return await _userManager.GetUserAsync(HttpContext.User);
         }
-        //false-> walidacja błędna, true->walidacja prawidłowa
-        public bool CheckFieldValidation(List<FieldWithValue> fields)
-        {
-            //bierzemy pod uwagę tylko pola z typem number
-            fields = fields.Where(f => f.Field.Type == "number").ToList();
-            List<int> idFieldsWithValidation = new List<int>();
-            foreach(var field in fields)
-            {
-                idFieldsWithValidation.Add(field.Field.Id);
-            }
-            //pobieramy wszystkie walidacje które dotyczą pól z tego formularza
-            var rulesOfValidation = _context.Validations.Where(v => idFieldsWithValidation.Contains(v.idField)).ToList();
 
-            //sprawdzamy czy wszystkie numbery są liczbami
-
-            decimal valueDecimal;
-            int valueInteger;
-            bool isNumber;
-            bool isInteger;
-
-            foreach(var field in fields)
-            {
-                isNumber = Decimal.TryParse(field.TextValue, out valueDecimal);
-                if(!isNumber || field.TextValue[0].Equals(',') || field.TextValue.Last<char>().Equals(','))
-                {
-                    return false;
-                }
-            }
-
-            foreach (var rule in rulesOfValidation)
-            {
-                var fieldValue =Convert.ToDecimal(fields.Where(f => f.Field.Id == rule.idField).ToList()[0].TextValue);
-                if (rule.type=="min" && fieldValue < rule.value)
-                {
-                    return false;
-                }
-                if(rule.type=="max" && fieldValue > rule.value)
-                {
-                    return false;
-                }
-                if (rule.type == "integerVal")
-                {
-                    isInteger = Int32.TryParse(fieldValue.ToString(), out valueInteger);
-                    if (isInteger == false)
-                        return false;
-                }
-            }
-
-            return true;
-        }
+        
     }
 }

@@ -52,7 +52,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr >
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
@@ -70,5 +70,8 @@
                 </td>
             </tr>
         }
+        <script>
+        sessionStorage.removeItem('key');
+        </script>
     </tbody>
 </table>

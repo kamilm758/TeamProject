@@ -16,7 +16,7 @@ namespace TeamProject.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("FormGenerator.Models.Category", b =>
@@ -31,6 +31,32 @@ namespace TeamProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("FormGenerator.Models.EntranceConnections", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("IdField");
+
+                    b.Property<int>("IdForm");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EntranceConnections");
+                });
+
+            modelBuilder.Entity("FormGenerator.Models.EntranceFormFields", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("IdField");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EntranceFormFields");
                 });
 
             modelBuilder.Entity("FormGenerator.Models.Field", b =>
@@ -101,6 +127,32 @@ namespace TeamProject.Migrations
                     b.ToTable("UserAnswerList");
                 });
 
+            modelBuilder.Entity("FormGenerator.Models.Patient", b =>
+                {
+                    b.Property<int>("IdPatient")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("IdPatient");
+
+                    b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("FormGenerator.Models.PatientForms", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("IdForm");
+
+                    b.Property<int>("IdPatient");
+
+                    b.Property<bool?>("agreement");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PatientForms");
+                });
+
             modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.Answers", b =>
                 {
                     b.Property<int>("Id")
@@ -149,32 +201,6 @@ namespace TeamProject.Migrations
                     b.ToTable("Logs");
                 });
 
-            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.Patient", b =>
-                {
-                    b.Property<int>("IdPatient")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("IdPatient");
-
-                    b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.PatientForms", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("IdForm");
-
-                    b.Property<int>("IdPatient");
-
-                    b.Property<bool?>("agreement");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PatientForms");
-                });
-
             modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.UserAnswers", b =>
                 {
                     b.Property<int>("Id")
@@ -186,6 +212,8 @@ namespace TeamProject.Migrations
 
                     b.Property<int>("IdForm");
 
+                    b.Property<int>("IdPatient");
+
                     b.Property<int>("IdUser");
 
                     b.Property<int?>("UserAnswerListId");
@@ -195,6 +223,36 @@ namespace TeamProject.Migrations
                     b.HasIndex("UserAnswerListId");
 
                     b.ToTable("UserAnswers");
+                });
+
+            modelBuilder.Entity("TeamProject.Models.NewTypeAndValidation.SelectFieldOptions", b =>
+                {
+                    b.Property<int>("idOption")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("idField");
+
+                    b.Property<string>("option");
+
+                    b.HasKey("idOption");
+
+                    b.ToTable("SelectFieldOptions");
+                });
+
+            modelBuilder.Entity("TeamProject.Models.NewTypeAndValidation.Validation", b =>
+                {
+                    b.Property<int>("idValidation")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("idField");
+
+                    b.Property<string>("type");
+
+                    b.Property<decimal?>("value");
+
+                    b.HasKey("idValidation");
+
+                    b.ToTable("Validations");
                 });
 
             modelBuilder.Entity("TeamProject.Models.FormGeneratorModels.UserAnswers", b =>
