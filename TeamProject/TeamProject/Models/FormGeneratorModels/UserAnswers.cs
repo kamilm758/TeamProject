@@ -13,6 +13,7 @@ namespace TeamProject.Models.FormGeneratorModels
         public int IdForm { get; set; }
         public int IdField { get; set; }
         public int IdUser { get; set; }
+        public int IdPatient { get; set; }
         public string Answer { get; set; }
     }
 }

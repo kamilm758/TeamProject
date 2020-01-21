@@ -31,6 +31,7 @@
                         <input asp-for="@Model[i].Answer" />
                     </td>
                     <td>
+                        <input hidden asp-for="@Model[i].IdPatient" value="@ViewBag.bag" />
                     </td>
                 </tr>
             }

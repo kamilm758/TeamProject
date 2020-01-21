@@ -22,9 +22,10 @@ namespace TeamProject.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> PatientForms(int id)
+        public async Task<ObjectResult> PatientForms(int id)
         {
-           var patientForms =  _context.PatientForms.Where(m => m.IdPatient == id).ToList();
+           var patientForms = await _context.PatientForms.Where(m => m.IdPatient == id && m.agreement==true).ToListAsync();
+            var forms = await _context.Forms.ToListAsync();
 
             List<PatientFormsHelper> list = new List<PatientFormsHelper>();
 
@@ -35,14 +36,39 @@ namespace TeamProject.Controllers
                     Id = x.Id,
                     IdForm = x.IdForm,
                     IdPatient = x.IdPatient,
-                    nazwa_formularza = _context.Forms.FirstOrDefault(n => n.Id == x.IdForm).Name,
+                    nazwa_formularza = forms.FirstOrDefault(n => n.Id == x.IdForm).Name,
                     agreement = x.agreement
                 };
                 list.Add(pom);
             }
            
 
-            return  Json(list);
+            return Ok(list);
+        }
+
+        [HttpGet]
+        public async Task<ObjectResult> AllPatientForms(int id)
+        {
+            var patientForms = await _context.PatientForms.Where(m => m.IdPatient == id ).ToListAsync();
+            var forms = await _context.Forms.ToListAsync();
+
+            List<PatientFormsHelper> list = new List<PatientFormsHelper>();
+
+            foreach (PatientForms x in patientForms)
+            {
+                PatientFormsHelper pom = new PatientFormsHelper
+                {
+                    Id = x.Id,
+                    IdForm = x.IdForm,
+                    IdPatient = x.IdPatient,
+                    nazwa_formularza = forms.FirstOrDefault(n => n.Id == x.IdForm).Name,
+                    agreement = x.agreement
+                };
+                list.Add(pom);
+            }
+
+
+            return Ok(list);
         }
 
 
@@ -57,6 +83,7 @@ namespace TeamProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdPatient")] Patient patient)
         {
+            var entranceConnections = await _context.EntranceConnections.ToListAsync();
             int y = patient.IdPatient; 
             if (ModelState.IsValid)
             {
@@ -66,10 +93,22 @@ namespace TeamProject.Controllers
 
                 foreach(var x in formsId)
                 {
-                    PatientForms patientForms = new PatientForms();
-                    patientForms.IdPatient = patient.IdPatient;
-                    patientForms.IdForm = x.Id;
-                    _context.PatientForms.Add(patientForms);
+                    var response = entranceConnections.FirstOrDefault(m => m.IdForm == x.Id);
+                    if (response != null)
+                    {
+                        PatientForms patientForms = new PatientForms();
+                        patientForms.IdPatient = patient.IdPatient;
+                        patientForms.IdForm = x.Id;
+                        _context.PatientForms.Add(patientForms);
+                    }
+                    else
+                    {
+                        PatientForms patientForms = new PatientForms();
+                        patientForms.IdPatient = patient.IdPatient;
+                        patientForms.IdForm = x.Id;
+                        patientForms.agreement = true;
+                        _context.PatientForms.Add(patientForms);
+                    }
                 }
                 _context.SaveChanges();
 
@@ -93,31 +132,24 @@ namespace TeamProject.Controllers
 
             return View(patient);
         }
-        //[HttpPost]
+        [HttpPost]
         public async Task<ActionResult> Index(string Id)
         {
 
-           var patient = from m in _context.Patients select m;
+         
 
-            //   if (Id)
-            // {
-            //       patient = patient.Where(s => s.IdPatient.Equals(Id));
-            //}
+                var IdPatient = _context.Patients;
 
-            var IdPatient = _context.Patients;
-
-            
-                
-                var pom = await IdPatient.FirstOrDefaultAsync(m => m.IdPatient == Convert.ToInt32(Id));
+                var pom =  IdPatient.FirstOrDefault(m => m.IdPatient == Convert.ToInt32(Id));
 
                 if(pom != null)
                 {
                     TempData["Message"] = "znalazlo";
-                    return RedirectToAction("PatientForms");
+                    return RedirectToAction("EntranceForm","EntranceFormFields", new {id = Id});
                 }
                 else
                 {
-                    TempData["Messagenie"]="Id pacjetna nie znajduje się w bazie";
+                    TempData["Message"]="Id pacjetna nie znajduje się w bazie";
                 }
 
                 
@@ -127,6 +159,14 @@ namespace TeamProject.Controllers
             return View(await _context.Patients.ToListAsync());
         }
 
+
+        [HttpGet]
+        public async Task<ActionResult> Index()
+        {
+
+            var patient = from m in _context.Patients select m;
+            return View(await _context.Patients.ToListAsync());
+        }
 
     }
 }

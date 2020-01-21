@@ -26,6 +26,7 @@
             -moz-transition: margin .25s ease-out;
             -o-transition: margin .25s ease-out;
             transition: margin .25s ease-out;
+            box-shadow:3px 3px 6px black;
         }
 
             #sidebar-wrapper .sidebar-heading {
@@ -54,6 +55,10 @@
         #wrapper.toggled #sidebar-wrapper {
             margin-left: -15rem;
         }
+
+        .btnz {
+            background-color: #dcd2d2
+        }
     </style>
 
     <header>
@@ -81,7 +86,7 @@
             </div>
         </nav>
     </header>
- 
+
 
 
     <div class="d-flex" id="wrapper" style="margin-left: 190px">
@@ -90,17 +95,17 @@
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Formularze pacjenta </div>
             <div class="list-group list-group-flush container">
-                <table class="table">
-                    <thead>
-                        <input id="searchPatient" />
-                        <input type="button" id="buttonSearch" />
+                <div class="table">
+                    @*<thead>*@
+                    <div id="searchPatient"></div>
 
-                    </thead>
-                    <tbody id="container">
-                    
-                    </tbody>
 
-                </table>
+                    @*</thead>*@
+                    <div id="container">
+
+                    </div>
+
+                </div>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -156,7 +161,83 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/patient.js"></script>
+    @*<script src="~/js/patient.js"></script>*@
     @RenderSection("Scripts", required: false)
+
+
+    <script>
+        $(document).ready(function () {
+            let val = sessionStorage.getItem("key");
+            if (val != null) {
+                let area = document.getElementById("searchPatient");
+                area.value = sessionStorage.getItem("key")
+                $.ajax({
+                    url: '/Patient/PatientForms/' + area.value,
+                    type: 'Get',
+                    dataType: 'json',
+                    data: { order: 'Call' },
+                    success: function (data) {
+                        console.log(data);
+                        createTable(data);
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+
+                });
+            }
+        });
+
+
+
+
+
+
+        $("#buttonSearch").click(function () {
+            console.log(sessionStorage.getItem("key"))
+            let area = document.getElementById("searchPatient");
+            sessionStorage.setItem('key', area.value);
+
+
+
+            $.ajax({
+                url: '/Patient/PatientForms/' + area.value,
+                type: 'Get',
+                dataType: 'json',
+                data: { order: 'Call' },
+                success: function (data) {
+                    console.log(data);
+                    createTable(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+
+            });
+        })
+
+
+        function createTable(data) {
+            let container = $("#container")[0];
+            console.log("kurwo najgorsza")
+            for (let i = 0; i < data.length; i++) {
+                let ul = document.createElement("ul");
+                let li = document.createElement('li');
+                var form = $(" <button>").attr("class", "btnz").text(data[i].nazwa_formularza).click(function () {
+                    window.location.href = '/Forms/Formularz/' + data[i].idForm;
+                    return false;
+                });
+                form.appendTo(li);
+                ul.appendChild(li);
+
+                container.appendChild(ul);
+            }
+
+
+        }
+
+
+
+    </script>
 </body>
 </html>

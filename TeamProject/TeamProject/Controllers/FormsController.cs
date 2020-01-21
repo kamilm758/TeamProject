@@ -75,7 +75,7 @@ namespace FormGenerator.Controllers
         // w tej metodzie w przyszłości nastąpi wysłanie wpisanych formularzy do bazy danych
         [HttpPost]
 
-        public async Task<IActionResult> Formularz(List<FieldWithValue> fields, int formId)
+        public async Task<IActionResult> Formularz(List<FieldWithValue> fields, int formId, int patientId)
         {
             var user = await GetUser();
             foreach (var field in fields)
@@ -84,7 +84,7 @@ namespace FormGenerator.Controllers
                 {
                     IdForm = formId,
                     IdField = field.Field.Id,
-
+                    IdPatient = patientId,
                     IdUser = user.CustomID
                 };
 

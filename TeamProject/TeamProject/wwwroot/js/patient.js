@@ -51,17 +51,17 @@ $("#buttonSearch").click(function () {
        
 function createTable(data) {
     let container = $("#container")[0];
-
+    console.log("kurwo najgorsza")
     for (let i = 0; i < data.length; i++) {
-        let tr = document.createElement("tr");
-        let td = document.createElement('td');
-        var form = $(" <button>").attr("class", "btn-primary").text(data[i].nazwa_formularza).click(function () {
+        let ul = document.createElement("ul");
+        let li = document.createElement('li');
+        var form = $(" <button>").attr("class", "btnz").text(data[i].nazwa_formularza).click(function () {
          window.location.href = '/Forms/Formularz/'+data[i].idForm;
             return false;
         });
-        form.appendTo(td);
-        tr.appendChild(td);
-        container.appendChild(tr);
+        form.appendTo(li);
+        
+        container.appendChild(ul);
     }
 
 

@@ -163,7 +163,7 @@ namespace TeamProject.Controllers
         }
 
 
-        public async Task<IActionResult> EntranceForm()
+        public async Task<IActionResult> EntranceForm(int id)
         { 
             var entrance_form = _context.EntranceFormFields
                 .Select(t => t.IdField)
@@ -180,15 +180,50 @@ namespace TeamProject.Controllers
                 ans.Name = elem.Name;
                 list.Add(ans);
             }
-
+            ViewBag.bag = id;
             return View(list);
         }
 
         [HttpPost]
-        public ActionResult EntranceForm(List<EntranceFormAnswers> tuple_list)
+        public async Task<ActionResult> EntranceForm(List<EntranceFormAnswers> tuple_list)
         {
             List<EntranceFormAnswers> tuple = tuple_list;
-            return RedirectToAction("Index");
+            var idFields = tuple.Select(t => t.IdField).ToList();
+            var Connections = await _context.EntranceConnections.Where(m=>idFields.Contains(m.IdField)).ToListAsync();
+            var patientForms = await _context.PatientForms.Where(p => p.IdPatient == tuple[0].IdPatient).ToListAsync();
+
+            //foreach(var form in patientForms)
+            //{
+            //    form.agreement = tuple.Where(Tuple => Tuple.IdField == Connections.Where(c => c.IdForm == form.IdForm).Select(t => t.IdField).ToList()[0]).ToList()[0].Answer;
+            //    _context.PatientForms.Update(form);
+            //}
+
+
+            foreach(var connect in Connections)
+            {
+                var form = patientForms.Where(p => p.IdForm == connect.IdForm).ToList()[0];
+                var answer = tuple.Where(t => t.IdField == connect.IdField).ToList()[0];
+                form.agreement = answer.Answer;
+                _context.PatientForms.Update(form);
+
+            }
+
+            
+                
+               
+                //foreach (var form in Connections)
+                //{
+                //    var patientForm =await _context.PatientForms.FirstOrDefaultAsync(p => p.IdForm == form.IdField && p.IdPatient==odpowiedz.IdPatient);
+                //    patientForm.agreement = tuple.Where(t=>t.);
+                //    _context.PatientForms.Update(patientForm);
+                //}
+
+                
+            
+            _context.SaveChanges();
+
+
+            return RedirectToAction("AllPatientForms", "Patient", new { id =tuple.FirstOrDefault().IdPatient });
         }
 
         [HttpGet]

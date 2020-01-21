@@ -7,32 +7,12 @@
 
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPatient)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdPatient)
-                </td>
-
-            </tr>
-        }
-    </tbody>
-</table>
 
 
-<form action="Index" method="post">
-    <input type="text" name="Id" />
-    <input type="submit" value="Submit " />
 
+<form id="formA" action="Patient/Index" method="post">
+    <input name="Id" id="searchPatientv2" />
+    <input type="submit" id="buttonSearch" name="Szukaj" />
 </form>
 
 @TempData["Message"]
@@ -46,8 +26,13 @@
     </button>
 </div>
 
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $('#formA').submit(function () {
+        sessionStorage.setItem('key', document.getElementById("searchPatientv2").value);
 
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    });
+</script>
+
+
