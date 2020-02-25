@@ -269,7 +269,34 @@ namespace FormGenerator.Controllers
         {
             return await _userManager.GetUserAsync(HttpContext.User);
         }
+        //Daniel - api do logów
+        [HttpPost]
+        public async Task<JsonResult> AddLog()
+        {
 
-        
+            string type = Request.Form["type"];
+            string fieldvalue = Request.Form["value"];
+            int formid = Convert.ToInt32(Request.Form["formid"]);
+            int fieldid = Convert.ToInt32(Request.Form["fieldid"]);
+            var user = await GetUser();
+            Logs log = new Logs()
+            {
+                FieldID = fieldid,
+                FormID = formid,
+                date = DateTime.Now,
+                UserID = user.CustomID,
+                AnswerValue = fieldvalue
+            };
+            var oldlog = await _context.Logs.Where(l => l.FieldID == fieldid && l.FormID == formid && l.AnswerValue == fieldvalue).LastOrDefaultAsync();
+            if (oldlog != null)
+            {
+                TimeSpan timeSpan = log.date - oldlog.date;
+                if (timeSpan.TotalMinutes < 5) return Json("Log already exists");
+            }
+            _context.Logs.Add(log);
+            await _context.SaveChangesAsync();
+            return Json(log);
+        }
+
     }
 }
