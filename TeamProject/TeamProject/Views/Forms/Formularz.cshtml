@@ -35,7 +35,7 @@
                             </div>
 
                             <div>
-                                <input class="form-control log" type="@Model[i].Field.Type" asp-for="@Model[i].TextValue" />
+                                <input class="form-control log " type="@Model[i].Field.Type" asp-for="@Model[i].TextValue" />
                             </div>
                             <div>
                                 <span asp-validation-for="@Model[i].Field.Type" class="text-danger"></span>
@@ -52,7 +52,7 @@
                                 <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
                             </div>
                             <div>
-                                <input class="form-control checkmark log" type="@Model[i].Field.Type" asp-for="@Model[i].BoolValue" />
+                                <input class="form-control checkmark log " type="@Model[i].Field.Type" asp-for="@Model[i].BoolValue" />
                             </div>
                             <div>
                                 <span asp-validation-for="@Model[i].Field.Name" class="text-danger"></span>
@@ -67,7 +67,7 @@
                                 <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
                             </div>
                             <div>
-                                <input class="form-control log" id="@Model[i].Field.Id" numInput="true" type="text" asp-for="@Model[i].TextValue" />
+                                <input class="form-control log " id="@Model[i].Field.Id" numInput="true" type="text" asp-for="@Model[i].TextValue" />
                                 <p errorParagraf="true" ErrorId="@Model[i].Field.Id" hidden style="color: red"></p>
                             </div>
 
@@ -83,7 +83,7 @@
                                 <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
                             </div>
                             <div>
-                                <select class="form-control" asp-for="@Model[i].TextValue" style="width:250px;">
+                                <select class="form-control log log-select" asp-for="@Model[i].TextValue" style="width:250px;" >
                                     @foreach(var option in Model[0].options)
                                     {
                                         @if (option.idField == Model[i].Field.Id)
@@ -130,10 +130,27 @@
                 area.value = sessionStorage.getItem("key")
 </script>
 <script type="text/javascript">
+    $(document).ready(function () {
+        let input = document.querySelectorAll('.log-select')
+        input.forEach(logSelectOnStart);
+    })
+    async function logSelectOnStart(element,index,array) {
+        let type = element.type;
+        let fieldvalue = element.value;
+        let formid = @ViewBag.formid;
+        console.log(element)
+        //let fieldid = element.id;
+        await $.post("/addlog", {
+            value: fieldvalue,
+            type: type,
+            formid: formid,
+            fieldid: 0,
+        }).fail(err => console.log(err));
+    }
     //Daniel - logi
     let input = $('.log');
-    console.log(input);
     input.focusout(function () {    
+        console.log(this)
         let type = this.type
         let fieldvalue;
         switch (type) {
@@ -141,16 +158,27 @@
                 if ($(this).prop("checked") == true) {
                     fieldvalue = true;
                 }
-                else fieldvalue = false;
+                else fieldvalue = false;               
                 break;
             case "text":
-                fieldvalue=this.value
-            
+                fieldvalue = this.value              
+                break;
+            case "number":
+                fieldvalue = this.value            
+                break;
+            case "select-one":
+                fieldvalue = this.value                  
+                break;
+         
         }
         
         let formid = @ViewBag.formid;
         let fieldid = this.id
-        console.log(fieldvalue)
+        let log = {
+            FormID: formid,
+            FieldID: fieldid,
+            AnswerValue: fieldvalue
+        }                
         $.post("/addlog", {
             value: fieldvalue,
             type : type,

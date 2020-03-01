@@ -79,6 +79,10 @@ namespace TeamProject
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                       name: "AddLog",
+                       template: "addlog",
+                       defaults: new { controller = "Forms", action = "AddLog" });
             });
             Seed.SeedRoles(roleManager);
             Seed.SeedUsers(userManager);
