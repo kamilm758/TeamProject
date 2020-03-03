@@ -17,14 +17,23 @@ namespace TeamProject.Models.FieldFieldDependencyModels
             _context = ctx;
         }
 
-        public IQueryable<FieldFieldDependency> Dependencies => _context.Dependencies.Include(dep => dep.RelatedFields);
+        public IQueryable<FieldFieldDependency> Dependencies => _context.Dependencies.Include(dep => dep.RelatedFields).Include(dep => dep.ThisField);
 
         public void SaveDependency(FieldFieldDependency dependency)
         {
-            var fieldsToCreate = dependency.RelatedFields.Where(f => f.Id < 0).ToList(); //jeśli jakieś pola zależne nie istnieją->tworzymy je
+            var fieldsToCreate = dependency.RelatedFields.Where(f => f.Id <= 0).ToList(); //jeśli jakieś pola zależne nie istnieją->tworzymy je
             fieldsToCreate.ForEach(currentField => _context.Field.Add(currentField));
             _context.SaveChanges();
-            _context.Dependencies.Add(dependency);
+            var dependencyExist = dependency.IdDependency <= 0 ? false : true;
+
+            if (dependencyExist)
+            {
+                _context.Dependencies.Update(dependency);
+            }
+            else
+            {
+                _context.Dependencies.Add(dependency);
+            }
             _context.SaveChanges();
         }
     }
