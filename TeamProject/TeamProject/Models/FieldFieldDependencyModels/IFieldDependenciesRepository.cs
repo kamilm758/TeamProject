@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FormGenerator.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,5 +11,6 @@ namespace TeamProject.Models.FieldFieldDependencyModels
     {
         IQueryable<FieldFieldDependency> Dependencies { get; }
         void SaveDependency(FieldFieldDependency dependency);
+        IEnumerable<Field> GetAllDependFields();
     }
 }

@@ -36,5 +36,15 @@ namespace TeamProject.Models.FieldFieldDependencyModels
             }
             _context.SaveChanges();
         }
+        
+        public IEnumerable<Field> GetAllDependFields()
+        {
+            List<Field> result = new List<Field>();
+            _context.Dependencies.ToList().ForEach(dep =>
+            {
+                dep.RelatedFields.ForEach(field => result.Add(field));
+            });
+            return result;
+        }
     }
 }
