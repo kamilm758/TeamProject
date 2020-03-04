@@ -232,12 +232,16 @@ namespace TeamProject.Controllers
         public IActionResult AddConnection (int id)
         {
             ViewBag.bag = id;
+            List<Forms> listallforms = _context.Forms.ToList();
+            ViewBag.listforms = listallforms;
             return View(_context.EntranceConnections.Where(m => m.IdField == id).ToList());
         }
 
         [HttpPost]
         public async Task<IActionResult> AddConnection([Bind("Id,IdField,IdForm")] EntranceConnections @entranceConnections)
         {
+            List<Forms> listallforms = _context.Forms.ToList();
+            ViewBag.listforms = listallforms;
             if (ModelState.IsValid)
             {
                 _context.EntranceConnections.Add(@entranceConnections);
