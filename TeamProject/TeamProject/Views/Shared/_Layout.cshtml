@@ -7,12 +7,14 @@
     <title>@ViewData["Title"] - FormGenerator</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
 <body>
     <style>
         body {
             margin-left: 50px;
             overflow-x: hidden;
+            
         }
 
         #grid-con {
@@ -26,7 +28,8 @@
             -moz-transition: margin .25s ease-out;
             -o-transition: margin .25s ease-out;
             transition: margin .25s ease-out;
-            box-shadow:3px 3px 6px black;
+            box-shadow: 3px 3px 6px black;
+            background-color: #8bbabb;
         }
 
             #sidebar-wrapper .sidebar-heading {
@@ -61,10 +64,10 @@
         }
     </style>
 
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header >
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-#6c7b95 border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Forms" asp-action="Index">Generator Formularzy</a>
+
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -72,14 +75,18 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav mr-auto">
 
                         <li class="nav-item">
-                            <a class="nev-link" style="color:#66BB6A;" asp-area="" asp-controller="Forms" asp-action="ListaFormularzy">Formularze</a>
+                            <a class="nav-link text-dark btnx" asp-area="" asp-controller="Forms" asp-action="Index">Generator Formularzy </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nev-link" style="color:#66BB6A; padding-left:10px;" asp-area="" asp-controller="UserAnswerLists" asp-action="AnswerList">Wizualizator</a>
+                            <a class="nav-link text-dark btnx"asp-area="" asp-controller="Forms" asp-action="ListaFormularzy">Formularze</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark btnx" asp-area="" asp-controller="UserAnswerLists" asp-action="AnswerList">Wizualizator</a>
                         </li>
                     </ul>
                 </div>
@@ -92,7 +99,7 @@
     <div class="d-flex" id="wrapper" style="margin-left: 190px">
 
         <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="bg-#8bbabb border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Formularze pacjenta </div>
             <div class="list-group list-group-flush container">
                 <div class="table">

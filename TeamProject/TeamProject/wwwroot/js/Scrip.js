@@ -4,7 +4,7 @@ var ostatni;
 $(document).ready(function () {
 
     let parentButton = document.getElementById("buton");
-    var addCategory = $(" <button>").attr("class", "btn").text("dodaj nową kategorię główną").css("margin-bottom", "10px").css("backgroundColor", "#fafae7").click(function () {
+    var addCategory = $(" <button>").attr("class", "btn btn-light").text("Dodaj nową kategorię główną").css("margin-bottom", "10px").css("backgroundColor", "#B4C5CF").css("text-align","center").click(function () {
        
         window.location.href = '/Category/CreateParentCategory';
         return false;
@@ -208,7 +208,7 @@ function wyswietlFormularze(id) {
                 for (let i = 0; i < data.length; i++) {
                  
                     let element = document.createElement("div");
-                    var button = $("<button>").attr("class", "btn").text(data[i].name).css("margin-bottom", "10px").click(function () {
+                    var button = $("<button>").attr("class", "btn").text(data[i].name).css("margin-left", "200px").css("margin-bottom", "10px").css("margin-right","5px").click(function () {
                         let listContents = $("#Drzewo").html();
                         sessionStorage.setItem('todoList', JSON.stringify(listContents));
                         window.location.href = '/Forms/Formularz/' + data[i].id;
@@ -221,7 +221,7 @@ function wyswietlFormularze(id) {
                         return false;
                     });
                     button.appendTo(parent);
-                    var buttonShow = $("<button>").attr("class", "btn").text("wyświetl wyniki formularza").css("margin-bottom", "10px").css("backgroundColor", "#d2d2d2").click(function () {
+                    var buttonShow = $("<button>").attr("class", "btn").text("wyświetl wyniki formularza").css("margin-bottom", "10px").css("margin-right","5px").css("backgroundColor", "#d2d2d2").click(function () {
                         let listContents = $("#Drzewo").html();
                         sessionStorage.setItem('todoList', JSON.stringify(listContents));
                         window.location.href = '/UserAnswerLists/AnswerListPost/' + data[i].id;
