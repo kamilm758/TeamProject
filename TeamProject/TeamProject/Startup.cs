@@ -76,16 +76,19 @@ namespace TeamProject
             app.UseSession();
             app.UseAuthentication();
 
+         
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Forms}/{action=Index}");
                 routes.MapRoute(
-                       name: "AddLog",
-                       template: "addlog",
-                       defaults: new { controller = "Forms", action = "AddLog" });
+                    name: "",
+                    template: "{controller}/{action}/{id?}");
             });
+
+
+
             Seed.SeedRoles(roleManager);
             Seed.SeedUsers(userManager);
 
