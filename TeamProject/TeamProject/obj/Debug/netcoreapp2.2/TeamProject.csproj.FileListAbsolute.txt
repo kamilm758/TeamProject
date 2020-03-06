@@ -223,7 +223,6 @@ C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProjec
 C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\TeamProject.pdb
 C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\TeamProject.Views.dll
 C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\TeamProject.Views.pdb
-C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.csprojAssemblyReference.cache
 C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.RazorAssemblyInfo.cache
 C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.RazorAssemblyInfo.cs
 C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.AssemblyInfoInputs.cache
@@ -630,3 +629,6 @@ C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProjec
 C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\EntranceForm.cshtml.g.cs
 C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\EntranceFormFields\Index.cshtml.g.cs
 C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\Patient\Index.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Views\FieldDependency\Index.cshtml.g.cs
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\libman.json
+C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\TeamProject.csprojAssemblyReference.cache

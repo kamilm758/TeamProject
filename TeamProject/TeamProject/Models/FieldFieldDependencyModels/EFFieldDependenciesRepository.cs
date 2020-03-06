@@ -40,7 +40,7 @@ namespace TeamProject.Models.FieldFieldDependencyModels
         public IEnumerable<Field> GetAllDependFields()
         {
             List<Field> result = new List<Field>();
-            _context.Dependencies.ToList().ForEach(dep =>
+            Dependencies.ToList().ForEach(dep =>
             {
                 dep.RelatedFields.ForEach(field => result.Add(field));
             });

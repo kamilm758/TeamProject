@@ -43,8 +43,13 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
+#line 7 "C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\Views\_ViewImports.cshtml"
+using TeamProject.DTOs.FieldDependency;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5ff5cb91f69ee95c1539bf59ea88e0775f89689d", @"/Views/Forms/EdycjaFormularza.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c52267094b2868e58b54bc0760e92b7d1c3076a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8717c71a69157e4a5de12aa566aa6c416f06c6e3", @"/Views/_ViewImports.cshtml")]
     public class Views_Forms_EdycjaFormularza : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<FormContainsField>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("color:#81C784;  font-weight:700"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -101,7 +106,7 @@ using FormGenerator.Models.Modele_pomocnicze;
             WriteLiteral("\r\n<!DOCTYPE html>\r\n<html>\r\n");
             EndContext();
             BeginContext(93, 800, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d9806", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d9997", async() => {
                 BeginContext(99, 787, true);
                 WriteLiteral(@"
     <meta name=""viewport"" content=""width=device-width"" />
@@ -157,17 +162,17 @@ using FormGenerator.Models.Modele_pomocnicze;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(895, 2520, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d11777", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d11968", async() => {
                 BeginContext(901, 6, true);
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(907, 2427, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d12165", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d12356", async() => {
                     BeginContext(957, 28, true);
                     WriteLiteral("\r\n        <p >\r\n            ");
                     EndContext();
                     BeginContext(985, 152, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d12597", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d12788", async() => {
                         BeginContext(1118, 15, true);
                         WriteLiteral("Dodaj nowe pola");
                         EndContext();
@@ -207,7 +212,7 @@ using FormGenerator.Models.Modele_pomocnicze;
                     WriteLiteral("\r\n        </p>\r\n        <p>\r\n            ");
                     EndContext();
                     BeginContext(1178, 52, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d15871", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d16062", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -259,7 +264,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                     WriteLiteral("                    <tr>\r\n                        <td>\r\n                            ");
                     EndContext();
                     BeginContext(1843, 96, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d18580", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d18771", async() => {
                         BeginContext(1906, 25, false);
 #line 74 "C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\Views\Forms\EdycjaFormularza.cshtml"
                                                                                      Write(Model.fields[i].NameField);
@@ -290,7 +295,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                     WriteLiteral("\r\n                            ");
                     EndContext();
                     BeginContext(1969, 46, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d20809", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d21000", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -316,7 +321,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                     WriteLiteral("\r\n                            ");
                     EndContext();
                     BeginContext(2045, 44, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d22898", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d23089", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -342,12 +347,12 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                     WriteLiteral("\r\n                        </td>\r\n\r\n                        <td>\r\n                            <label>Czy formularz ma zawierać pole?</label>\r\n                            ");
                     EndContext();
                     BeginContext(2258, 289, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d25134", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d25325", async() => {
                         BeginContext(2300, 34, true);
                         WriteLiteral("\r\n                                ");
                         EndContext();
                         BeginContext(2334, 39, false);
-                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d25593", async() => {
+                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d25784", async() => {
                             BeginContext(2351, 13, true);
                             WriteLiteral("Wybierz opcję");
                             EndContext();
@@ -369,7 +374,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                         WriteLiteral("\r\n                                ");
                         EndContext();
                         BeginContext(2407, 33, false);
-                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d27275", async() => {
+                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d27466", async() => {
                             BeginContext(2428, 3, true);
                             WriteLiteral("Tak");
                             EndContext();
@@ -391,7 +396,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                         WriteLiteral("\r\n                                ");
                         EndContext();
                         BeginContext(2474, 34, false);
-                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d28946", async() => {
+                        __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d29137", async() => {
                             BeginContext(2496, 3, true);
                             WriteLiteral("Nie");
                             EndContext();
@@ -434,7 +439,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                     WriteLiteral("\r\n                        </td>\r\n                        <td>\r\n                            ");
                     EndContext();
                     BeginContext(2638, 139, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d32165", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d32356", async() => {
                         BeginContext(2762, 11, true);
                         WriteLiteral("Edycja pola");
                         EndContext();
@@ -480,7 +485,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                     WriteLiteral(" |\r\n                            ");
                     EndContext();
                     BeginContext(2809, 143, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d35918", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d36109", async() => {
                         BeginContext(2935, 13, true);
                         WriteLiteral("Usuwanie pola");
                         EndContext();
@@ -526,7 +531,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                     WriteLiteral(" |\r\n                            ");
                     EndContext();
                     BeginContext(2984, 145, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d39679", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ff5cb91f69ee95c1539bf59ea88e0775f89689d39870", async() => {
                         BeginContext(3111, 14, true);
                         WriteLiteral("Szczegóły pola");
                         EndContext();

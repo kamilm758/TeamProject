@@ -28,5 +28,10 @@ namespace TeamProject.Models.FieldDependencyModels
             ActivationValue = activationValue;
         }
         public FieldFieldDependency() { }
+
+        public void Build()
+        {
+            
+        }
     }
 }

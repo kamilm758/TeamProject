@@ -43,8 +43,13 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
+#line 7 "C:\Users\kamil\Desktop\GitRepos\FormGenerator\TeamProject\TeamProject\TeamProject\Views\_ViewImports.cshtml"
+using TeamProject.DTOs.FieldDependency;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d3ba927f7db4ece4b08b8f289cf8713e233b7acd", @"/Views/Forms/ListaFormularzy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c52267094b2868e58b54bc0760e92b7d1c3076a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8717c71a69157e4a5de12aa566aa6c416f06c6e3", @"/Views/_ViewImports.cshtml")]
     public class Views_Forms_ListaFormularzy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<FormGenerator.Models.Forms>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("color:#81C784;  font-weight:700"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -115,7 +120,7 @@ using FormGenerator.Models.Modele_pomocnicze;
     ");
             EndContext();
             BeginContext(575, 94, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3ba927f7db4ece4b08b8f289cf8713e233b7acd6475", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3ba927f7db4ece4b08b8f289cf8713e233b7acd6666", async() => {
                 BeginContext(638, 27, true);
                 WriteLiteral("Stwórz nowy pusty formularz");
                 EndContext();
@@ -187,7 +192,7 @@ using FormGenerator.Models.Modele_pomocnicze;
             WriteLiteral("\r\n                </td>\r\n\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(1449, 76, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3ba927f7db4ece4b08b8f289cf8713e233b7acd10471", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3ba927f7db4ece4b08b8f289cf8713e233b7acd10662", async() => {
                 BeginContext(1506, 15, true);
                 WriteLiteral("Dodaj/Usuń pole");
                 EndContext();
@@ -222,7 +227,7 @@ using FormGenerator.Models.Modele_pomocnicze;
             WriteLiteral(" |\r\n                    ");
             EndContext();
             BeginContext(1549, 72, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3ba927f7db4ece4b08b8f289cf8713e233b7acd12886", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3ba927f7db4ece4b08b8f289cf8713e233b7acd13077", async() => {
                 BeginContext(1599, 18, true);
                 WriteLiteral("Wyświetl formularz");
                 EndContext();
@@ -257,7 +262,7 @@ using FormGenerator.Models.Modele_pomocnicze;
             WriteLiteral(" |\r\n                    ");
             EndContext();
             BeginContext(1645, 65, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3ba927f7db4ece4b08b8f289cf8713e233b7acd15297", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3ba927f7db4ece4b08b8f289cf8713e233b7acd15488", async() => {
                 BeginContext(1692, 14, true);
                 WriteLiteral("Usuń formularz");
                 EndContext();

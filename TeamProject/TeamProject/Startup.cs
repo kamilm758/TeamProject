@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FormGenerator.Models;
 using TeamProject.Models;
 using TeamProject.Models.FieldFieldDependencyModels;
+using AutoMapper;
 
 namespace TeamProject
 {
@@ -49,10 +50,11 @@ namespace TeamProject
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             services.AddScoped<FormGeneratorContext>();
-            services.AddTransient<IFieldDependenciesRepository, EFFieldDependenciesRepository>();
+            services.AddScoped<IFieldDependenciesRepository, EFFieldDependenciesRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDistributedMemoryCache();
             services.AddSession();
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,20 +74,24 @@ namespace TeamProject
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
             app.UseSession();
             app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "",
+                    template: "DependencyCreator",
+                    defaults: new { controller = "FieldDependency", action = "Index" });
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(
+                routes.MapRoute( 
                        name: "AddLog",
                        template: "addlog",
                        defaults: new { controller = "Forms", action = "AddLog" });
             });
+            app.UseCookiePolicy();
             Seed.SeedRoles(roleManager);
             Seed.SeedUsers(userManager);
 
