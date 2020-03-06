@@ -125,8 +125,19 @@ namespace FormGenerator.Controllers
         public async Task<IActionResult> Create([Bind("Id,Name,id_Category,Parent")] Forms forms)
         {
             if (ModelState.IsValid)
-            {
+            {               
                 _context.Add(forms);
+                await _context.SaveChangesAsync();
+                List<Patient> patients = await _context.Patients.ToListAsync();
+                foreach (var patient in patients)
+                {
+                    _context.PatientForms.Add(new PatientForms()
+                    {
+                        IdPatient = patient.IdPatient,
+                        IdForm = forms.Id,
+                        agreement = false
+                    });
+                }
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Forms");
             }

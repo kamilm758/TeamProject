@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\Projekt X\\03.03\\TeamProject\\TeamProject\\TeamProject\\TeamProject.csproj": {}
+    "C:\\Users\\User\\Documents\\Repositories\\TeamProject\\TeamProject\\TeamProject\\TeamProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Desktop\\Projekt X\\03.03\\TeamProject\\TeamProject\\TeamProject\\TeamProject.csproj": {
+    "C:\\Users\\User\\Documents\\Repositories\\TeamProject\\TeamProject\\TeamProject\\TeamProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\Projekt X\\03.03\\TeamProject\\TeamProject\\TeamProject\\TeamProject.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\Repositories\\TeamProject\\TeamProject\\TeamProject\\TeamProject.csproj",
         "projectName": "TeamProject",
-        "projectPath": "C:\\Users\\user\\Desktop\\Projekt X\\03.03\\TeamProject\\TeamProject\\TeamProject\\TeamProject.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\Projekt X\\03.03\\TeamProject\\TeamProject\\TeamProject\\obj\\",
+        "projectPath": "C:\\Users\\User\\Documents\\Repositories\\TeamProject\\TeamProject\\TeamProject\\TeamProject.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\Repositories\\TeamProject\\TeamProject\\TeamProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
