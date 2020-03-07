@@ -1,4 +1,5 @@
 ﻿using FormGenerator.Models;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace TeamProject.DTOs.FieldDependency
         public void UpdateIndependentFieldsList(IFieldDependenciesRepository repository, FormGeneratorContext context)
         {
             var allDependFields = repository.GetAllDependFields();
-            var allIndependedFields = context.Field
+            var allIndependedFields = context.Field.AsNoTracking()
                 .ToList()
                 .Where(f=> {
                     return (!allDependFields.Contains(f)) && (f.Name!=SuperiorFieldName) 
@@ -40,7 +41,7 @@ namespace TeamProject.DTOs.FieldDependency
             }
         }
 
-        public string Valid()
+        public string Valid(FormGeneratorContext _context)
         {
             if(DependencyType=="FieldDuplication" && !int.TryParse(ActivationValue,out _))
             {
@@ -50,6 +51,19 @@ namespace TeamProject.DTOs.FieldDependency
             if (RelatedFields.FirstOrDefault(f => f.Name == SuperiorFieldName) != null)
             {
                 return "Pole nadrzędne nie może być polem podrzędnym w jednej relacji!";
+            }
+            if (_context.Field.AsNoTracking().FirstOrDefault(f => f.Name == this.CurrentFieldName) == null
+                && this.DependencyType== "FieldVisibly")
+            {
+                return "Wpisane pole zależne nie istnieje w systemie!";
+            }
+            if (_context.Field.AsNoTracking().FirstOrDefault(f => f.Name == this.SuperiorFieldName) == null)
+            {
+                return "Wpisane pole nadrzędne nie istnieje";
+            }
+            if(this.RelatedFields?.Count!=0 && this.DependencyType== "FieldDuplication")
+            {
+                return "Niezany błąd. Spróbuj jeszcze raz";
             }
             return null;
         }

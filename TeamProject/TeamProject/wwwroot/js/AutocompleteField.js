@@ -30,9 +30,19 @@
     $("#DependencyType").change(function (e) {
         if (e.target.value == "FieldVisibly") {
             $("#ActivationValueLabel").text("Podaj wartość aktywującą zależność:");
+            $("#AddDependedField").show();
+            $("#RelatedFieldsTable").show();
+            $("#CurrentFieldName").autocomplete({
+                source: allIndependentFieldsNames
+            });
         }
         else {
             $("#ActivationValueLabel").text("Podaj maksymalną liczbę którą może przyjmować pole:");
+            $("#AddDependedField").hide();
+            $("#RelatedFieldsTable").hide();
+            $("#CurrentFieldName").autocomplete({
+                source: null
+            });
         }
     });
 });

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FormGenerator.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TeamProject.DTOs.FieldDependency;
 using TeamProject.ExtensionMethods;
 using TeamProject.Models.FieldDependencyModels;
@@ -35,7 +36,12 @@ namespace TeamProject.Controllers
         [HttpPost]
         public IActionResult AddFieldToRelatedListPOST(CreateDependencyDTO createDependency)
         {
-            createDependency.AddRelatedField(_context.Field.FirstOrDefault<Field>(f => f.Name == createDependency.CurrentFieldName));
+            ViewBag.Error = createDependency.Valid(_context);
+            if (ViewBag.Error != null)
+            {
+                return View("Index",createDependency);
+            }
+            createDependency.AddRelatedField(_context.Field.AsNoTracking().FirstOrDefault<Field>(f => f.Name == createDependency.CurrentFieldName));
             createDependency.UpdateIndependentFieldsList(_fieldDependenciesRepo, _context);
             TempData.Put<CreateDependencyDTO>("CreateDependencyFromPostToGet", createDependency);
             return RedirectToAction(nameof(AddFieldToRelatedListGet));
@@ -50,13 +56,14 @@ namespace TeamProject.Controllers
         [HttpPost]
         public IActionResult CreateDependency(CreateDependencyDTO createDependency)
         {
-            ViewBag.Error = createDependency.Valid();
+            ViewBag.Error = createDependency.Valid(_context);
             if (ViewBag.Error != null)
             {
                 return View("Index", createDependency);
             }
             var dependency = _mapper.Map<FieldFieldDependency>(createDependency);
-            dependency.Build();
+            dependency.Build(createDependency,_context);
+            _fieldDependenciesRepo.SaveDependency(dependency);
             return View();
         }
     }

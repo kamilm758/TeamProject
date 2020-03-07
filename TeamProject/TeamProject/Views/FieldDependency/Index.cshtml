@@ -23,7 +23,7 @@
              <label id="ActivationValueLabel" for="ActivationValue">Podaj wartość aktywującą zależność:</label>
     <input asp-for="@Model.ActivationValue" />
     <br />
-    <table class="table table-striped">
+    <table class="table table-striped" id="RelatedFieldsTable">
         <thead>
             <tr>
                 <th scope="col">Nazwa pola</th>
@@ -34,8 +34,8 @@
             @foreach (var item in Model.RelatedFields)
             {
                 <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Type</td>
+                    <td>@item?.Name</td>
+                    <td>@item?.Type</td>
                 </tr>
             }
         </tbody>
@@ -45,15 +45,18 @@
     <input asp-for="@Model.CurrentFieldName" name="CurrentFieldName" />
     <br />
     <button id="AddDependedField" type="submit">Dodaj Pole</button><br />
-    <button type="submit" formaction="CreateDependency">Stwórz zależność</button>
+    <button type="submit" asp-action="CreateDependency">Stwórz zależność</button>
 
     @* Hidden fields *@
     <input asp-for="@Model.AllIndependentFieldsName" hidden />
     @for (var i = 0; i < Model.RelatedFields?.Count; i++)
     {
+        if (Model.RelatedFields[i] != null)
+        {
         <input hidden asp-for="@Model.RelatedFields[i].Id" />
         <input hidden asp-for="@Model.RelatedFields[i].Name" />
         <input hidden asp-for="@Model.RelatedFields[i].Type" />
+        }
     }
     @* Hidden fields *@
 

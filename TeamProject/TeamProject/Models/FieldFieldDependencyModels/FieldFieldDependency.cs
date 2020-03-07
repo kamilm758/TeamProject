@@ -1,10 +1,12 @@
 ﻿using FormGenerator.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using TeamProject.DTOs.FieldDependency;
 using TeamProject.Infrastructure.Enums;
 
 namespace TeamProject.Models.FieldDependencyModels
@@ -29,9 +31,18 @@ namespace TeamProject.Models.FieldDependencyModels
         }
         public FieldFieldDependency() { }
 
-        public void Build()
+        public void Build(CreateDependencyDTO createDependency, FormGeneratorContext _context)
         {
-            
+            if(createDependency.DependencyType== "FieldDuplication")
+            {
+                for(int i = 0; i < Convert.ToInt32(createDependency.ActivationValue); i++)
+                {
+                    Field field = new Field { Name = createDependency.CurrentFieldName + $" {i + 1}", Type = "text" };
+                    this.RelatedFields.Add(field);
+                }
+            }
+            this.ThisField = _context.Field.AsNoTracking().FirstOrDefault(f => f.Name == this.ThisField.Name);
+            this.Id = this.ThisField.Id;
         }
     }
 }
