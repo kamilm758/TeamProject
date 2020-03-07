@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using TeamProject.Models.FormGeneratorModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TeamProject.Controllers
 {
+    [Authorize]
     public class PatientController : Controller
     {
 

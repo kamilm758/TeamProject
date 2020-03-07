@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FormGenerator.Models;
 using FormGenerator.Models.Modele_pomocnicze;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TeamProject.Controllers
 {
+    [Authorize]
     public class EntranceFormFieldsController : Controller
     {
         private readonly FormGeneratorContext _context;
