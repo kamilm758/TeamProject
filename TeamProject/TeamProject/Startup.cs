@@ -72,7 +72,7 @@ namespace TeamProject
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+           
             app.UseSession();
             app.UseAuthentication();
 
@@ -87,7 +87,7 @@ namespace TeamProject
                     template: "{controller}/{action}/{id?}");
             });
 
-
+            app.UseCookiePolicy();
 
             Seed.SeedRoles(roleManager);
             Seed.SeedUsers(userManager);

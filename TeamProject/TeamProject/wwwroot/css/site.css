@@ -128,10 +128,12 @@ table.dataTable thead .sorting_desc_disabled:before {
 
 
 .btnx {
-    background-color:#c7f0db;
-    
-    border: 1px solid black;
+    background-color: #c7f0db;
+    border: 1px solid grey;
     margin: 3px;
+    font-family: sans-serif;
+    font-weight: 470;
+    border-radius: 4px
 }
 
 .rodzic btn1 {
@@ -139,7 +141,7 @@ table.dataTable thead .sorting_desc_disabled:before {
 }
 
 .btnx:hover {
-    background-color: #3e8e41;
+    background-color: #8bbabb;
 }
 
 
@@ -162,7 +164,9 @@ table.dataTable thead .sorting_desc_disabled:before {
     margin-left:auto;
     margin-right:auto;
     font-size:18px;
+
 }
+
 #buton
 {
     margin:20px 0px 0px 20px;
@@ -174,5 +178,34 @@ header {
 }
 
 .mainPage {
+    background-color: #6c7b95;
+}
+
+.btn1{
+    margin-left:10px;
+}
+
+.btn{
+    color:white;
+    min-height:40px;
+    min-width:30px;
+}
+
+
+.table {
+    background-color: #6c7b95;
+}
+
+    .table tbody tr:hover {
+        background-color: #8bbabb;
+    }
+
+#wynik{
+    margin-right:auto;
+    margin-left:auto;
+
+}
+
+.mojprofil {
     background-color: #6c7b95;
 }
