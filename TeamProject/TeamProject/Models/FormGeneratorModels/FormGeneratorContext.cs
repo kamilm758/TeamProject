@@ -9,7 +9,6 @@ using TeamProject.Models.Modele_pomocnicze;
 using FormGenerator.Models.Modele_pomocnicze;
 using TeamProject.Models.NewTypeAndValidation;
 using FormGenerator.Models;
-using TeamProject.Models.FieldDependencyModels;
 
 namespace FormGenerator.Models
 {
@@ -33,7 +32,7 @@ namespace FormGenerator.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            //modelBuilder.Entity<PatientForms>().Property(b => b.agreement).HasDefaultValue(false);
         }
         public DbSet<Logs> Logs { get; set; }
         public DbSet<Patient> Patients { get; set; }
@@ -51,7 +50,6 @@ namespace FormGenerator.Models
         public DbSet<Validation> Validations { get; set; }
         public DbSet<EntranceConnections> EntranceConnections { get; set; }
         public DbSet<FormGenerator.Models.EntranceFormFields> EntranceFormFields { get; set; }
-        public DbSet<FieldFieldDependency> Dependencies { get; set; }
         
     }
 }

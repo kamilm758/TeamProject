@@ -16,7 +16,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FormGenerator.Models;
 using TeamProject.Models;
-using TeamProject.Models.FieldFieldDependencyModels;
 
 namespace TeamProject
 {
@@ -49,7 +48,6 @@ namespace TeamProject
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             services.AddScoped<FormGeneratorContext>();
-            services.AddTransient<IFieldDependenciesRepository, EFFieldDependenciesRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDistributedMemoryCache();
             services.AddSession();
