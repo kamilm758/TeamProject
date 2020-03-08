@@ -43,8 +43,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"59231196c52f379173eb7b4e32ea45cfa69b0315", @"/Views/Fields/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c52267094b2868e58b54bc0760e92b7d1c3076a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d2cac9fb5915fc57c9a9c449949ecdd99cda02f1", @"/Views/Fields/Index.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a5dea779c6a2ce3bf4277662fd9bb8b844e794fa", @"/Views/_ViewImports.cshtml")]
     public class Views_Fields_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<FormGenerator.Models.Field>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("color:#81C784;  font-weight:700"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -71,8 +71,8 @@ using FormGenerator.Models.Modele_pomocnicze;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            BeginContext(48, 2, true);
-            WriteLiteral("\r\n");
+            BeginContext(47, 1, true);
+            WriteLiteral("\n");
             EndContext();
 #line 3 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Fields\Index.cshtml"
   
@@ -80,7 +80,7 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(91, 473, true);
+            BeginContext(86, 442, true);
             WriteLiteral(@"    <script>
         sessionStorage.removeItem('key');
     </script>
@@ -134,8 +134,8 @@ using FormGenerator.Models.Modele_pomocnicze;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             EndContext();
-            BeginContext(647, 240, true);
-            WriteLiteral("\r\n</p>\r\n<table class=\"table\">\r\n    <thead>\r\n        <tr>\r\n            <th>\r\n               Nazwa\r\n            </th>\r\n            <th>\r\n                Typ\r\n            </th>\r\n            <th></th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n");
+            BeginContext(611, 225, true);
+            WriteLiteral("\n</p>\n<table class=\"table\">\n    <thead>\n        <tr>\n            <th>\n               Nazwa\n            </th>\n            <th>\n                Typ\n            </th>\n            <th></th>\n        </tr>\n    </thead>\n    <tbody>\n");
             EndContext();
 #line 52 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Fields\Index.cshtml"
          foreach (var item in Model)
@@ -143,8 +143,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(936, 60, true);
-            WriteLiteral("            <tr>\r\n                <td>\r\n                    ");
+            BeginContext(883, 58, true);
+            WriteLiteral("            <tr>\n                <td>\n                    ");
             EndContext();
             BeginContext(997, 39, false);
 #line 56 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Fields\Index.cshtml"
@@ -153,8 +153,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(1036, 67, true);
-            WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
+            BeginContext(981, 64, true);
+            WriteLiteral("\n                </td>\n                <td>\n                    ");
             EndContext();
             BeginContext(1104, 39, false);
 #line 59 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Fields\Index.cshtml"
@@ -163,16 +163,16 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(1143, 60, true);
-            WriteLiteral("\r\n                </td>\r\n              \r\n            </tr>\r\n");
+            BeginContext(1085, 56, true);
+            WriteLiteral("\n                </td>\n              \n            </tr>\n");
             EndContext();
 #line 63 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Fields\Index.cshtml"
         }
 
 #line default
 #line hidden
-            BeginContext(1214, 24, true);
-            WriteLiteral("    </tbody>\r\n</table>\r\n");
+            BeginContext(1151, 22, true);
+            WriteLiteral("    </tbody>\n</table>\n");
             EndContext();
         }
         #pragma warning restore 1998

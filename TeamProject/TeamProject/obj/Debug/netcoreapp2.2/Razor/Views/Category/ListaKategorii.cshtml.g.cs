@@ -43,15 +43,15 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e7612ef0f3cdbc3dad4a521461b9eeafe7acfc97", @"/Views/Category/ListaKategorii.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c52267094b2868e58b54bc0760e92b7d1c3076a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8d38b24eada272371173da2123442b06bb3a0486", @"/Views/Category/ListaKategorii.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a5dea779c6a2ce3bf4277662fd9bb8b844e794fa", @"/Views/_ViewImports.cshtml")]
     public class Views_Category_ListaKategorii : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<FormGenerator.Models.Category>>
     {
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            BeginContext(51, 2, true);
-            WriteLiteral("\r\n");
+            BeginContext(50, 1, true);
+            WriteLiteral("\n");
             EndContext();
 #line 3 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Category\ListaKategorii.cshtml"
   
@@ -59,8 +59,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(104, 116, true);
-            WriteLiteral("\r\n<h1>Lista Kategorii</h1>\r\n\r\n\r\n<table class=\"table\">\r\n    <thead>\r\n        <tr>\r\n            <th>\r\n                ");
+            BeginContext(99, 108, true);
+            WriteLiteral("\n<h1>Lista Kategorii</h1>\n\n\n<table class=\"table\">\n    <thead>\n        <tr>\n            <th>\n                ");
             EndContext();
             BeginContext(221, 38, false);
 #line 14 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Category\ListaKategorii.cshtml"
@@ -69,8 +69,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(259, 55, true);
-            WriteLiteral("\r\n            </th>\r\n            <th>\r\n                ");
+            BeginContext(246, 52, true);
+            WriteLiteral("\n            </th>\n            <th>\n                ");
             EndContext();
             BeginContext(315, 40, false);
 #line 17 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Category\ListaKategorii.cshtml"
@@ -79,8 +79,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(355, 55, true);
-            WriteLiteral("\r\n            </th>\r\n            <th>\r\n                ");
+            BeginContext(339, 52, true);
+            WriteLiteral("\n            </th>\n            <th>\n                ");
             EndContext();
             BeginContext(411, 42, false);
 #line 20 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Category\ListaKategorii.cshtml"
@@ -89,8 +89,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(453, 86, true);
-            WriteLiteral("\r\n            </th>\r\n            <th></th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n");
+            BeginContext(434, 80, true);
+            WriteLiteral("\n            </th>\n            <th></th>\n        </tr>\n    </thead>\n    <tbody>\n");
             EndContext();
 #line 26 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Category\ListaKategorii.cshtml"
          foreach (var item in Model)
@@ -98,8 +98,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(588, 60, true);
-            WriteLiteral("            <tr>\r\n                <td>\r\n                    ");
+            BeginContext(561, 58, true);
+            WriteLiteral("            <tr>\n                <td>\n                    ");
             EndContext();
             BeginContext(649, 37, false);
 #line 30 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Category\ListaKategorii.cshtml"
@@ -108,8 +108,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(686, 67, true);
-            WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
+            BeginContext(657, 64, true);
+            WriteLiteral("\n                </td>\n                <td>\n                    ");
             EndContext();
             BeginContext(754, 39, false);
 #line 33 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Category\ListaKategorii.cshtml"
@@ -118,8 +118,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(793, 67, true);
-            WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
+            BeginContext(761, 64, true);
+            WriteLiteral("\n                </td>\n                <td>\n                    ");
             EndContext();
             BeginContext(861, 41, false);
 #line 36 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Category\ListaKategorii.cshtml"
@@ -128,16 +128,16 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(902, 111, true);
-            WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    \r\n                </td>\r\n            </tr>\r\n");
+            BeginContext(867, 105, true);
+            WriteLiteral("\n                </td>\n                <td>\n                    \n                </td>\n            </tr>\n");
             EndContext();
 #line 42 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Category\ListaKategorii.cshtml"
         }
 
 #line default
 #line hidden
-            BeginContext(1024, 24, true);
-            WriteLiteral("    </tbody>\r\n</table>\r\n");
+            BeginContext(982, 22, true);
+            WriteLiteral("    </tbody>\n</table>\n");
             EndContext();
         }
         #pragma warning restore 1998

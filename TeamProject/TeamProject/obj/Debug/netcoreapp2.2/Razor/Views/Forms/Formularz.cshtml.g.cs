@@ -813,7 +813,8 @@ AddHtmlAttributeValue("", 3352, Model[i].Field.Id, 3352, 18, false);
             case ""select-one"":
                 fieldvalue = this.value                  
                 break;
-         ");
+         
+");
             WriteLiteral("\n        }\r\n        \r\n        let formid = ");
             EndContext();
             BeginContext(6268, 14, false);

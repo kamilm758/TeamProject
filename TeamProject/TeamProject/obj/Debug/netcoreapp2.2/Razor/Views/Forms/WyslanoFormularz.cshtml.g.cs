@@ -43,8 +43,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"096ba3d0b53689ae0ed7cbd88cb5a7ec04c8cb74", @"/Views/Forms/WyslanoFormularz.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c52267094b2868e58b54bc0760e92b7d1c3076a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d3fd0c55e6534bd532fa5d79088260bb81054df9", @"/Views/Forms/WyslanoFormularz.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a5dea779c6a2ce3bf4277662fd9bb8b844e794fa", @"/Views/_ViewImports.cshtml")]
     public class Views_Forms_WyslanoFormularz : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<FieldWithValue>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("font-weight:bold; font-size:large"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -76,7 +76,7 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(81, 273, true);
+            BeginContext(77, 260, true);
             WriteLiteral(@"
 <h1>Wyslano Formularz</h1>
 <h3>Gratulacje, dane z formularza zostały zapisane w bazie danych</h3>
@@ -98,7 +98,7 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(394, 8, true);
+            BeginContext(375, 8, true);
             WriteLiteral("        ");
             EndContext();
             BeginContext(402, 98, false);
@@ -129,8 +129,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             EndContext();
-            BeginContext(500, 2, true);
-            WriteLiteral("\r\n");
+            BeginContext(481, 1, true);
+            WriteLiteral("\n");
             EndContext();
 #line 21 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Forms\WyslanoFormularz.cshtml"
          if (key.Field.Type == "checkbox")
@@ -138,7 +138,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
 
 #line default
 #line hidden
-            BeginContext(557, 15, true);
+            BeginContext(535, 15, true);
             WriteLiteral("            <p>");
             EndContext();
             BeginContext(573, 24, false);
@@ -148,8 +148,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
 #line default
 #line hidden
             EndContext();
-            BeginContext(597, 6, true);
-            WriteLiteral("</p>\r\n");
+            BeginContext(575, 5, true);
+            WriteLiteral("</p>\n");
             EndContext();
 #line 24 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Forms\WyslanoFormularz.cshtml"
         }
@@ -158,7 +158,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
 
 #line default
 #line hidden
-            BeginContext(639, 15, true);
+            BeginContext(613, 15, true);
             WriteLiteral("            <p>");
             EndContext();
             BeginContext(655, 13, false);
@@ -168,24 +168,24 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
 #line default
 #line hidden
             EndContext();
-            BeginContext(668, 6, true);
-            WriteLiteral("</p>\r\n");
+            BeginContext(642, 5, true);
+            WriteLiteral("</p>\n");
             EndContext();
 #line 28 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Forms\WyslanoFormularz.cshtml"
         }
 
 #line default
 #line hidden
-            BeginContext(685, 16, true);
-            WriteLiteral("        <br />\r\n");
+            BeginContext(657, 15, true);
+            WriteLiteral("        <br />\n");
             EndContext();
 #line 30 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Forms\WyslanoFormularz.cshtml"
     }
 
 #line default
 #line hidden
-            BeginContext(708, 14, true);
-            WriteLiteral("</div>\r\n\r\n\r\n\r\n");
+            BeginContext(678, 10, true);
+            WriteLiteral("</div>\n\n\n\n");
             EndContext();
         }
         #pragma warning restore 1998

@@ -43,8 +43,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d6a5625cc8fb4476f348b0fe9041c550465d8bf9", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c52267094b2868e58b54bc0760e92b7d1c3076a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4ecc4d2bcad30a6aee551879bc7e7094ebb4184d", @"/Views/Shared/Error.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a5dea779c6a2ce3bf4277662fd9bb8b844e794fa", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorViewModel>
     {
         #pragma warning disable 1998
@@ -56,8 +56,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(64, 120, true);
-            WriteLiteral("\r\n<h1 class=\"text-danger\">Error.</h1>\r\n<h2 class=\"text-danger\">An error occurred while processing your request.</h2>\r\n\r\n");
+            BeginContext(60, 116, true);
+            WriteLiteral("\n<h1 class=\"text-danger\">Error.</h1>\n<h2 class=\"text-danger\">An error occurred while processing your request.</h2>\n\n");
             EndContext();
 #line 9 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Shared\Error.cshtml"
  if (Model.ShowRequestId)
@@ -65,8 +65,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(214, 52, true);
-            WriteLiteral("    <p>\r\n        <strong>Request ID:</strong> <code>");
+            BeginContext(204, 51, true);
+            WriteLiteral("    <p>\n        <strong>Request ID:</strong> <code>");
             EndContext();
             BeginContext(267, 15, false);
 #line 12 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Shared\Error.cshtml"
@@ -75,15 +75,15 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(282, 19, true);
-            WriteLiteral("</code>\r\n    </p>\r\n");
+            BeginContext(271, 17, true);
+            WriteLiteral("</code>\n    </p>\n");
             EndContext();
 #line 14 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Shared\Error.cshtml"
 }
 
 #line default
 #line hidden
-            BeginContext(304, 577, true);
+            BeginContext(290, 566, true);
             WriteLiteral(@"
 <h3>Development Mode</h3>
 <p>
