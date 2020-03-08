@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TeamProject.DTOs.FieldDependency;
 using TeamProject.Infrastructure.Enums;
+using TeamProject.Models.NewTypeAndValidation;
 
 namespace TeamProject.Models.FieldDependencyModels
 {
@@ -33,16 +34,21 @@ namespace TeamProject.Models.FieldDependencyModels
 
         public void Build(CreateDependencyDTO createDependency, FormGeneratorContext _context)
         {
-            if(createDependency.DependencyType== "FieldDuplication")
+            this.ThisField = _context.Field.AsNoTracking().FirstOrDefault(f => f.Name == this.ThisField.Name);
+            this.Id = this.ThisField.Id;
+
+            if (createDependency.DependencyType== "FieldDuplication")
             {
-                for(int i = 0; i < Convert.ToInt32(createDependency.ActivationValue); i++)
+                for(int i = 0; i < Convert.ToInt32(createDependency.ActivationValue); i++) //utworzenie pól zależnych(Pole 1, Pole 2...)
                 {
                     Field field = new Field { Name = createDependency.CurrentFieldName + $" {i + 1}", Type = "text" };
                     this.RelatedFields.Add(field);
                 }
+                //utworzenie ograniczenia na max(na tym polega ta zależność)
+                Validation valueConstraint = new Validation { idField = this.Id, value = Convert.ToDecimal(this.ActivationValue), type="max" };
+                _context.Validations.Add(valueConstraint);
+                _context.SaveChanges();
             }
-            this.ThisField = _context.Field.AsNoTracking().FirstOrDefault(f => f.Name == this.ThisField.Name);
-            this.Id = this.ThisField.Id;
         }
     }
 }

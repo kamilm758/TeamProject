@@ -65,6 +65,21 @@ namespace TeamProject.DTOs.FieldDependency
             {
                 return "Niezany błąd. Spróbuj jeszcze raz";
             }
+            //nie można edytować zależności ilościowej
+            string test= FieldFieldDependencyType.FieldDuplication.ToString();
+            var dependencyExist = _context.Dependencies
+                .AsNoTracking()
+                .FirstOrDefault(dep => (dep.DependencyType.ToString() == this.DependencyType)
+                    && (dep.ThisField.Name == this.CurrentFieldName));
+            if (dependencyExist != null)
+            {
+                return "Zależność ilościowa już została zdefiniowana na tym polu.";
+            }
+
+            if (_context.Field.FirstOrDefault(f => f.Name == this.SuperiorFieldName).Type != "number")
+            {
+                return "Tylko pole typu 'number' może być polem nadrzędnym w relacji ilościowej";
+            }
             return null;
         }
     }
