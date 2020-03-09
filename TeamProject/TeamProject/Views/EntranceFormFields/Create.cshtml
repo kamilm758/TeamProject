@@ -15,11 +15,20 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name"  class="form-control" />
-                <span asp-validation-for="Name" class="text-danger" ></span>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input asp-route-Type="checkbox" type="submit" value="Create" class="btn btn-primary" />
+                
+                <select hidden ="Type">
+                    <option value="">Wybierz opcję</option>
+                    <option value="text">Pole tekstowe</option>
+                    <option value="checkbox" selected>Checkbox</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>

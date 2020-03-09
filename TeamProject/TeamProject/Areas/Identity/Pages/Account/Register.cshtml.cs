@@ -14,7 +14,8 @@ using TeamProject.Models;
 
 namespace TeamProject.Areas.Identity.Pages.Account
 {   
-    [Authorize(Roles = "Admin")]   
+    //[Authorize(Roles = "Admin")]
+    [AllowAnonymous]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<MyUser> _signInManager;

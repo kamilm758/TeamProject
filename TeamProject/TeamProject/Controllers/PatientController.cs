@@ -8,11 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using TeamProject.Models.FormGeneratorModels;
-using Microsoft.AspNetCore.Authorization;
 
 namespace TeamProject.Controllers
 {
-    [Authorize]
     public class PatientController : Controller
     {
 
@@ -49,7 +47,7 @@ namespace TeamProject.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> AllPatientForms(int id)
+        public async Task<ObjectResult> AllPatientForms(int id)
         {
             var patientForms = await _context.PatientForms.Where(m => m.IdPatient == id ).ToListAsync();
             var forms = await _context.Forms.ToListAsync();
@@ -70,7 +68,7 @@ namespace TeamProject.Controllers
             }
 
 
-            return RedirectToAction("EntranceForm", "EntranceFormFields", new { id = id });
+            return Ok(list);
         }
 
 
@@ -137,6 +135,9 @@ namespace TeamProject.Controllers
         [HttpPost]
         public async Task<ActionResult> Index(string Id)
         {
+
+         
+
                 var IdPatient = _context.Patients;
 
                 var pom =  IdPatient.FirstOrDefault(m => m.IdPatient == Convert.ToInt32(Id));
@@ -148,10 +149,13 @@ namespace TeamProject.Controllers
                 }
                 else
                 {
-                    
                     TempData["Message"]="Id pacjetna nie znajduje się w bazie";
                 }
-                //Po co przekazywanie listy pacjentów do widoku??
+
+                
+                
+            
+
             return View(await _context.Patients.ToListAsync());
         }
 

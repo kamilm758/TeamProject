@@ -41,9 +41,12 @@
                                 <span asp-validation-for="@Model[i].Field.Type" class="text-danger"></span>
                             </div>
 
+
+
                         }
                         else if (Model[i].Field.Type == "checkbox")
                         {
+
 
                             <div>
                                 <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
@@ -59,6 +62,7 @@
                         else if (Model[i].Field.Type == "number")
                         {
 
+
                             <div>
                                 <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
                             </div>
@@ -66,15 +70,20 @@
                                 <input class="form-control log " id="@Model[i].Field.Id" numInput="true" type="text" asp-for="@Model[i].TextValue" />
                                 <p errorParagraf="true" ErrorId="@Model[i].Field.Id" hidden style="color: red"></p>
                             </div>
+
+
+
                         }
 
                         else if (Model[i].Field.Type == "select")
                         {
+
+
                             <div>
                                 <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
                             </div>
                             <div>
-                                <select class="form-control log log-select" asp-for="@Model[i].TextValue" style="width:250px;" id="@Model[i].Field.Id">
+                                <select class="form-control log log-select" asp-for="@Model[i].TextValue" style="width:250px;" >
                                     @foreach(var option in Model[0].options)
                                     {
                                         @if (option.idField == Model[i].Field.Id)
@@ -130,17 +139,18 @@
         let fieldvalue = element.value;
         let formid = @ViewBag.formid;
         console.log(element)
-        let fieldid = element.id;
+        //let fieldid = element.id;
         await $.post("/addlog", {
             value: fieldvalue,
             type: type,
             formid: formid,
-            fieldid: fieldid,
-        }).done(res=>console.log(res)).fail(err => console.log(err));
+            fieldid: 0,
+        }).fail(err => console.log(err));
     }
     //Daniel - logi
     let input = $('.log');
-    input.change(function () {    
+    input.focusout(function () {    
+        console.log(this)
         let type = this.type
         let fieldvalue;
         switch (type) {
