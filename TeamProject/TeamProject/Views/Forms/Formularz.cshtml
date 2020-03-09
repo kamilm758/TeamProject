@@ -25,57 +25,58 @@
                     @for (var i = 0; i < Model.Count; i++)
                     {
                     <tr>
-                        <input asp-for="@Model[i].Field.Id" hidden />
-                        <input asp-for="@Model[i].Field.Name" hidden />
-                        <input asp-for="@Model[i].Field.Type" hidden />
-                        @if (Model[i].Field.Type == "text")
-                        {
-                            <div>
-                                <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
-                            </div>
+                        <th type="@Model[i].fieldFieldDep.DependencyType" val="@Model[i].fieldFieldDep.ActivationValue" >
+                            <input asp-for="@Model[i].Field.Id" hidden />
+                            <input asp-for="@Model[i].Field.Name" hidden />
+                            <input asp-for="@Model[i].Field.Type" hidden />
+                            @if (Model[i].Field.Type == "text")
+                            {
 
-                            <div>
+                                <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
+
+
+
                                 <input class="form-control log " type="@Model[i].Field.Type" asp-for="@Model[i].TextValue" />
-                            </div>
-                            <div>
+
+
                                 <span asp-validation-for="@Model[i].Field.Type" class="text-danger"></span>
-                            </div>
 
-                        }
-                        else if (Model[i].Field.Type == "checkbox")
-                        {
 
-                            <div>
+                            }
+                            else if (Model[i].Field.Type == "checkbox")
+                            {
+
+
                                 <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
-                            </div>
-                            <div>
+
+
                                 <input class="form-control checkmark log " type="@Model[i].Field.Type" asp-for="@Model[i].BoolValue" />
-                            </div>
-                            <div>
+
+
                                 <span asp-validation-for="@Model[i].Field.Name" class="text-danger"></span>
-                            </div>
-                        }
 
-                        else if (Model[i].Field.Type == "number")
-                        {
+                            }
 
-                            <div>
+                            else if (Model[i].Field.Type == "number")
+                            {
+
+
                                 <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
-                            </div>
-                            <div>
+
+
                                 <input class="form-control log " id="@Model[i].Field.Id" numInput="true" type="text" asp-for="@Model[i].TextValue" />
                                 <p errorParagraf="true" ErrorId="@Model[i].Field.Id" hidden style="color: red"></p>
-                            </div>
-                        }
 
-                        else if (Model[i].Field.Type == "select")
-                        {
-                            <div>
+                            }
+
+                            else if (Model[i].Field.Type == "select")
+                            {
+
                                 <label asp-for="@Model[i].Field.Name" class="control-label">@Model[i].Field.Name</label>
-                            </div>
-                            <div>
+
+
                                 <select class="form-control log log-select" asp-for="@Model[i].TextValue" style="width:250px;" id="@Model[i].Field.Id">
-                                    @foreach(var option in Model[0].options)
+                                    @foreach (var option in Model[0].options)
                                     {
                                         @if (option.idField == Model[i].Field.Id)
                                         {
@@ -83,12 +84,65 @@
                                         }
                                     }
                                 </select>
-                            </div>
 
 
 
+
+                            }
+                        @if (Model[i].fieldFieldDep.dependentFields.Count > 0 )
+                        {
+                        <div style="margin-left: 100px" class="dependent" hidden>
+                            @foreach (Field x in Model[i].fieldFieldDep.dependentFields)
+                            {
+
+                                @if (x.Type == "text")
+                                {
+                                    <div>
+                                        <label asp-for="@x.Name" class="control-label">@x.Name</label>
+                                    </div>
+
+                                    <div>
+                                        <input class="form-control log " type="@x.Type" asp-for="@Model[i].TextValue" />
+                                    </div>
+                                    <div>
+                                        <span asp-validation-for="@x.Type" class="text-danger"></span>
+                                    </div>
+
+                                }
+                                else if (x.Type == "checkbox")
+                                {
+
+                                    <div>
+                                        <label asp-for="@x.Name" class="control-label">@x.Name</label>
+                                    </div>
+                                    <div>
+                                        <input class="form-control checkmark log " type="@Model[i].Field.Type" asp-for="@Model[i].BoolValue" />
+                                    </div>
+                                    <div>
+                                        <span asp-validation-for="@x.Name" class="text-danger"></span>
+                                    </div>
+                                }
+
+                                else if (x.Type == "number")
+                                {
+
+                                    <div>
+                                        <label asp-for="@x.Name" class="control-label">@x.Name</label>
+                                    </div>
+                                    <div>
+                                        <input class="form-control log " id="@Model[i].Field.Id" numInput="true" type="text" asp-for="@Model[i].TextValue" />
+                                        <p errorParagraf="true" ErrorId="@Model[i].Field.Id" hidden style="color: red"></p>
+                                    </div>
+
+                                }
+
+                            }
+                        </div>
                         }
-                    </tr>
+
+
+                        </th>
+                      </tr>
                     }
                     <tr id="response">
                     </tr>
@@ -111,11 +165,32 @@
     </div>
 </div>
 
+<script type="text/javascript">
+
+    function handleCheck(e) {
+        console.log(e);
+        e.target.parentElement.lastElementChild.removeAttribute("hidden");
+
+    }
+
+    let dependentDuplication = document.querySelectorAll("th[val]");
+    let inputs = document.querySelectorAll("th[val] > input.form-control");
+
+    inputs.forEach(input => input.addEventListener('change', handleCheck));
+    
+
+
+    
+//        .filter(function (field) {
+//	return field.matches('.log');
+//});
+
+
+</script>
 
 
 
-
-<script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
 <script>
      let area = document.getElementById("patient");
                 area.value = sessionStorage.getItem("key")

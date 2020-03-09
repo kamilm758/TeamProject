@@ -14,5 +14,10 @@ namespace FormGenerator.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
+
+        public static implicit operator List<object>(Field v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
