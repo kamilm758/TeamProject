@@ -152,7 +152,7 @@ namespace TeamProject.Controllers
                     TempData["Message"]="Id pacjetna nie znajduje się w bazie";
                 }
                 //Po co przekazywanie listy pacjentów do widoku??
-            return View(await _context.Patients.ToListAsync());
+            return RedirectToAction("Index");
         }
 
 
