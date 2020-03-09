@@ -32,22 +32,19 @@
         font-weight: 500;
     }
 </style>
-<button
-  <input style=" background-color:white;
+<button style=" background-color:white;
     color:#66BB6A;
     font-size:20px;
     padding: 5px 35px;
     border-radius: 8px;
     position:center;" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Dodaj nowy formularz zależny od pola</button>
+<div>
+    <a asp-action="Index">Powrót</a>
+</div>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdField)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.IdForm)
             </th>
@@ -56,20 +53,21 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdField)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdForm)
-                </td>
-            </tr>
-        }
+       
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdForm)
+                    </td>
+                    <td>
+                        <a asp-action="DeleteDependence" asp-route-id="@item.IdForm">Usuń zależność</a>
+                    </td>
+                </tr>
+            }
+        
+
     </tbody>
 </table>
 
@@ -78,15 +76,16 @@
         <div class="modal-content" style="padding:30px">
             <form asp-action="AddConnection">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
                 <div class="form-group">
-                    <label hidden asp-for="@Model.FirstOrDefault().Id" class="control-label"></label>
-                    <input hidden asp-for="@Model.FirstOrDefault().Id" class="form-control" value=0 />
-                    <span hidden asp-validation-for="@Model.FirstOrDefault().Id" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="@Model.FirstOrDefault().IdForm" class="control-label"></label>
-                    <input asp-for="@Model.FirstOrDefault().IdForm" class="form-control" />
+                    <label asp-for="@Model.FirstOrDefault().IdForm" class="control-label">Wybierz formularz</label>
+                    <select class="form-control log log-select" asp-for="@Model.FirstOrDefault().IdForm"
+                            asp-items="@(new SelectList(ViewBag.listforms,"Id", "Name","id_Category"))" style="width:250px;">
+                    </select>
                     <span asp-validation-for="@Model.FirstOrDefault().IdForm" class="text-danger"></span>
+
+                </div>
+                <div>
                 </div>
                 <div class="form-group">
                     <label hidden asp-for="@Model.FirstOrDefault().IdField" class="control-label"></label>
@@ -101,7 +100,7 @@
             font-size:20px;
             padding: 15px 35px;
             border-radius: 8px;
-            position:center;" type="submit" value="Stwórz" class="btn btn-primary" />
+            position:center;" type="submit" asp-route-IdForm="@ViewBag.op" value="Stwórz" class="btn btn-primary" />
                 </div>
             </form>
         </div>

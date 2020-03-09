@@ -119,17 +119,25 @@ namespace FormGenerator.Controllers
             ViewBag.bag = id;
             return View();
         }
-
-        // POST: Forms/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+    
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,id_Category,Parent")] Forms forms)
         {
             if (ModelState.IsValid)
-            {
+            {               
                 _context.Add(forms);
+                await _context.SaveChangesAsync();
+                List<Patient> patients = await _context.Patients.ToListAsync();
+                foreach (var patient in patients)
+                {
+                    _context.PatientForms.Add(new PatientForms()
+                    {
+                        IdPatient = patient.IdPatient,
+                        IdForm = forms.Id,
+                        agreement = false
+                    });
+                }
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Forms");
             }

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FormGenerator.Models;
 using FormGenerator.Models.Modele_pomocnicze;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TeamProject.Controllers
 {
+    [Authorize]
     public class EntranceFormFieldsController : Controller
     {
         private readonly FormGeneratorContext _context;
@@ -232,22 +234,94 @@ namespace TeamProject.Controllers
         public IActionResult AddConnection (int id)
         {
             ViewBag.bag = id;
+            List<Forms> listallforms = _context.Forms.ToList();
+            var listallfield = _context.EntranceConnections.ToList();
+            int pom = 0;
+            List<Forms> listEmptyForms = new List<Forms>();
+            for(int i = 0; i < listallforms.Count; i++)
+            {
+                pom = 0;
+                for(int j = 0; j < listallfield.Count; j++)
+                {
+                    if (listallforms[i].Id == listallfield[j].IdForm)
+                    {
+                        pom = 1;
+                    }
+                }
+                if (pom == 0)
+                {
+                    listEmptyForms.Add(listallforms[i]);
+                }
+            }
+            ViewBag.listforms = listEmptyForms;
             return View(_context.EntranceConnections.Where(m => m.IdField == id).ToList());
         }
 
         [HttpPost]
         public async Task<IActionResult> AddConnection([Bind("Id,IdField,IdForm")] EntranceConnections @entranceConnections)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.EntranceConnections.Add(@entranceConnections);
                 await _context.SaveChangesAsync();
                 EntranceConnections current = _context.EntranceConnections.Where(t => t == (@entranceConnections)).ToList()[0];
-              
+                List<Forms> listallforms = _context.Forms.ToList();
+                var listallfield = _context.EntranceConnections.ToList();
+                int pom = 0;
+                List<Forms> listEmptyForms = new List<Forms>();
+                for (int i = 0; i < listallforms.Count; i++)
+                {
+                    pom = 0;
+                    for (int j = 0; j < listallfield.Count; j++)
+                    {
+                        if (listallforms[i].Id == listallfield[j].IdForm)
+                        {
+                            pom = 1;
+                        }
+                    }
+                    if (pom == 0)
+                    {
+                        listEmptyForms.Add(listallforms[i]);
+                    }
+                }
+                ViewBag.listforms = listEmptyForms;
                 return View(_context.EntranceConnections.Where(m => m.IdField == current.IdField).ToList());
             }
             return RedirectToAction(nameof(Index));
 
+        }
+        public async Task<IActionResult> DeleteDependence(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var entranceFormFields = await _context.EntranceConnections
+                .FirstOrDefaultAsync(m => m.IdForm == id);
+            ViewBag.form = id;
+            ViewBag.field = entranceFormFields.IdField;
+            if (entranceFormFields == null)
+            {
+                return NotFound();
+            }
+
+            return View(entranceFormFields);
+        }
+
+        // POST: EntranceFormFields/Delete/5
+        [HttpPost, ActionName("DeleteDependence")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteDependence(int id)
+        {
+            var entranceFormFields = await _context.EntranceConnections
+                .Where(t => t.IdForm == id)
+                .FirstOrDefaultAsync();
+           
+            _context.EntranceConnections.Remove(entranceFormFields);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("AddConnection", new { id = entranceFormFields.IdField });
         }
     }
 }
