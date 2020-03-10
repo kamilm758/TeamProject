@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using TeamProject.Models;
 using TeamProject.Models.NewTypeAndValidation;
+using TeamProject.Models.FieldFieldDependencyModels;
+using TeamProject.Models.FieldDependencyModels;
 
 namespace FormGenerator.Controllers
 {
@@ -20,11 +22,14 @@ namespace FormGenerator.Controllers
     {
         private readonly FormGeneratorContext _context;
         private readonly UserManager<MyUser> _userManager;
+        private readonly IFieldDependenciesRepository pomik;
 
-        public FormsController(FormGeneratorContext context, UserManager<MyUser> userManager)
+        public FormsController(FormGeneratorContext context, UserManager<MyUser> userManager, IFieldDependenciesRepository repository)
         {
             _context = context;
             _userManager = userManager;
+            pomik = repository;
+
         }
 
         //wyświetlenie listy formularzy
@@ -45,19 +50,58 @@ namespace FormGenerator.Controllers
             var fieldsInForm = _context.FormField.Where(ff=>ff.IdForm==id).Select(ff=>ff.IdField).ToList();
             //pobieramy dane pól których id pobrano powyżej
             var field = _context.Field.Where(f => fieldsInForm.Contains(f.Id)).ToList();
+
+            var xd = pomik.Dependencies.Where(d => field.Contains(d.ThisField)).Select(d=>d.RelatedFields).ToList();
+
+            //var fieldDep = pomik.GetAllDependFields();
             //przekształcenie do modelu pozwalającego przenoszenie wartości
             //czyli dodanie miejsca na wartość "Value" której nie potrzebójemy w bazie danyc
             //potrzebne jest jedynie w celu przeniesienia wartości wpisanych w otworzonym formularzu
             //do metody POST
             List<FieldWithValue> fieldWithValues = new List<FieldWithValue>();
+
+            List<Field> nadrzedne = new List<Field>();
+            var lista = pomik.Dependencies.Where(d => fieldsInForm.Contains(d.Id)).ToList();
+
+            foreach (Field f in field)
+            {
+                Boolean znaleziono = false;
+                foreach(FieldFieldDependency dep in lista)
+                {
+                    foreach(Field depField in dep.RelatedFields)
+                    {
+                        if (f.Equals(depField))
+                        {
+                            znaleziono = true;
+                           break;
+                        }
+                    }
+                    if (znaleziono == true)
+                        break;
+                }
+                
+                if(znaleziono==false)
+                    nadrzedne.Add(f);
+            }
+            
+
             //przepisywanie danych do odpowiedniego modelu. ma ktoś pomysł jak bardziej optymalnie przenosić???
-            foreach(var key in field)
+            foreach(var key in nadrzedne)
             {
                 FieldWithValue pom = new FieldWithValue();
                 pom.TextValue = "";
                 pom.Field.Id = key.Id;
                 pom.Field.Name = key.Name;
                 pom.Field.Type = key.Type;
+                var dependencie = lista.FirstOrDefault(l => l.ThisField.Equals(key));
+                if (dependencie != null) {
+                    pom.Dependencies = dependencie;
+                    for (int x = 0; x < dependencie.RelatedFields.Count; x++)
+                        pom.DepndenciesValue.Add(new StringBoolType());
+
+                }
+
+                
                 fieldWithValues.Add(pom);
             }
             ViewBag.modelcount = fieldWithValues.Count;

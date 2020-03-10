@@ -14,7 +14,6 @@ namespace FormGenerator.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-
         public override bool Equals(object obj)
         {
             if (this.GetType() != obj.GetType())

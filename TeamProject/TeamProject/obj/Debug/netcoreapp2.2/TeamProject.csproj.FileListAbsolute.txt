@@ -563,7 +563,6 @@ C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\bin\Debug\ne
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\TeamProject.Views.dll
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\TeamProject.Views.pdb
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.Configuration.dll
-C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\bin\Debug\netcoreapp2.2\pl\Microsoft.VisualStudio.Configuration.resources.dll
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\Index.cshtml.g.cs
 C:\Users\kacpe\Documents\GitHub\TeamProject\TeamProject\TeamProject\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
