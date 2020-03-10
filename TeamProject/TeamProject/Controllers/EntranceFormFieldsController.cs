@@ -156,6 +156,15 @@ namespace TeamProject.Controllers
             var entranceFormFields = await _context.EntranceFormFields
                 .Where(t => t.IdField == id)
                 .FirstOrDefaultAsync();
+            var entranceConnections = await _context.EntranceConnections
+                .Where(t => t.IdField == id)
+                .ToListAsync();
+
+            foreach(var el in entranceConnections)
+            {
+                _context.Remove(el);
+            }
+
             _context.EntranceFormFields.Remove(entranceFormFields);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -182,6 +191,27 @@ namespace TeamProject.Controllers
                 ans = new EntranceFormAnswers();
                 ans.IdField = elem.Id;
                 ans.Name = elem.Name;
+                var patient_fields = await _context.EntranceConnections
+                    .Where(t => t.IdField == ans.IdField)
+                    .ToListAsync();
+                
+                foreach(var el in patient_fields)
+                {
+                    if (el.IdField == ans.IdField)
+                    {
+                        var patient_agreement = await _context.PatientForms
+                            .Where(t => t.IdForm == el.IdForm)
+                            .Where(t => t.IdPatient == id)
+                            .FirstOrDefaultAsync();
+                        if (patient_agreement.agreement == true)
+                        {
+                            ans.Answer = true;
+                        }
+                        else patient_agreement.agreement = false;
+                        break;
+                    }
+                }
+                
                 list.Add(ans);
             }
             ViewBag.bag = id;
