@@ -92,12 +92,11 @@ namespace TeamProject
                     name: "",
                     template: "{controller}/{action}/{id?}");
             });
-
             app.UseCookiePolicy();
 
             Seed.SeedRoles(roleManager);
             Seed.SeedUsers(userManager);
-
+            
         }
        
     }

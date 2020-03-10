@@ -16,6 +16,7 @@ namespace TeamProject.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FieldAPIController : Controller
     {
         private readonly FormGeneratorContext _context;
