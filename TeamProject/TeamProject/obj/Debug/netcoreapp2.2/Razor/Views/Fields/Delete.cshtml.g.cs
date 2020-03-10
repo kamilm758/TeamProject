@@ -43,8 +43,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"cabea4c0a6d6ead990b65dfe5add27ec1e166e46", @"/Views/Fields/Delete.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c52267094b2868e58b54bc0760e92b7d1c3076a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c3fcd331d3433a9e93d0ccea30f2f05057db8891", @"/Views/Fields/Delete.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a5dea779c6a2ce3bf4277662fd9bb8b844e794fa", @"/Views/_ViewImports.cshtml")]
     public class Views_Fields_Delete : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<FormGenerator.Models.Field>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "hidden", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -73,8 +73,8 @@ using FormGenerator.Models.Modele_pomocnicze;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            BeginContext(35, 2, true);
-            WriteLiteral("\r\n");
+            BeginContext(34, 1, true);
+            WriteLiteral("\n");
             EndContext();
 #line 3 "E:\Adas\STUDIA\SEMESTR 5\ProjektZespolowy\TeamProject\TeamProject\Views\Fields\Delete.cshtml"
   
@@ -82,8 +82,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(79, 245, true);
-            WriteLiteral("    <script>\r\n        sessionStorage.removeItem(\'key\');\r\n    </script>\r\n<h1>Delete</h1>\r\n\r\n<h3>Are you sure you want to delete this?</h3>\r\n<div>\r\n    <h4>Field</h4>\r\n    <hr />\r\n    <dl class=\"row\">\r\n        <dt class = \"col-sm-2\">\r\n            ");
+            BeginContext(74, 234, true);
+            WriteLiteral("    <script>\n        sessionStorage.removeItem(\'key\');\n    </script>\n<h1>Delete</h1>\n\n<h3>Are you sure you want to delete this?</h3>\n<div>\n    <h4>Field</h4>\n    <hr />\n    <dl class=\"row\">\n        <dt class = \"col-sm-2\">\n            ");
             EndContext();
             BeginContext(325, 40, false);
 #line 17 "E:\Adas\STUDIA\SEMESTR 5\ProjektZespolowy\TeamProject\TeamProject\Views\Fields\Delete.cshtml"
@@ -92,8 +92,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(365, 63, true);
-            WriteLiteral("\r\n        </dt>\r\n        <dd class = \"col-sm-10\">\r\n            ");
+            BeginContext(349, 60, true);
+            WriteLiteral("\n        </dt>\n        <dd class = \"col-sm-10\">\n            ");
             EndContext();
             BeginContext(429, 36, false);
 #line 20 "E:\Adas\STUDIA\SEMESTR 5\ProjektZespolowy\TeamProject\TeamProject\Views\Fields\Delete.cshtml"
@@ -102,8 +102,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(465, 62, true);
-            WriteLiteral("\r\n        </dd>\r\n        <dt class = \"col-sm-2\">\r\n            ");
+            BeginContext(446, 59, true);
+            WriteLiteral("\n        </dd>\n        <dt class = \"col-sm-2\">\n            ");
             EndContext();
             BeginContext(528, 40, false);
 #line 23 "E:\Adas\STUDIA\SEMESTR 5\ProjektZespolowy\TeamProject\TeamProject\Views\Fields\Delete.cshtml"
@@ -112,8 +112,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(568, 63, true);
-            WriteLiteral("\r\n        </dt>\r\n        <dd class = \"col-sm-10\">\r\n            ");
+            BeginContext(546, 60, true);
+            WriteLiteral("\n        </dt>\n        <dd class = \"col-sm-10\">\n            ");
             EndContext();
             BeginContext(632, 36, false);
 #line 26 "E:\Adas\STUDIA\SEMESTR 5\ProjektZespolowy\TeamProject\TeamProject\Views\Fields\Delete.cshtml"
@@ -122,8 +122,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(668, 38, true);
-            WriteLiteral("\r\n        </dd>\r\n    </dl>\r\n    \r\n    ");
+            BeginContext(643, 34, true);
+            WriteLiteral("\n        </dd>\n    </dl>\n    \n    ");
             EndContext();
             BeginContext(706, 167, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cabea4c0a6d6ead990b65dfe5add27ec1e166e467050", async() => {
@@ -152,8 +152,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 EndContext();
-                BeginContext(778, 88, true);
-                WriteLiteral("\r\n        <input type=\"submit\" value=\"Delete\" class=\"btn btn-danger\" /> |\r\n       \r\n    ");
+                BeginContext(748, 85, true);
+                WriteLiteral("\n        <input type=\"submit\" value=\"Delete\" class=\"btn btn-danger\" /> |\n       \n    ");
                 EndContext();
             }
             );
@@ -171,8 +171,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             EndContext();
-            BeginContext(873, 10, true);
-            WriteLiteral("\r\n</div>\r\n");
+            BeginContext(840, 8, true);
+            WriteLiteral("\n</div>\n");
             EndContext();
         }
         #pragma warning restore 1998

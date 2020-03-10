@@ -43,8 +43,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7082a36039b0dcb98a2a5408e492cfc333009ef3", @"/Views/Forms/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c52267094b2868e58b54bc0760e92b7d1c3076a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"385aee038b2315da3eba1eb5c9f7ec32662300e8", @"/Views/Forms/Index.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a5dea779c6a2ce3bf4277662fd9bb8b844e794fa", @"/Views/_ViewImports.cshtml")]
     public class Views_Forms_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("src", "~/js/Scrip.js", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -71,8 +71,8 @@ using FormGenerator.Models.Modele_pomocnicze;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            BeginContext(0, 159, true);
-            WriteLiteral("\r\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>\r\n<script src=\"https://unpkg.com/axios/dist/axios.min.js\"></script>\r\n");
+            BeginContext(0, 156, true);
+            WriteLiteral("\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>\n<script src=\"https://unpkg.com/axios/dist/axios.min.js\"></script>\n");
             EndContext();
             BeginContext(159, 63, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7082a36039b0dcb98a2a5408e492cfc333009ef34516", async() => {
@@ -98,7 +98,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ScriptTagHelper.AppendVersion = true;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             EndContext();
-            BeginContext(222, 329, true);
+            BeginContext(219, 311, true);
             WriteLiteral(@"
 <style>
     .cities {
@@ -126,8 +126,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ScriptTagHelper.AppendVersion = true;
 #line default
 #line hidden
             EndContext();
-            BeginContext(563, 66, true);
-            WriteLiteral("\';\r\n    sessionStorage.removeItem(\'key\');\r\n\r\n</script>\r\n\r\n\r\n\r\n\r\n\r\n");
+            BeginContext(542, 57, true);
+            WriteLiteral("\';\n    sessionStorage.removeItem(\'key\');\n\n</script>\n\n\n\n\n\n");
             EndContext();
         }
         #pragma warning restore 1998

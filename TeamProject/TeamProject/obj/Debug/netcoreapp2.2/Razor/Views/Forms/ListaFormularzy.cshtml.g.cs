@@ -43,8 +43,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d3ba927f7db4ece4b08b8f289cf8713e233b7acd", @"/Views/Forms/ListaFormularzy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c52267094b2868e58b54bc0760e92b7d1c3076a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"138fd3fa9a7054eab359affe99217ef2c9994931", @"/Views/Forms/ListaFormularzy.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a5dea779c6a2ce3bf4277662fd9bb8b844e794fa", @"/Views/_ViewImports.cshtml")]
     public class Views_Forms_ListaFormularzy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<FormGenerator.Models.Forms>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("color:#81C784;  font-weight:700"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -74,8 +74,8 @@ using FormGenerator.Models.Modele_pomocnicze;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            BeginContext(48, 2, true);
-            WriteLiteral("\r\n");
+            BeginContext(47, 1, true);
+            WriteLiteral("\n");
             EndContext();
 #line 3 "E:\Adas\STUDIA\SEMESTR 5\ProjektZespolowy\TeamProject\TeamProject\Views\Forms\ListaFormularzy.cshtml"
   
@@ -83,7 +83,7 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(91, 484, true);
+            BeginContext(86, 456, true);
             WriteLiteral(@"    <style>
         table {
             border-collapse: collapse;
@@ -134,8 +134,8 @@ using FormGenerator.Models.Modele_pomocnicze;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             EndContext();
-            BeginContext(669, 93, true);
-            WriteLiteral("\r\n</p>\r\n<table class=\"table\">\r\n    <thead>\r\n        <tr >\r\n            <th>\r\n                ");
+            BeginContext(636, 87, true);
+            WriteLiteral("\n</p>\n<table class=\"table\">\n    <thead>\n        <tr >\n            <th>\n                ");
             EndContext();
             BeginContext(763, 38, false);
 #line 40 "E:\Adas\STUDIA\SEMESTR 5\ProjektZespolowy\TeamProject\TeamProject\Views\Forms\ListaFormularzy.cshtml"
@@ -144,8 +144,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(801, 211, true);
-            WriteLiteral("\r\n            </th>\r\n            <th>\r\n               Nazwa\r\n            </th>\r\n            <th>\r\n                Kategoria\r\n            </th>\r\n\r\n            <th></th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n");
+            BeginContext(762, 198, true);
+            WriteLiteral("\n            </th>\n            <th>\n               Nazwa\n            </th>\n            <th>\n                Kategoria\n            </th>\n\n            <th></th>\n        </tr>\n    </thead>\n    <tbody>\n");
             EndContext();
 #line 53 "E:\Adas\STUDIA\SEMESTR 5\ProjektZespolowy\TeamProject\TeamProject\Views\Forms\ListaFormularzy.cshtml"
          foreach (var item in Model)
@@ -153,8 +153,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(1061, 60, true);
-            WriteLiteral("            <tr>\r\n                <td>\r\n                    ");
+            BeginContext(1007, 58, true);
+            WriteLiteral("            <tr>\n                <td>\n                    ");
             EndContext();
             BeginContext(1122, 37, false);
 #line 57 "E:\Adas\STUDIA\SEMESTR 5\ProjektZespolowy\TeamProject\TeamProject\Views\Forms\ListaFormularzy.cshtml"
@@ -163,8 +163,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(1159, 67, true);
-            WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
+            BeginContext(1103, 64, true);
+            WriteLiteral("\n                </td>\n                <td>\n                    ");
             EndContext();
             BeginContext(1227, 39, false);
 #line 60 "E:\Adas\STUDIA\SEMESTR 5\ProjektZespolowy\TeamProject\TeamProject\Views\Forms\ListaFormularzy.cshtml"
@@ -173,8 +173,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(1266, 67, true);
-            WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
+            BeginContext(1207, 64, true);
+            WriteLiteral("\n                </td>\n                <td>\n                    ");
             EndContext();
             BeginContext(1334, 46, false);
 #line 63 "E:\Adas\STUDIA\SEMESTR 5\ProjektZespolowy\TeamProject\TeamProject\Views\Forms\ListaFormularzy.cshtml"
@@ -183,8 +183,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 #line default
 #line hidden
             EndContext();
-            BeginContext(1380, 69, true);
-            WriteLiteral("\r\n                </td>\r\n\r\n                <td>\r\n                    ");
+            BeginContext(1318, 65, true);
+            WriteLiteral("\n                </td>\n\n                <td>\n                    ");
             EndContext();
             BeginContext(1449, 76, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3ba927f7db4ece4b08b8f289cf8713e233b7acd10263", async() => {
@@ -218,8 +218,8 @@ using FormGenerator.Models.Modele_pomocnicze;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             EndContext();
-            BeginContext(1525, 24, true);
-            WriteLiteral(" |\r\n                    ");
+            BeginContext(1459, 23, true);
+            WriteLiteral(" |\n                    ");
             EndContext();
             BeginContext(1549, 72, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3ba927f7db4ece4b08b8f289cf8713e233b7acd12662", async() => {
@@ -253,8 +253,8 @@ using FormGenerator.Models.Modele_pomocnicze;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             EndContext();
-            BeginContext(1621, 24, true);
-            WriteLiteral(" |\r\n                    ");
+            BeginContext(1554, 23, true);
+            WriteLiteral(" |\n                    ");
             EndContext();
             BeginContext(1645, 65, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3ba927f7db4ece4b08b8f289cf8713e233b7acd15057", async() => {
@@ -288,16 +288,16 @@ using FormGenerator.Models.Modele_pomocnicze;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             EndContext();
-            BeginContext(1710, 44, true);
-            WriteLiteral("\r\n                </td>\r\n            </tr>\r\n");
+            BeginContext(1642, 41, true);
+            WriteLiteral("\n                </td>\n            </tr>\n");
             EndContext();
 #line 72 "E:\Adas\STUDIA\SEMESTR 5\ProjektZespolowy\TeamProject\TeamProject\Views\Forms\ListaFormularzy.cshtml"
         }
 
 #line default
 #line hidden
-            BeginContext(1765, 104, true);
-            WriteLiteral("        <script>\r\n        sessionStorage.removeItem(\'key\');\r\n        </script>\r\n    </tbody>\r\n</table>\r\n");
+            BeginContext(1693, 99, true);
+            WriteLiteral("        <script>\n        sessionStorage.removeItem(\'key\');\n        </script>\n    </tbody>\n</table>\n");
             EndContext();
         }
         #pragma warning restore 1998

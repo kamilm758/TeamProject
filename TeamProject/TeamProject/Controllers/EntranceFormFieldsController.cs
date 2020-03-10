@@ -293,9 +293,14 @@ namespace TeamProject.Controllers
             
             if (ModelState.IsValid)
             {
-                _context.EntranceConnections.Add(@entranceConnections);
+                EntranceConnections tmp = new EntranceConnections
+                {
+                    IdField = entranceConnections.IdField,
+                    IdForm = entranceConnections.IdForm
+                };
+                _context.EntranceConnections.Add(tmp);
                 await _context.SaveChangesAsync();
-                EntranceConnections current = _context.EntranceConnections.Where(t => t == (@entranceConnections)).ToList()[0];
+                //  EntranceConnections current = _context.EntranceConnections.FirstOrDefault(t => t == (@entranceConnections));
                 List<Forms> listallforms = _context.Forms.ToList();
                 var listallfield = _context.EntranceConnections.ToList();
                 int pom = 0;
@@ -316,7 +321,8 @@ namespace TeamProject.Controllers
                     }
                 }
                 ViewBag.listforms = listEmptyForms;
-                return View(_context.EntranceConnections.Where(m => m.IdField == current.IdField).ToList());
+                
+                return View(_context.EntranceConnections.Where(m => m.IdField == tmp.IdField).ToList());
             }
             return RedirectToAction(nameof(Index));
 

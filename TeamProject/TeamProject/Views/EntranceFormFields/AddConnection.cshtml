@@ -33,16 +33,12 @@
     }
 </style>
 <a asp-action="Index">Powrót do listy</a>
-<button
-  <input style=" background-color:white;
+<button style=" background-color:white;
     color:#66BB6A;
     font-size:20px;
     padding: 5px 35px;
     border-radius: 8px;
     position:center;" type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Dodaj nowy formularz zależny od pola</button>
-<div>
-    <a asp-action="Index">Powrót</a>
-</div>
 <table class="table">
     <thead>
         <tr>
@@ -80,11 +76,19 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 
                 <div class="form-group">
-                    <label asp-for="@Model.FirstOrDefault().IdForm" class="control-label">Wybierz formularz</label>
-                    <select class="form-control log log-select" asp-for="@Model.FirstOrDefault().IdForm"
-                            asp-items="@(new SelectList(ViewBag.listforms,"Id", "Name","id_Category"))" style="width:250px;">
-                    </select>
-                    <span asp-validation-for="@Model.FirstOrDefault().IdForm" class="text-danger"></span>
+                    <label class="control-label">Wybierz formularz</label>
+                    @if (@ViewBag.listforms != null)
+                    {
+                        <select class="form-control log log-select"
+                                asp-for="@Model.FirstOrDefault().IdForm" style="width:250px;">
+                            @foreach (var form in ViewBag.listforms)
+                            {
+                                <option value="@form.Id">@form.Name</option>
+                            }
+                        </select>
+                    }
+
+                    <span hidden asp-validation-for="@Model.FirstOrDefault().IdField" class="text-danger"></span>
 
                 </div>
                 <div>
@@ -102,7 +106,7 @@
             font-size:20px;
             padding: 15px 35px;
             border-radius: 8px;
-            position:center;" type="submit" asp-route-IdForm="@ViewBag.op" value="Stwórz" class="btn btn-primary" />
+            position:center;" type="submit"  value="Stwórz" class="btn btn-primary" />
                 </div>
             </form>
         </div>

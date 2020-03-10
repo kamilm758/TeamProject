@@ -43,8 +43,8 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6412d9d42cdb63c071d32693d1c7a853b952a3ad", @"/Views/Home/Privacy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c52267094b2868e58b54bc0760e92b7d1c3076a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f24f9ba16459a01d1ad3513d1c63c0a3432f0b73", @"/Views/Home/Privacy.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a5dea779c6a2ce3bf4277662fd9bb8b844e794fa", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Privacy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998
@@ -56,7 +56,7 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(50, 4, true);
+            BeginContext(47, 4, true);
             WriteLiteral("<h1>");
             EndContext();
             BeginContext(55, 17, false);
@@ -66,8 +66,8 @@ Write(ViewData["Title"]);
 #line default
 #line hidden
             EndContext();
-            BeginContext(72, 131, true);
-            WriteLiteral("</h1>\r\n\r\n<p>Use this page to detail your site\'s privacy policy.</p>\r\n<script>\r\n        sessionStorage.removeItem(\'key\');\r\n</script>");
+            BeginContext(69, 126, true);
+            WriteLiteral("</h1>\n\n<p>Use this page to detail your site\'s privacy policy.</p>\n<script>\n        sessionStorage.removeItem(\'key\');\n</script>");
             EndContext();
         }
         #pragma warning restore 1998
