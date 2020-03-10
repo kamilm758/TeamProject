@@ -89,49 +89,52 @@
 
 
                             }
+                           
                             @if (Model[i].Dependencies.RelatedFields.Count > 0)
                             {
-
-                                @foreach (Field x in Model[i].Dependencies.RelatedFields)
+                               @for (var j = 0; j<Model[i].Dependencies.RelatedFields.Count; j++)
                                 {
                         <div style="margin-left: 100px" class="dependent" hidden idval="@Model[i].Dependencies.ThisField.Id">
-                            @if (x.Type == "text")
+                            <input asp-for="@Model[i].Dependencies.RelatedFields[j].Id" hidden />
+                            <input asp-for="@Model[i].Dependencies.RelatedFields[j].Name" hidden />
+                            <input asp-for="@Model[i].Dependencies.RelatedFields[j].Type" hidden />
+                            @if (Model[i].Dependencies.RelatedFields[j].Type == "text")
                             {
                                 <div>
-                                    <label asp-for="@x.Name" class="control-label">@x.Name</label>
+                                    <label asp-for="@Model[i].Dependencies.RelatedFields[j].Name" class="control-label">@Model[i].Dependencies.RelatedFields[j].Name</label>
                                 </div>
 
                                 <div>
-                                    <input class="form-control log" idval="@Model[i].Field.Id" type="@x.Type" asp-for="@Model[i].TextValue" />
+                                    <input class="form-control log" idval="@Model[i].Field.Id" type="@Model[i].Dependencies.RelatedFields[j].Type" asp-for="@Model[i].DepndenciesValue[j].textVal" />
                                 </div>
                                 <div>
-                                    <span asp-validation-for="@x.Type" class="text-danger"></span>
+                                    <span asp-validation-for="@Model[i].Dependencies.RelatedFields[j].Type" class="text-danger"></span>
                                 </div>
 
                             }
-                            else if (x.Type == "checkbox")
+                                                else if (Model[i].Dependencies.RelatedFields[j].Type == "checkbox")
                             {
 
                                 <div>
-                                    <label asp-for="@x.Name" class="control-label">@x.Name</label>
+                                    <label asp-for="@Model[i].Dependencies.RelatedFields[j].Name" class="control-label">@Model[i].Dependencies.RelatedFields[j].Name</label>
                                 </div>
                                 <div>
-                                    <input class="form-control checkmark log " idval="@Model[i].Field.Id" type="@Model[i].Field.Type" asp-for="@Model[i].BoolValue" />
+                                    <input class="form-control checkmark log " idval="@Model[i].Field.Id" type="@Model[i].Dependencies.RelatedFields[j].Type" asp-for="@Model[i].DepndenciesValue[j].boolVal" />
                                 </div>
                                 <div>
-                                    <span asp-validation-for="@x.Name" class="text-danger"></span>
+                                    <span asp-validation-for="@Model[i].Dependencies.RelatedFields[j].Name" class="text-danger"></span>
                                 </div>
                             }
 
-                            else if (x.Type == "number")
+                            else if (Model[i].Dependencies.RelatedFields[j].Type == "number")
                             {
 
                                 <div>
-                                    <label asp-for="@x.Name" class="control-label">@x.Name</label>
+                                    <label asp-for="@Model[i].Dependencies.RelatedFields[j].Name" class="control-label">@Model[i].Dependencies.RelatedFields[j].Name</label>
                                 </div>
                                 <div>
-                                    <input class="form-control log " id="@Model[i].Field.Id" numInput="true" idval="@Model[i].Field.Id" type="text" asp-for="@Model[i].TextValue" />
-                                    <p errorParagraf="true" ErrorId="@Model[i].Field.Id" hidden style="color: red"></p>
+                                    <input class="form-control log " id="@Model[i].Dependencies.RelatedFields[j].Id" numInput="true" idval="@Model[i].Field.Id" type="text" asp-for="@Model[i].DepndenciesValue[j].textVal" />
+                                    <p errorParagraf="true" ErrorId="@Model[i].Dependencies.RelatedFields[j].Id" hidden style="color: red"></p>
                                 </div>
 
                             }
@@ -139,18 +142,20 @@
                             {
 
                                 <div>
-                                    <label asp-for="@x.Name" class="control-label">@x.Name</label>
+                                    <label asp-for="@Model[i].Dependencies.RelatedFields[j].Name" class="control-label">@Model[i].Dependencies.RelatedFields[j].Name</label>
                                 </div>
                                 <div>
-                                    <input class="form-control log " idval="@Model[i].Field.Id" id="@Model[i].Field.Id" numInput="true" type="text" asp-for="@Model[i].TextValue" />
-                                    <p errorParagraf="true" ErrorId="@Model[i].Field.Id" hidden style="color: red"></p>
+                                    <input class="form-control log " idval="@Model[i].Field.Id" id="@Model[i].Dependencies.RelatedFields[j].Id" numInput="true" type="text" asp-for="@Model[i].DepndenciesValue[j].textVal" />
+                                    <p errorParagraf="true" ErrorId="@Model[i].Dependencies.RelatedFields[j].Id" hidden style="color: red"></p>
                                 </div>
 
                             }
+
                         </div>
                                         }
-                                    
-                                }
+                                
+
+                            }
 
 
                             </th>

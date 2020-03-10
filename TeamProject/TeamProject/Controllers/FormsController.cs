@@ -94,8 +94,14 @@ namespace FormGenerator.Controllers
                 pom.Field.Name = key.Name;
                 pom.Field.Type = key.Type;
                 var dependencie = lista.FirstOrDefault(l => l.ThisField.Equals(key));
-                if (dependencie != null)
+                if (dependencie != null) {
                     pom.Dependencies = dependencie;
+                    for (int x = 0; x < dependencie.RelatedFields.Count; x++)
+                        pom.DepndenciesValue.Add(new StringBoolType());
+
+                }
+
+                
                 fieldWithValues.Add(pom);
             }
             ViewBag.modelcount = fieldWithValues.Count;
