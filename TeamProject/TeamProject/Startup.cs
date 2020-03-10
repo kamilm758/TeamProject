@@ -70,7 +70,7 @@ namespace TeamProject
 
             
             app.UseAuthentication();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -81,14 +81,14 @@ namespace TeamProject
                        template: "addlog",
                        defaults: new { controller = "Forms", action = "AddLog" });
             });
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseSession();
+
             Seed.SeedRoles(roleManager);
             Seed.SeedUsers(userManager);
-
+            
         }
        
     }

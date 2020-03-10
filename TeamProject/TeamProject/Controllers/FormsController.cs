@@ -116,6 +116,10 @@ namespace FormGenerator.Controllers
         // stworzenie formularza
         public IActionResult Create(int ?id)
         {
+            if(id==null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.bag = id;
             return View();
         }
