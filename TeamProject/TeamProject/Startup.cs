@@ -70,10 +70,6 @@ namespace TeamProject
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
-            app.UseSession();
             app.UseAuthentication();
 
             app.UseMvc(routes =>
@@ -86,6 +82,11 @@ namespace TeamProject
                        template: "addlog",
                        defaults: new { controller = "Forms", action = "AddLog" });
             });
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+            app.UseSession();
             Seed.SeedRoles(roleManager);
             Seed.SeedUsers(userManager);
 

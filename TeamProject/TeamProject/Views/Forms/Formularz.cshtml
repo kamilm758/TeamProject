@@ -25,7 +25,7 @@
                     @for (var i = 0; i < Model.Count; i++)
                     {
                     <tr>
-                        <th type="@Model[i].fieldFieldDep.DependencyType" val="@Model[i].fieldFieldDep.ActivationValue" >
+                        <th type="@Model[i].Dependencies.DependencyType" val="@Model[i].Dependencies.ActivationValue" parentId="@Model[i].Field.Id">
                             <input asp-for="@Model[i].Field.Id" hidden />
                             <input asp-for="@Model[i].Field.Name" hidden />
                             <input asp-for="@Model[i].Field.Type" hidden />
@@ -89,59 +89,71 @@
 
 
                             }
-                        @if (Model[i].fieldFieldDep.dependentFields.Count > 0 )
-                        {
-                        <div style="margin-left: 100px" class="dependent" hidden>
-                            @foreach (Field x in Model[i].fieldFieldDep.dependentFields)
+                            @if (Model[i].Dependencies.RelatedFields.Count > 0)
                             {
 
-                                @if (x.Type == "text")
+                                @foreach (Field x in Model[i].Dependencies.RelatedFields)
                                 {
-                                    <div>
-                                        <label asp-for="@x.Name" class="control-label">@x.Name</label>
-                                    </div>
+                        <div style="margin-left: 100px" class="dependent" hidden idval="@Model[i].Dependencies.ThisField.Id">
+                            @if (x.Type == "text")
+                            {
+                                <div>
+                                    <label asp-for="@x.Name" class="control-label">@x.Name</label>
+                                </div>
 
-                                    <div>
-                                        <input class="form-control log " type="@x.Type" asp-for="@Model[i].TextValue" />
-                                    </div>
-                                    <div>
-                                        <span asp-validation-for="@x.Type" class="text-danger"></span>
-                                    </div>
+                                <div>
+                                    <input class="form-control log" idval="@Model[i].Field.Id" type="@x.Type" asp-for="@Model[i].TextValue" />
+                                </div>
+                                <div>
+                                    <span asp-validation-for="@x.Type" class="text-danger"></span>
+                                </div>
 
-                                }
-                                else if (x.Type == "checkbox")
-                                {
+                            }
+                            else if (x.Type == "checkbox")
+                            {
 
-                                    <div>
-                                        <label asp-for="@x.Name" class="control-label">@x.Name</label>
-                                    </div>
-                                    <div>
-                                        <input class="form-control checkmark log " type="@Model[i].Field.Type" asp-for="@Model[i].BoolValue" />
-                                    </div>
-                                    <div>
-                                        <span asp-validation-for="@x.Name" class="text-danger"></span>
-                                    </div>
-                                }
+                                <div>
+                                    <label asp-for="@x.Name" class="control-label">@x.Name</label>
+                                </div>
+                                <div>
+                                    <input class="form-control checkmark log " idval="@Model[i].Field.Id" type="@Model[i].Field.Type" asp-for="@Model[i].BoolValue" />
+                                </div>
+                                <div>
+                                    <span asp-validation-for="@x.Name" class="text-danger"></span>
+                                </div>
+                            }
 
-                                else if (x.Type == "number")
-                                {
+                            else if (x.Type == "number")
+                            {
 
-                                    <div>
-                                        <label asp-for="@x.Name" class="control-label">@x.Name</label>
-                                    </div>
-                                    <div>
-                                        <input class="form-control log " id="@Model[i].Field.Id" numInput="true" type="text" asp-for="@Model[i].TextValue" />
-                                        <p errorParagraf="true" ErrorId="@Model[i].Field.Id" hidden style="color: red"></p>
-                                    </div>
+                                <div>
+                                    <label asp-for="@x.Name" class="control-label">@x.Name</label>
+                                </div>
+                                <div>
+                                    <input class="form-control log " id="@Model[i].Field.Id" numInput="true" idval="@Model[i].Field.Id" type="text" asp-for="@Model[i].TextValue" />
+                                    <p errorParagraf="true" ErrorId="@Model[i].Field.Id" hidden style="color: red"></p>
+                                </div>
 
-                                }
+                            }
+                            else
+                            {
+
+                                <div>
+                                    <label asp-for="@x.Name" class="control-label">@x.Name</label>
+                                </div>
+                                <div>
+                                    <input class="form-control log " idval="@Model[i].Field.Id" id="@Model[i].Field.Id" numInput="true" type="text" asp-for="@Model[i].TextValue" />
+                                    <p errorParagraf="true" ErrorId="@Model[i].Field.Id" hidden style="color: red"></p>
+                                </div>
 
                             }
                         </div>
-                        }
+                                        }
+                                    
+                                }
 
 
-                        </th>
+                            </th>
                       </tr>
                     }
                     <tr id="response">
@@ -168,13 +180,50 @@
 <script type="text/javascript">
 
     function handleCheck(e) {
-        console.log(e);
-        e.target.parentElement.lastElementChild.removeAttribute("hidden");
+        console.log(e.target.parentNode.getAttribute("val"));
+        console.log(e)
+
+        if (e.target.parentNode.getAttribute("type") == "FieldDuplication" && parseInt(e.target.parentNode.getAttribute("val")) >= parseInt(e.target.value) && parseInt(e.target.value) > 0) {
+            console.log(e.target.parentNode.getAttribute("val"))
+            let divs = (document.querySelectorAll("div[idval]"));
+            console.log(divs)
+            for (let i = 0, j = 0; i < e.target.value, j < e.target.value; i++) {
+                if (divs[i].getAttribute("idval") === e.target.parentNode.getAttribute("parentId")) {
+                    divs[i].removeAttribute("hidden");
+                    j++;
+                }
+            }
+        }
+
+        else if (e.target.parentNode.getAttribute("type") == "FieldVisibly" && e.target.parentNode.getAttribute("val") === e.target.value) {
+          //  e.target.parentElement.lastElementChild.removeAttribute("hidden");
+             let x = (e.target.parentNode.getAttribute("parentid"));
+             console.log(x)
+            let inputs = (document.querySelectorAll(`div[idval="${x}"]`));
+            inputs.forEach((input) =>{
+                input.value = null;
+                console.log(input)
+                input.removeAttribute("hidden")
+            });
+
+        }
+        else {
+            let x = (e.target.parentNode.getAttribute("parentid"));
+            console.log(x)
+            let inputs = (document.querySelectorAll(`input[idval="${x}"]`));
+            console.log(inputs)
+            inputs.forEach((input) =>{
+                input.value = null;
+                console.log(input)
+                input.parentElement.parentElement.setAttribute("hidden","")
+            });
+        }
+                
 
     }
 
     let dependentDuplication = document.querySelectorAll("th[val]");
-    let inputs = document.querySelectorAll("th[val] > input.form-control");
+    let inputs = document.querySelectorAll("th[val] > input.form-control , select.form-control");
 
     inputs.forEach(input => input.addEventListener('change', handleCheck));
     

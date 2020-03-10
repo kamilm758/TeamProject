@@ -199,7 +199,7 @@ namespace FormGenerator.Controllers
         public IActionResult ListWithFields()
         {
             var newFieldList = TempData.Get<NewFieldList>("newFieldListModel");
-          //  newFieldList.currentId = 0;
+            newFieldList.currentId = 0;
             newFieldList.currentName = null;
             newFieldList.currentNameToCreate = null;
             newFieldList.currentTypeToCreate = null;

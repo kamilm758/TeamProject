@@ -14,10 +14,13 @@ namespace FormGenerator.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-
-        public static implicit operator List<object>(Field v)
+        public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            if (this.GetType() != obj.GetType())
+                return false;
+            if (this.Id == (obj as Field).Id)
+                return true;
+            return false;
         }
     }
 }

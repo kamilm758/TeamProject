@@ -76,23 +76,26 @@ namespace FormGenerator.Controllers
                            break;
                         }
                     }
-                    
+                    if (znaleziono == true)
+                        break;
                 }
-                if (znaleziono == true)
-                    break;
-                else
+                
+                if(znaleziono==false)
                     nadrzedne.Add(f);
             }
             
 
             //przepisywanie danych do odpowiedniego modelu. ma ktoś pomysł jak bardziej optymalnie przenosić???
-            foreach(var key in field)
+            foreach(var key in nadrzedne)
             {
                 FieldWithValue pom = new FieldWithValue();
                 pom.TextValue = "";
                 pom.Field.Id = key.Id;
                 pom.Field.Name = key.Name;
                 pom.Field.Type = key.Type;
+                var dependencie = lista.FirstOrDefault(l => l.ThisField.Equals(key));
+                if (dependencie != null)
+                    pom.Dependencies = dependencie;
                 fieldWithValues.Add(pom);
             }
             ViewBag.modelcount = fieldWithValues.Count;
