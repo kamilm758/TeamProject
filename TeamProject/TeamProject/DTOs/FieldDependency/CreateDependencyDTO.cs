@@ -76,7 +76,8 @@ namespace TeamProject.DTOs.FieldDependency
                 return "Zależność ilościowa już została zdefiniowana na tym polu.";
             }
 
-            if (_context.Field.FirstOrDefault(f => f.Name == this.SuperiorFieldName).Type != "number")
+            if (_context.Field.FirstOrDefault(f => f.Name == this.SuperiorFieldName).Type != "number"
+                && this.DependencyType== "FieldDuplication")
             {
                 return "Tylko pole typu 'number' może być polem nadrzędnym w relacji ilościowej";
             }
