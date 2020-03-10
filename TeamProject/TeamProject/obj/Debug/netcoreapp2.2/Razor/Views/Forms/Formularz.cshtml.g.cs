@@ -56,7 +56,7 @@ using FormGenerator.Models.Modele_pomocnicze;
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_6 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("form-control log log-select"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_7 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("width:250px;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_8 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("MainSubmit"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_9 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString(" background-color:white;\r\n            color:#66BB6A;\r\n            font-size:20px;\r\n            padding: 15px 35px;\r\n            border-radius: 8px;\r\n            position:center;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_9 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString(" background-color:white;\n            color:#66BB6A;\n            font-size:20px;\n            padding: 15px 35px;\n            border-radius: 8px;\n            position:center;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_10 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", new global::Microsoft.AspNetCore.Html.HtmlString("submit"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_11 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", new global::Microsoft.AspNetCore.Html.HtmlString("Wyślij formularz"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_12 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-primary"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -93,8 +93,8 @@ using FormGenerator.Models.Modele_pomocnicze;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            BeginContext(29, 2, true);
-            WriteLiteral("\r\n");
+            BeginContext(28, 1, true);
+            WriteLiteral("\n");
             EndContext();
 #line 3 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Forms\Formularz.cshtml"
   
@@ -102,7 +102,7 @@ using FormGenerator.Models.Modele_pomocnicze;
 
 #line default
 #line hidden
-            BeginContext(76, 272, true);
+            BeginContext(71, 257, true);
             WriteLiteral(@"
 <h3>Wypełnij fromularz</h3>
 
@@ -146,8 +146,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 EndContext();
-                BeginContext(461, 57, true);
-                WriteLiteral("\r\n                <table class=\"table table-striped\">\r\n\r\n");
+                BeginContext(440, 54, true);
+                WriteLiteral("\n                <table class=\"table table-striped\">\n\n");
                 EndContext();
 #line 25 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Forms\Formularz.cshtml"
                      for (var i = 0; i < Model.Count; i++)
@@ -155,8 +155,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
 
 #line default
 #line hidden
-                BeginContext(601, 50, true);
-                WriteLiteral("                    <tr>\r\n                        ");
+                BeginContext(575, 49, true);
+                WriteLiteral("                    <tr>\n                        ");
                 EndContext();
                 BeginContext(651, 45, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "04b2bbfe81643ad88b5a0b29efe888ada67c420c13878", async() => {
@@ -181,8 +181,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 EndContext();
-                BeginContext(696, 26, true);
-                WriteLiteral("\r\n                        ");
+                BeginContext(669, 25, true);
+                WriteLiteral("\n                        ");
                 EndContext();
                 BeginContext(722, 47, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "04b2bbfe81643ad88b5a0b29efe888ada67c420c15851", async() => {
@@ -207,8 +207,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 EndContext();
-                BeginContext(769, 26, true);
-                WriteLiteral("\r\n                        ");
+                BeginContext(741, 25, true);
+                WriteLiteral("\n                        ");
                 EndContext();
                 BeginContext(795, 47, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "04b2bbfe81643ad88b5a0b29efe888ada67c420c17826", async() => {
@@ -233,8 +233,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 EndContext();
-                BeginContext(842, 2, true);
-                WriteLiteral("\r\n");
+                BeginContext(813, 1, true);
+                WriteLiteral("\n");
                 EndContext();
 #line 31 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Forms\Formularz.cshtml"
                          if (Model[i].Field.Type == "text")
@@ -242,8 +242,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
 
 #line default
 #line hidden
-                BeginContext(932, 67, true);
-                WriteLiteral("                            <div>\r\n                                ");
+                BeginContext(900, 66, true);
+                WriteLiteral("                            <div>\n                                ");
                 EndContext();
                 BeginContext(999, 88, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "04b2bbfe81643ad88b5a0b29efe888ada67c420c20190", async() => {
@@ -273,11 +273,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 EndContext();
-                BeginContext(1087, 38, true);
-                WriteLiteral("\r\n                            </div>\r\n");
+                BeginContext(1054, 36, true);
+                WriteLiteral("\n                            </div>\n");
                 EndContext();
-                BeginContext(1127, 67, true);
-                WriteLiteral("                            <div>\r\n                                ");
+                BeginContext(1091, 66, true);
+                WriteLiteral("                            <div>\n                                ");
                 EndContext();
                 BeginContext(1194, 93, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "04b2bbfe81643ad88b5a0b29efe888ada67c420c22483", async() => {
@@ -309,8 +309,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 EndContext();
-                BeginContext(1287, 105, true);
-                WriteLiteral("\r\n                            </div>\r\n                            <div>\r\n                                ");
+                BeginContext(1250, 102, true);
+                WriteLiteral("\n                            </div>\n                            <div>\n                                ");
                 EndContext();
                 BeginContext(1392, 75, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "04b2bbfe81643ad88b5a0b29efe888ada67c420c25020", async() => {
@@ -333,8 +333,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 EndContext();
-                BeginContext(1467, 38, true);
-                WriteLiteral("\r\n                            </div>\r\n");
+                BeginContext(1427, 36, true);
+                WriteLiteral("\n                            </div>\n");
                 EndContext();
 #line 43 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Forms\Formularz.cshtml"
 
@@ -859,8 +859,8 @@ AddHtmlAttributeValue("", 3352, Model[i].Field.Id, 3352, 18, false);
     $(""[numInput='true']"").change(function () {
 
         $.ajax({
-        ");
-            WriteLiteral(@"            url: ""/api/Validations/"" + this.id + ""/"" + this.value,
+                    url: ""/api/Validations");
+            WriteLiteral(@"/"" + this.id + ""/"" + this.value,
                      dataType: ""json""
         }).done(res => CheckValidations(res, this));
 
@@ -892,8 +892,10 @@ AddHtmlAttributeValue("", 3352, Model[i].Field.Id, 3352, 18, false);
         }
         console.log(licznik);
         if (licznik == 0) {
-            document.");
-            WriteLiteral("getElementById(\"MainSubmit\").disabled = false;\r\n        }\r\n        if (licznik != 0) {\r\n            document.getElementById(\"MainSubmit\").disabled = true;\r\n        }\r\n    }\r\n</script>");
+            document.getElementById(""MainSubmit"").disabled = false;
+        }
+        i");
+            WriteLiteral("f (licznik != 0) {\n            document.getElementById(\"MainSubmit\").disabled = true;\n        }\n    }\n</script>");
             EndContext();
         }
         #pragma warning restore 1998

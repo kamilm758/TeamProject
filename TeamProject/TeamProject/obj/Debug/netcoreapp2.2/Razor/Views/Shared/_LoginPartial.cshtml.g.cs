@@ -91,8 +91,8 @@ using Microsoft.AspNetCore.Identity;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            BeginContext(124, 140, true);
-            WriteLiteral("<style> .btnx {\r\n    border: 1px solid black;\r\n    margin: 2px;\r\n    background-color: #efefef;\r\n}</style>\r\n \r\n\r\n\r\n<ul class=\"navbar-nav\">\r\n");
+            BeginContext(121, 131, true);
+            WriteLiteral("<style> .btnx {\n    border: 1px solid black;\n    margin: 2px;\n    background-color: #efefef;\n}</style>\n \n\n\n<ul class=\"navbar-nav\">\n");
             EndContext();
 #line 13 "C:\Users\User\Documents\Repositories\TeamProject\TeamProject\TeamProject\Views\Shared\_LoginPartial.cshtml"
      if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin")))
@@ -100,8 +100,8 @@ using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
-            BeginContext(341, 43, true);
-            WriteLiteral("        <li class=\"nav-item\">\r\n            ");
+            BeginContext(327, 42, true);
+            WriteLiteral("        <li class=\"nav-item\">\n            ");
             EndContext();
             BeginContext(384, 117, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7135f90277efa325c5f378981b05d28106de8f429897", async() => {
@@ -126,8 +126,8 @@ using Microsoft.AspNetCore.Identity;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             EndContext();
-            BeginContext(501, 60, true);
-            WriteLiteral("\r\n        </li>\r\n        <li class=\"nav-item\">\r\n            ");
+            BeginContext(486, 57, true);
+            WriteLiteral("\n        </li>\n        <li class=\"nav-item\">\n            ");
             EndContext();
             BeginContext(561, 134, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7135f90277efa325c5f378981b05d28106de8f4211713", async() => {
