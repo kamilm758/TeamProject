@@ -4,10 +4,24 @@
     ViewData["Title"] = "Create";
 }
 
-<h4>Stwórz nową kategorię</h4>
-<hr />
+
+
+
+<div class="row" style="padding-top:40px">
+    <div class="col-md-4 offset-4">
+        <h4 class="text-center">Stwórz nową kategorię</h4>
+    </div>
+    <div class="col">
+        <a asp-action="Index" asp-controller="Forms" class="btn btn-danger">Powrót do menu głównego</a>
+    </div>
+</div>
+
+
+
+
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 offset-4">
         <form asp-action="CreateParentCategory">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -21,10 +35,10 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             @*<div class="form-group" hidden>
-                <label  asp-for="Parent" class="control-label"></label>
-                <input asp-for="Parent" class="form-control" value="null" />
-                <span asp-validation-for="Parent" class="text-danger"></span>
-            </div>*@
+                    <label  asp-for="Parent" class="control-label"></label>
+                    <input asp-for="Parent" class="form-control" value="null" />
+                    <span asp-validation-for="Parent" class="text-danger"></span>
+                </div>*@
 
             <div class="form-group">
                 <input type="submit" value="Stwórz" class="btn btn-primary" />
@@ -34,8 +48,8 @@
 </div>
 
 @*<div>
-    <a asp-action="Index" asp-controller="Home" class="btn btn-danger">Powrót do menu głównego</a>
-</div>*@
+        <a asp-action="Index" asp-controller="Home" class="btn btn-danger">Powrót do menu głównego</a>
+    </div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

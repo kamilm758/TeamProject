@@ -1,9 +1,18 @@
 ﻿@model FormGenerator.Models.Patient
-    <script>
-        sessionStorage.removeItem('key');
-    </script>
-<div><a asp-action="Index" asp-controller="Patient" class="btn btn-danger">Powrót do menu głównego</a></div>
-<h3>Dodaj nowego pacjenta</h3>
+<script>
+    sessionStorage.removeItem('key');
+</script>
+
+<div class="row" style="padding-top:40px">
+    <div class="col-md-4 offset-4">
+        <h4 class="text-center">Dodaj nowego pacjenta</h4>
+    </div>
+    <div class="col">
+        <a asp-action="Index" asp-controller="Patient" class="btn btn-danger">Powrót do menu głównego</a>
+    </div>
+</div>
+
+
 
 <div class="row">
     <div class="col-md-4 offset-4">
