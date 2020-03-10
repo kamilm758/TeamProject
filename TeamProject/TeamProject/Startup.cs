@@ -74,9 +74,11 @@ namespace TeamProject
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+           
             app.UseSession();
             app.UseAuthentication();
 
+         
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -85,13 +87,14 @@ namespace TeamProject
                     defaults: new { controller = "FieldDependency", action = "Index" });
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute( 
-                       name: "AddLog",
-                       template: "addlog",
-                       defaults: new { controller = "Forms", action = "AddLog" });
+                    template: "{controller=Forms}/{action=Index}");
+                routes.MapRoute(
+                    name: "",
+                    template: "{controller}/{action}/{id?}");
             });
+
             app.UseCookiePolicy();
+
             Seed.SeedRoles(roleManager);
             Seed.SeedUsers(userManager);
 
